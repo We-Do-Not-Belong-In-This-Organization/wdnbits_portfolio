@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>lole</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_style.css') }}">
 </head>
 <body>
-  <div class="container fade-in">
-    <h1>lol</h1>
-    <div style="margin: 20px auto; width: 200px; border: 2px solid #0ff; border-radius: 10px; overflow: hidden;">
-  
+
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      
+      <div class="loading-spinner"></div>
     </div>
+  </div>
 
-    <p style="margin-top: 20px;">This is the profile page for character.</p>
 
-  
+  <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
+
   </div>
 </body>
 </html>

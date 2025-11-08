@@ -113,7 +113,17 @@
       <img src="{{ url_for('static', filename='images/img1.jpg') }}" 
            alt="Character Image" 
            style="width: 100%; display: block;">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_style.css') }}">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      
+      <div class="loading-spinner"></div>
     </div>
+  </div>
 
     <!-- Paint splatter layer -->
     <img src="{{ url_for('static', filename='images/paint.png') }}" 
@@ -132,6 +142,9 @@
 <div class="loop-text-row" style="top: 80%; transform: rotate(-2deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
 
 
+
+
+  <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
 
   </div>
 
