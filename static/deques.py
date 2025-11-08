@@ -1,3 +1,4 @@
+# deque_linkedlist.py
 from node import Node
 
 class Deque:
@@ -53,13 +54,55 @@ class Deque:
     def is_empty(self):  # Check if empty
         return self.head is None
 
-    # Remove at specific parts
+
+    # Remove at specific part
+    def remove_at(self, position):  # Remove node at a specific index (0-based)
+        if self.is_empty():
+            return None
+
+        if position == 0:
+            return self.dequeue_front()
+
+        index = 0
+        prev_node = None
+        current_node = self.head
+
+        while current_node and index < position:
+            prev_node = current_node
+            current_node = current_node.next
+            index += 1
+
+        if current_node:
+            data = current_node.data
+            prev_node.next = current_node.next
+
+            if current_node == self.tail:
+                self.tail = prev_node
+
+            current_node.next = None
+            return data
+
+        return None  # position out of range
+
 
     def clear(self):  # Clear all
         self.head = None
         self.tail = None
 
+
     def length(self):  # Count length of deque
         count = 0
-        # Dipa tapos
+        current_node = self.head
+        while current_node:
+            count += 1
+            current_node = current_node.next
+        return count
 
+
+    def display(self):  # Show all elements
+        items = []
+        current_node = self.head
+        while current_node:
+            items.append(current_node.data)
+            current_node = current_node.next
+        return items
