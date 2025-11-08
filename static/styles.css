@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Russo+One&display=swap');
 
-/* === Base Layout === */
+/* Body and background */
 body {
   margin: 0;
   height: 100vh;
@@ -14,36 +15,25 @@ body {
   position: relative;
 }
 
-/* === Galaxy / Starfield Background === */
+/* Galaxy background */
 body::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/static/images/galaxy-bg.jpg') center/cover no-repeat;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('images/galaxy-bg.jpg') center/cover no-repeat;
   filter: brightness(0.6) contrast(1.2);
   animation: slowPan 60s linear infinite;
   z-index: 0;
 }
 
-/* Slow, subtle galaxy movement */
-@keyframes slowPan {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.05) translate(-10px, -10px); }
-  100% { transform: scale(1) translate(0, 0); }
-}
-
-/* === Smooth, continuously moving neon grid overlay === */
+/* Neon grid overlay */
 body::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image:
     linear-gradient(rgba(0, 255, 255, 0.2) 4px, transparent 0px),
     linear-gradient(90deg, rgba(0, 255, 255, 0.2) 4px, transparent 0px);
   background-size: 80px 80px;
@@ -52,29 +42,120 @@ body::after {
   pointer-events: none;
 }
 
-/* Infinite grid scroll (no pause) */
+/* Animations for background */
+@keyframes slowPan {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.05) translate(-10px, -10px); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
 @keyframes moveGrid {
   from { background-position: 0 0, 0 0; }
   to { background-position: 80px 80px, 80px 80px; }
 }
 
-/* === Centered Container === */
+/* Container */
 .container {
   position: relative;
   z-index: 2;
   text-align: center;
 }
 
-/* === Title === */
+/* Title */
 .title {
-  font-size: 3rem;
-  color: #9cf1ff;
-  text-shadow: 0 0 15px #0ff, 0 0 30px #00f;
-  letter-spacing: 5px;
+  font-family: 'Russo One', sans-serif;
+  color: #4a90ff;
+  text-shadow: 0 0 8px #0ff, 0 0 15px #00f;
+  letter-spacing: 3px;
+  text-align: center;
   margin-bottom: 40px;
 }
 
-/* === Character Grid === */
+.title .top {
+  font-family: 'Lobster', cursive;
+  font-size: 2.2rem;
+  color: #001a99;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.title .main {
+  font-family: 'Russo One', sans-serif;
+  font-size: 12rem;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  display: block;
+}
+
+.title .sub {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: #80bfff;
+  display: block;
+  margin-top: 15px;
+}
+
+/* Press Any Button */
+.press-start {
+  font-size: 1.5rem;
+  color: #cfd8dc;
+  letter-spacing: 3px;
+  margin-top: 50px;
+  background: transparent;
+  border: 2px solid #0ff;
+  padding: 15px 40px;
+  border-radius: 10px;
+  text-shadow: 0 0 10px #00e5ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: glowPulse 1.8s ease-in-out infinite;
+}
+
+.press-start:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 25px #0ff;
+  transform: scale(1.05);
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    text-shadow: 0 0 10px #0ff, 0 0 25px #00bcd4;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 20px #0ff, 0 0 40px #00bcd4, 0 0 60px #00f;
+  }
+}
+
+/* Fade-out + zoom for index page */
+.zoom-fade {
+  animation: zoomFade 1.2s linear forwards;
+}
+
+@keyframes zoomFade {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(7) translate(0, 0);
+    opacity: 0;
+  }
+}
+
+/* Fade-in for profile page */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Profile grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -85,7 +166,6 @@ body::after {
   margin: 0 auto;
 }
 
-/* === Character Cards === */
 .character {
   width: 120px;
   height: 120px;
@@ -111,63 +191,17 @@ body::after {
   box-shadow: 0 0 25px #0ff;
 }
 
-.side-image {
-  position: fixed;
-  top: 60%;
-  transform: translateY(-50%);
-  width: 30%;
-  max-width: 1000px;
-  z-index: 1;
-  opacity: 0.9;
-  pointer-events: none; 
+/* Footer */
+footer {
+  margin-top: 80px;
+  font-size: 0.9rem;
+  color: #b0bec5;
+  line-height: 1.5;
 }
 
-
-.side-image.left {
-  left: -3%;
-  top: 70%;
+footer .tagline {
+  margin-top: 10px;
+  font-style: italic;
+  color: #e0f7fa;
 }
 
-
-.side-image.right {
-  right: -3%;
-    top: 70%;
-}
-
-.side-image {
-  position: fixed;
-  top: 60%;
-  width: 30%;
-  max-width: 1000px;
-  z-index: 1;
-  pointer-events: none; 
-}
-@keyframes slideInLeft {
-  0% {
-    transform: translateY(-50%) translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(-50%) translateX(0);
-    opacity: 0.9;
-  }
-}
-
-@keyframes slideInRight {
-  0% {
-    transform: translateY(-50%) translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(-50%) translateX(0);
-    opacity: 0.9;
-  }
-}
-
-.animate-side-left {
-  animation: slideInLeft 0.8s ease-out forwards;
-}
-
-.animate-side-right {
-  animation: slideInRight 0.8s ease-out forwards;
-}
