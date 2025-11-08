@@ -10,9 +10,9 @@ website = Flask(__name__)
 
 
 # Home Page
-@website.route("/home")
+@website.route("/")
 def home():
-    return render_template("index.html") 
+    return render_template("home.html") 
 
 
 @website.route("/AboutUs")
@@ -33,7 +33,7 @@ def contacts():
 
 # Each Profile, can be copy and pasted
 
-@website.route("#/routemember")
+@website.route("/routemember")
 def profile_member():
     return render_template("#member.html")
 

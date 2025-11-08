@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Your Character</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="background"></div>
+
+  <img src="{{ url_for('static', filename='images/left-placeholder.png') }}" alt="Left Character" class="side-image left">
+  <img src="{{ url_for('static', filename='images/right-placeholder.png') }}" alt="Right Character" class="side-image right">
+
+  <!-- Main Menu -->
+  <div class="container">
+    <h1>CHOOSE YOUR CHARACTER</h1>
+    <div class="box-grid">
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder1.png') }}" alt="Character 1"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder2.png') }}" alt="Character 2"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder3.png') }}" alt="Character 3"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder4.png') }}" alt="Character 4"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder5.png') }}" alt="Character 5"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder6.png') }}" alt="Character 6"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder7.png') }}" alt="Character 7"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder8.png') }}" alt="Character 8"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder9.png') }}" alt="Character 9"></div>
+      <div class="box"><img src="{{ url_for('static', filename='images/placeholder10.png') }}" alt="Character 10"></div>
+    </div>
+  </div>
+</body>
+</html>
