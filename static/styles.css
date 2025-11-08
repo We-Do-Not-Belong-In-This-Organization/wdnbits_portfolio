@@ -110,3 +110,26 @@ body::after {
   transform: scale(1.1);
   box-shadow: 0 0 25px #0ff;
 }
+
+.side-image {
+  position: fixed;
+  top: 60%;
+  transform: translateY(-50%);
+  width: 30%;
+  max-width: 1000px;
+  z-index: 1;
+  opacity: 0.9;
+  pointer-events: none; 
+}
+
+
+.side-image.left {
+  left: -3%;
+  top: 70%;
+}
+
+
+.side-image.right {
+  right: -3%;
+    top: 70%;
+}
