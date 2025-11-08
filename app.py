@@ -10,18 +10,27 @@ website = Flask(__name__)
 
 
 # Home Page
-@website.route("/home")
+@website.route("/")
 def home():
     return render_template("index.html") 
 
 
-@website.route("/")
+@website.route("/profile")
 def profile():
+    # Each image and its matching HTML file (same order)
     characters = [
-        'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg',
-        'img6.jpg', 'img7.jpg', 'img8.jpg', 'img9.jpg', 'img10.jpg'
+        {"img": "img1.jpg", "page": "ced"},
+        {"img": "img2.jpg", "page": "deqs"},
+        {"img": "img3.jpg", "page": "hassan"},
+        {"img": "img4.jpg", "page": "ian"},
+        {"img": "img5.jpg", "page": "james"},
+        {"img": "img6.jpg", "page": "jayvee"},
+        {"img": "img7.jpg", "page": "jed"},
+        {"img": "img8.jpg", "page": "laei"},
+        {"img": "img9.jpg", "page": "marx"},
+        {"img": "img10.jpg", "page": "matt"}
     ]
-    return render_template("profile.html", characters=characters)  # Change #profile.html per member
+    return render_template("profile.html", characters=characters)
 
 
 @website.route("/works")
@@ -29,17 +38,15 @@ def works():
     return render_template("#works.html")  # Change #works.html per member
 
 
-@website.route("/Contacts")
-def contacts():
-    return render_template("#contacts.html")  # Change #contacts.html per member
-
-# End of Navigation bar
-
-# Each Profile, can be copy and pasted
-
-@website.route("/routemember")
-def profile_member():
-    return render_template("#member.html")
+# 🔹 Route for each member’s individual HTML file
+@website.route("/profile/<name>")
+def profile_member(name):
+    print("🔍 Trying to open:", f"member_profiles/{name}.html")
+    try:
+        return render_template(f"member_profiles/{name}.html")
+    except Exception as e:
+        print("⚠️ Error:", e)
+        return "Profile not found", 404
 
 
 if __name__ == '__main__':
