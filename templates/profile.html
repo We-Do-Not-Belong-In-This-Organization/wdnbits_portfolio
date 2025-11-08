@@ -8,19 +8,23 @@
 </head>
 <body>
 
-<img src="{{ url_for('static', filename='images/img1.jpg') }}" alt="Left Character" class="side-image left">
-<img src="{{ url_for('static', filename='images/img2.jpg') }}" alt="Right Character" class="side-image right">
+  <!-- Side images start empty -->
+  <img id="leftSide" alt="Left Character" class="side-image left">
+  <img id="rightSide" alt="Right Character" class="side-image right">
 
-<!-- Main Menu -->
+  <!-- Main Menu -->
   <div class="container">
     <h1 class="title">CHOOSE YOUR CHARACTER</h1>
     <div class="grid">
       {% for char in characters %}
-      <div class="character">
+      <div class="character box">
         <img src="{{ url_for('static', filename='images/' + char) }}" alt="Character">
       </div>
       {% endfor %}
+      
     </div>
   </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </body>
 </html>

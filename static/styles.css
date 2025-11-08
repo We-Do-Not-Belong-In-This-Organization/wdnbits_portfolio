@@ -133,3 +133,41 @@ body::after {
   right: -3%;
     top: 70%;
 }
+
+.side-image {
+  position: fixed;
+  top: 60%;
+  width: 30%;
+  max-width: 1000px;
+  z-index: 1;
+  pointer-events: none; 
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateY(-50%) translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.9;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateY(-50%) translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.9;
+  }
+}
+
+.animate-side-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-side-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
