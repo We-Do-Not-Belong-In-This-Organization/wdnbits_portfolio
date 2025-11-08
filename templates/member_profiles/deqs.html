@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Character {{ id }} Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container fade-in">
+    <h1 class="title">CHARACTER {{ id }}</h1>
+    <div style="margin: 20px auto; width: 200px; border: 2px solid #0ff; border-radius: 10px; overflow: hidden;">
+      <img src="{{ url_for('static', filename='images/' + img) }}" alt="Character {{ id }}" style="width:100%;">
+    </div>
+
+    <p style="margin-top: 20px;">This is the profile page for character {{ id }}.</p>
+
+    <footer>
+      <a href="{{ url_for('profile') }}" style="color:#9cf1ff; text-decoration:none;">← Back to Profiles</a>
+    </footer>
+  </div>
+</body>
+</html>
