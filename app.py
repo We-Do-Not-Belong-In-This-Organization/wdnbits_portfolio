@@ -17,7 +17,11 @@ def home():
 
 @website.route("/AboutUs")
 def profile():
-    return render_template("#profile.html")  # Change #profile.html per member
+    characters = [
+        'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg',
+        'img6.jpg', 'img7.jpg', 'img8.jpg', 'img9.jpg', 'img10.jpg'
+    ]
+    return render_template("profile.html", characters=characters)  # Change #profile.html per member
 
 
 @website.route("/works")
@@ -33,7 +37,7 @@ def contacts():
 
 # Each Profile, can be copy and pasted
 
-@website.route("#/routemember")
+@website.route("/routemember")
 def profile_member():
     return render_template("#member.html")
 
