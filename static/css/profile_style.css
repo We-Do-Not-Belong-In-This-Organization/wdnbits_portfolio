@@ -87,3 +87,66 @@ body::after {
   letter-spacing: 5px;
   display: block;
 }
+
+
+/* === Loading Screen === */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.loading-content {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The small glowing ball image */
+.loading-ball {
+  position: fixed;
+  bottom: 30px;
+  right: 45px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: glowBall 2s infinite alternate;
+}
+
+@keyframes glowBall {
+  0% { filter: drop-shadow(0 0 2px #00ffff); transform: scale(1); }
+  100% { filter: drop-shadow(0 0 15px #00ffff); transform: scale(1.2); }
+}
+
+/* Spinner in bottom-left corner */
+.loading-spinner {
+  position: fixed;
+  bottom: 30px;
+  right: 45px;
+  width: 30px;
+  height: 30px;
+  border: 8px solid #FFF;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Hide the loader after fade-out */
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

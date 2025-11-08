@@ -174,9 +174,10 @@ body::after {
   align-items: center;
   border: 2px solid #0ff;
   border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: visible; /* changed from hidden to allow side images to show */
   background: rgba(255, 255, 255, 0.05);
+  position: relative; /* required for absolute positioning of side images */
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .character img {
@@ -205,3 +206,40 @@ footer .tagline {
   color: #e0f7fa;
 }
 
+.side-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;  /* adjust to taste */
+  height: 120px;
+  opacity: 0;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.side-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Start off-screen */
+.left-side {
+  left: -150px;
+}
+
+.right-side {
+  right: -150px;
+}
+
+/* Slide in on hover */
+.character:hover .left-side {
+  left: -10px;
+  opacity: 1;
+}
+
+.character:hover .right-side {
+  right: -10px;
+  opacity: 1;
+}
