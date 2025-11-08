@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose Your Character</title>
+  <title>Profile - WDNBITS</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">CHOOSE YOUR CHARACTER</h1>
+  <div class="container fade-in">
+    <h1 class="title">CHARACTER PROFILES</h1>
+
     <div class="grid">
-      {% for char in characters %}
+      {% for character in characters %}
       <div class="character">
-        <img src="{{ url_for('static', filename='images/' + char) }}" alt="Character">
+        <img src="{{ url_for('static', filename='images/' + character) }}" alt="Character {{ loop.index }}">
       </div>
       {% endfor %}
     </div>
+
+    <footer>
+      <a href="/" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
+        ← Back to Title
+      </a>
+    </footer>
   </div>
 </body>
 </html>

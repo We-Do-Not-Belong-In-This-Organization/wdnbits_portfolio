@@ -10,12 +10,12 @@ website = Flask(__name__)
 
 
 # Home Page
-@website.route("/home")
+@website.route("/")
 def home():
     return render_template("index.html") 
 
 
-@website.route("/")
+@website.route("/profile")
 def profile():
     characters = [
         'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg',
