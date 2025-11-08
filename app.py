@@ -1,3 +1,5 @@
+# pip install Flask
+
 from flask import Flask, render_template
 
 website = Flask(__name__)
@@ -25,3 +27,9 @@ def contacts():
     return render_template("#contants.html")
 
 # End of Navigation bar
+
+# Each Profile, can be copy and pasted
+
+@website.route("#/routemember")
+def profile_member():
+    return render_template("#member.html")
