@@ -15,7 +15,7 @@ def home():
     return render_template("index.html") 
 
 
-@website.route("/AboutUs")
+@website.route("/")
 def profile():
     characters = [
         'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg',
