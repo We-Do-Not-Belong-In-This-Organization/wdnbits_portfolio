@@ -15,9 +15,13 @@ def home():
     return render_template("home.html") 
 
 
-@website.route("/AboutUs")
+@website.route("/")
 def profile():
-    return render_template("#profile.html")  # Change #profile.html per member
+    characters = [
+        'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg',
+        'img6.jpg', 'img7.jpg', 'img8.jpg', 'img9.jpg', 'img10.jpg'
+    ]
+    return render_template("profile.html", characters=characters)  # Change #profile.html per member
 
 
 @website.route("/works")
