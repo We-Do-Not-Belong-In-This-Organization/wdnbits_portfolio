@@ -41,9 +41,11 @@ def works():
 # 🔹 Route for each member’s individual HTML file
 @website.route("/profile/<name>")
 def profile_member(name):
+    print("🔍 Trying to open:", f"member_profiles/{name}.html")
     try:
         return render_template(f"member_profiles/{name}.html")
-    except:
+    except Exception as e:
+        print("⚠️ Error:", e)
         return "Profile not found", 404
 
 
