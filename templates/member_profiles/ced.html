@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
   <!-- Back Button -->
   <a href="{{ url_for('profile') }}" class="back-button">Back</a>
   <!-- Moving background layer -->
@@ -58,6 +60,16 @@
   </u>
 </div>
   </div>
+
+    <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
+  
 
 </body>
 </html>
