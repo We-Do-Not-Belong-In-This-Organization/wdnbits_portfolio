@@ -3,18 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>lole</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Back Button -->
+  <a href="{{ url_for('profile') }}" class="queue-back">Back</a>
+  <!-- Moving background layer -->
   <div class="container fade-in">
-    <h1>lol</h1>
-    <div style="margin: 20px auto; width: 200px; border: 2px solid #0ff; border-radius: 10px; overflow: hidden;">
-  
     </div>
 
-    <p style="margin-top: 20px;">This is the profile page for character.</p>
+    
+    <img src="{{ url_for('static', filename='images/queue_ui.png') }}"
+         alt="Queue Bg"
+         class="queue-bg">
 
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue2">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue3">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue4">
+
+    <img src="{{ url_for('static', filename='images/splat_name.png') }}"
+         alt="Splat name"
+         class="splat-name">
+
+    <img src="{{ url_for('static', filename='images/splat_screen.png') }}"
+         alt="Splat screen"
+         class="splat-screen">
+
+             <div class="queue-text">QUEUE</div>
+             <div class="queue-textline">QUEUE LINE</div>
+
+    <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
   
-  </div>
 </body>
 </html>

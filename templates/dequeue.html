@@ -41,3 +41,10 @@
     </div>
 </body>
 </html>
+
+
+
+@website.route('/clear_dob_queue', methods=['POST'])
+def clear_dob_queue():
+    dequeue_line.clear()
+    return redirect(url_for('dob_queue'))

@@ -1,10 +1,15 @@
-# deque_linkedlist.py
 from node import Node
 
 class Deque:
     def __init__(self):
         self.head = None
         self.tail = None
+
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current.data
+            current = current.next
 
     def enqueue_front(self, data):  # Insert at front
         new_node = Node(data)
