@@ -12,26 +12,26 @@
 
     <form action="/enqueue_left" method="post">
         <input type="text" name="user_enqueue" placeholder="Enter item" required>
-        <button type="submit">Enqueue</button>
+        <button type="submit">Enqueue Behind</button>
     </form>
 
     <form action="/dequeue_right" method="post">
-        <button type="submit">Dequeue</button>
+        <button type="submit">Dequeue Ahead</button>
     </form>
 
     <form action="/enqueue_head" method="post">
         <input type="text" name="user_enqueue" placeholder="Enter item" required>
-        <button type="submit">Enqueue</button>
+        <button type="submit">Enqueue Ahead</button>
     </form>
 
     <form action="/dequeue_tail" method="post">
-        <button type="submit">Dequeue</button>
+        <button type="submit">Dequeue Behind</button>
     </form>
 
     <div class="queue_line">
         <h3>Queue Line:</h3>
-        {% if queue %}
-            {% for item in queue %}
+        {% if dequeue_line %}
+            {% for item in dequeue_line %}
                 <div class="item">{{ item }}</div>
             {% endfor %}
         {% else %}
