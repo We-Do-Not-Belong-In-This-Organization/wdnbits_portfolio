@@ -35,13 +35,9 @@ def profile():
 
 @website.route("/works")
 def works():
-    return render_template("#works.html")
+    return render_template("/works.html")  # Change #works.html per member
 
-
-# =====================================================
-# Queue System (for Laei)
-# =====================================================
-
+# For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
 queue_line = Queue()
 
 
@@ -59,6 +55,12 @@ def laei_profile():
         elif action == "clear":
             queue_line.clear()
 
+
+
+@website.route('/clear_queue', methods=['POST'])
+def clear_queue():
+    queue_line.clear()
+    return redirect(url_for('queue'))
     # Always render same page with updated queue
     items = queue_line.display()
     return render_template("member_profiles/laei.html", queue_items=items)
@@ -110,6 +112,16 @@ def dequeue_front():
 def clear_dob_queue():
     deque_line.clear()
     return redirect(url_for('dob_queue'))
+
+
+
+# End of DEqueue
+
+#WORKS (ON PROGRESS)
+
+@website.route('/project')
+def project():
+    return render_template("project.html")
 
 
 # 🔹 Route for each member’s HTML

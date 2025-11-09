@@ -3,29 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile - WDNBITS</title>
+  <title>Works</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
   <div class="container fade-in">
-    <h1 class="title">CHARACTER PROFILES</h1>
+    <h1 class="title">WORKS</h1>
 
   <div class="grid">
-    {% for character in characters %}
-    <div class="character">
-      <a href="{{ url_for('profile_member', name=character.page) }}">
-        <img src="{{ url_for('static', filename='images/' + character.img) }}" alt="{{ character.page }}">
-      </a>
-    </div>
-    {% endfor %}
+    <ul>
+        <li>
+          <a href="/queue" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
+        ← Queue
+          </a>
+      </li>
+      <li>
+        <a href="/deque" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
+        ← DEqueue
+        </a>
+      </li>
+      </ul>
   </div>
 
 
     <footer>
       <ul>
         <li>
-          <a href="/project" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
-        ← Works
+          <a href="/profile" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
+        ← Back to profile
           </a>
       </li>
       <li>
