@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deque</title>
+  <!-- removed {{ url_for('static', filename='styles.css') }} in href-->
+  <link rel="stylesheet" href=""> 
+</head>
+<body>
+    <h1>Deque Line</h1>
+
+    <form action="/enqueue_rear"method="post">
+        <input type="text" name="user_enqueue" placeholder="Enter item" required>
+        <button type="submit" >Enqueue End</button>
+        <button type="submit" formaction="/enqueue_front">Enqueue Front</button>
+    </form>
+
+    <form action="/enqueue_rear" method="post">
+        <button type="submit">Enqueue Front</button>
+    </form>
+
+    <form action="/dequeue_rear" method="post">
+        <button type="submit">Dequeue End</button>
+    </form>
+
+    <form action="/dequeue_front" method="post">
+        <button type="submit">Dequeue Front</button>
+    </form>
+
+    <form action="/clear_dob_queue" method="post">
+        <button type="submit">Clear Queue</button>
+    </form>
+
+
+    <div class="dequeue_line">
+        <h3>Queue Line:</h3>
+        {% if deque_line %}
+            {% for item in deque_line %}
+                <div class="item">{{ item }}</div>
+            {% endfor %}
+        {% else %}
+            <p>The queue is empty.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
