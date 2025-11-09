@@ -1,21 +1,33 @@
+/* ================================================
+   FONTS
+================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap');
 
-/* Body and background */
+/* ================================================
+   BODY AND BACKGROUND
+================================================= */
+body.member, 
+body.member .container, 
+body.member .container * {
+    font-family: 'Work Sans', sans-serif !important;
+}
+
 body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
   font-family: 'Orbitron', sans-serif;
   color: white;
   background: radial-gradient(circle at center, #02040a 0%, #000010 100%);
   position: relative;
 }
 
-/* Galaxy background */
 body::before {
   content: "";
   position: absolute;
@@ -27,7 +39,6 @@ body::before {
   z-index: 0;
 }
 
-/* Neon grid overlay */
 body::after {
   content: "";
   position: absolute;
@@ -42,7 +53,6 @@ body::after {
   pointer-events: none;
 }
 
-/* Animations for background */
 @keyframes slowPan {
   0% { transform: scale(1) translate(0, 0); }
   50% { transform: scale(1.05) translate(-10px, -10px); }
@@ -54,14 +64,25 @@ body::after {
   to { background-position: 80px 80px, 80px 80px; }
 }
 
-/* Container */
+/* ================================================
+   CONTAINER
+================================================= */
 .container {
   position: relative;
   z-index: 2;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  gap: 2rem;
 }
 
-/* Title */
+/* ================================================
+   TITLE STYLES
+================================================= */
 .title {
   font-family: 'Russo One', sans-serif;
   color: #4a90ff;
@@ -96,7 +117,9 @@ body::after {
   margin-top: 15px;
 }
 
-/* Press Any Button */
+/* ================================================
+   PRESS ANY BUTTON
+================================================= */
 .press-start {
   font-size: 1.5rem;
   color: #cfd8dc;
@@ -129,23 +152,18 @@ body::after {
   }
 }
 
-/* Fade-out + zoom for index page */
+/* ================================================
+   FADE / ZOOM ANIMATIONS
+================================================= */
 .zoom-fade {
   animation: zoomFade 1.2s linear forwards;
 }
 
 @keyframes zoomFade {
-  0% {
-    transform: scale(1) translate(0, 0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(7) translate(0, 0);
-    opacity: 0;
-  }
+  0% { transform: scale(1) translate(0, 0); opacity: 1; }
+  100% { transform: scale(7) translate(0, 0); opacity: 0; }
 }
 
-/* Fade-in for profile page */
 .fade-in {
   animation: fadeIn 0.8s ease forwards;
 }
@@ -155,7 +173,9 @@ body::after {
   100% { opacity: 1; }
 }
 
-/* Profile grid */
+/* ================================================
+   PROFILE GRID
+================================================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -174,9 +194,9 @@ body::after {
   align-items: center;
   border: 2px solid #0ff;
   border-radius: 10px;
-  overflow: visible; /* changed from hidden to allow side images to show */
+  overflow: visible;
   background: rgba(255, 255, 255, 0.05);
-  position: relative; /* required for absolute positioning of side images */
+  position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -192,54 +212,381 @@ body::after {
   box-shadow: 0 0 25px #0ff;
 }
 
-/* Footer */
-footer {
-  margin-top: 80px;
-  font-size: 0.9rem;
-  color: #b0bec5;
-  line-height: 1.5;
-}
-
-footer .tagline {
-  margin-top: 10px;
-  font-style: italic;
-  color: #e0f7fa;
-}
-
+/* ================================================
+   SIDE IMAGES FOR PROFILE HOVER (ZOOM-SAFE RELATIVE)
+================================================= */
 .side-image {
   position: absolute;
-  top: 50%;
+  top: 60%;
   transform: translateY(-50%);
-  width: 120px;  /* adjust to taste */
-  height: 120px;
-  opacity: 0;
+  width: 45%; /* scales with zoom */
   transition: all 0.5s ease;
   pointer-events: none;
-  z-index: 10;
+  z-index: -1;
+  opacity: 0; /* hidden initially */
 }
 
-.side-image img {
+.left-side { left: -20%; }
+.right-side { right: -20%; }
+
+.left-side.show { left: 2%; opacity: 1; }
+.right-side.show { right: 2%; opacity: 1; }
+
+/* ================================================
+   PROFILE MEMBER LAYOUT
+================================================= */
+.rectangle {
+  position: fixed;
+  top: 30vh;
+  right: 7vw;
+  width: 47vw;
+  height: 50vh;
+  background-color: #0d0c44;
+  border: 5px solid black;
+  z-index: 3;
+}
+
+.vertical-line {
+  position: absolute;
+  top: 30vh;      /* align with rectangle */
+  left: 66%;       /* somewhere in the rectangle */
+  width: 5px;
+  height: 50vh;    /* same as rectangle */
+  background-color: rgb(0, 0, 0);
+  z-index: 4;
+}
+
+.main-image {
+  position: fixed;      /* relative container */
+  width: 400px;            /* fixed width */
+  height: 500px;           /* fixed height */
+  overflow: hidden;
+  margin: 0 auto;          /* center horizontally */
+  z-index: 3;
+}
+
+.main-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform-origin: center center; /* ensures zoom is centered */
 }
 
-/* Start off-screen */
-.left-side {
-  left: -150px;
+.main-image .hover-gif {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s; /* delay before showing GIF */
+  transform-origin: center center;
 }
 
-.right-side {
-  right: -150px;
+.main-image:hover img:first-child {
+  opacity: 0.3;        /* fade static image */
+  transform: scale(1); /* stays in place */
 }
 
-/* Slide in on hover */
-.character:hover .left-side {
-  left: -10px;
+.main-image:hover .hover-gif {
+  opacity: 1;           /* show GIF */
+  transform: scale(1.1);/* zoom in place */
+}
+
+.splatter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.text-big {
+  position: absolute;
+  top: 1vh;
+  left: 30vw;
+  font-size: 6vw;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.5vw;
+  background: linear-gradient(90deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+}
+
+.adjective-big {
+  position: absolute;
+  top: 80vh;
+  left: 20vw;
+  font-size: 6vw;
+  font-weight: 700;
+  rotate: -5deg;
+  display: inline-block;
+  letter-spacing: -0.1vw;
+  background: linear-gradient(90deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+}
+
+.text-small {
+  position: absolute;
+  top: 15vh;
+  left: 45vw;
+  font-size: 3vw;
+  font-weight: 700;
+  letter-spacing: -0.1vw;
+  color: white;
+  text-shadow: 0.1vw 0.1vw 0.2vw rgba(255, 255, 255, 0.7);
+  z-index: 5;
+}
+
+.text-contracts {
+  position: absolute;
+  top: 31vh;
+  left: 46.5vw;
+  font-size: 3vw;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.05vw;
+  background: linear-gradient(360deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+}
+
+.text-contacts {
+  position: absolute;
+  top: 31vh;
+  left: 67vw;
+  font-size: 3vw;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.05vw;
+  background: linear-gradient(360deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+}
+
+.text-fighting-style {
+  position: absolute;
+  top: 60vh;
+  left: 67vw;
+  font-size: 2vw;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.05vw;
+  background: linear-gradient(360deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+}
+
+.text-contracts,
+.text-contacts,
+.text-fighting-style {
+    font-style: italic;
+    background: linear-gradient(to bottom, #ffffff, #1962e9); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-big,
+.text-small,
+.adjective-big {
+    background: linear-gradient(to bottom, #ffffff, #1962e9); /* white to sky blue */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ================================================
+   Moving Background Text - Infinite Smooth
+================================================= */
+.moving-bg {
+  position: absolute;
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+  transform: rotate(-30deg);
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.2;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8vh;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  font-size: 8vw;
+  font-weight: 900;
+  color: rgb(84, 151, 253);
+  animation: moveDiagonal 20s linear infinite; /* longer duration for smoother movement */
+}
+
+.row {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  font-size: 8vw;
+  font-weight: 900;
+  color: rgb(84, 151, 253);
+  animation: moveDiagonal 20s linear infinite; /* linear and infinite ensures constant speed */
+}
+
+@keyframes moveDiagonal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); } /* move fully to left */
+}
+
+/* Bullets */
+.bullet-contracts, .bullet-contacts, .bullet-fighting-style {
+  position: fixed;
+  font-weight: 700;
+  z-index: 5;
+  color: white;
+}
+
+.bullet-contracts a,
+.bullet-contacts a,
+.bullet-fighting-style a {
+  color: white;
+  text-decoration: none; /* remove underline */
+  font-weight: 700;
+}
+
+.bullet-contracts a:hover,
+.bullet-contacts a:hover,
+.bullet-fighting-style a:hover {
+  color: #87ceeb; /* light blue on hover */
+  text-decoration: underline; /* optional */
+}
+
+
+.bullet-contracts { top: 40vh; left: 48vw; font-size: 2vw; line-height: 3vw; text-align: left; }
+.bullet-contacts { top: 38vh; left: 67vw; font-size: 1.5vw; line-height: 2.3vw; text-align: left; }
+.bullet-fighting-style { top: 65vh; left: 67vw; font-size: 1.5vw; line-height: 2.3vw; text-align: left; }
+
+/* Back button */
+.back-button {
+  position: fixed;
+  top: 3vh;
+  left: 3vw;
+  padding: 0.8vw 2vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #161566;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  z-index: 6;
+  text-shadow: 0 0 5px #161566, 0 0 10px #161566;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.4);
+}
+
+.back-button:hover {
+  color: black;
+  background: #161566;
+  box-shadow: 0 0 15px #161566, 0 0 30px #161566;
+}
+
+/* Footer */
+footer { margin-top: 80px; font-size: 0.9rem; color: #b0bec5; line-height: 1.5; }
+footer .tagline { margin-top: 10px; font-style: italic; color: #e0f7fa; }
+
+/* ================================================
+   PROFILE MEMBER IMAGE & HOVER GIF (not centered)
+================================================= */
+.main-image {
+  position: absolute;  /* keep at your chosen spot */
+  top: 20vh;           /* example position */
+  left: 10vw;          /* example position */
+  width: 30vw;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.main-image img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.main-image .hover-gif {
+  position: absolute;
+  top: 0;       /* aligns with main image */
+  left: 0;      /* aligns with main image */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.main-image:hover img:first-child {
+  opacity: 0.3;  /* fade static image */
+}
+
+.main-image:hover .hover-gif {
+  opacity: 1;    /* show GIF */
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
   opacity: 1;
+  transition: opacity 1s ease;
 }
 
-.character:hover .right-side {
-  right: -10px;
-  opacity: 1;
+.loading-content { position: relative; width: 150px; height: 150px; display: flex; justify-content: center; align-items: center; }
+
+.loading-ball {
+  position: fixed;
+  bottom: 30px;
+  right: 45px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: glowBall 2s infinite alternate;
 }
+
+@keyframes glowBall { 0% { filter: drop-shadow(0 0 2px #00ffff); transform: scale(1); } 100% { filter: drop-shadow(0 0 15px #00ffff); transform: scale(1.2); } }
+
+.loading-spinner {
+  position: fixed;
+  bottom: 30px;
+  right: 45px;
+  width: 30px;
+  height: 30px;
+  border: 8px solid #FFF;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-screen.hidden { opacity: 0; pointer-events: none; }
