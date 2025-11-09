@@ -14,4 +14,4 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/profile";
     }, 1400); // match CSS duration
   });
-});
+;
