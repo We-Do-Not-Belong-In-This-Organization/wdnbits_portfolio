@@ -1,8 +1,7 @@
 # pip install Flask
 # Two lines spacing for each route
 
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, redirect, url_for
 
 website = Flask(__name__)
 
@@ -36,6 +35,75 @@ def profile():
 @website.route("/works")
 def works():
     return render_template("#works.html")  # Change #works.html per member
+
+# For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
+queue_line = []
+
+
+@website.route('/queue')
+def queue():
+    return render_template('queue.html', queue_line=queue_line)
+
+
+@website.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('user_enqueue')
+    if item:
+        queue_line.append(item)
+    return redirect(url_for('queue'))
+
+
+@website.route('/dequeue', methods=['POST'])
+def dequeue():
+    if queue_line:
+        queue.pop(0)
+    return redirect(url_for('queue'))
+
+
+# End of Queue
+
+
+# Start of DEqueue
+
+
+dequeue_line = []
+
+
+@website.route('/DEqueue')
+def dob_queue():
+    return render_template('dequeue.html', dequeue_line=dequeue_line)
+
+@website.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('user_enqueue')
+    if item:
+        dequeue_line.append(item)
+    return redirect(url_for('dob_queue'))
+
+
+@website.route('/dequeue', methods=['POST'])
+def dequeue():
+    if dequeue_line:
+        dequeue_line.pop(0)
+    return redirect(url_for('dob_queue'))
+
+
+@website.route('/enqueue_head', methods=['POST'])
+def enqueue_head():
+    item = request.form.get('user_enqueue')
+    if item:
+        dequeue_line.insert(0, item)
+    return redirect(url_for('dob_queue'))
+
+@website.route('/dequeue_tail', methods=['POST'])
+def dequeue_tail():
+    if dequeue_line:
+        dequeue_line.pop()
+    return redirect(url_for('dob_queue'))
+
+
+
+# End of DEqueue
 
 
 # 🔹 Route for each member’s individual HTML file

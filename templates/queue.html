@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue</title>
+  <!-- removed {{ url_for('static', filename='styles.css') }} in href-->
+  <link rel="stylesheet" href=""> 
+</head>
+<body>
+    <h1>Queue Line</h1>
+
+    <form action="/enqueue" method="post">
+        <input type="text" name="user_enqueue" placeholder="Enter item" required>
+        <button type="submit">Enqueue</button>
+    </form>
+
+    <form action="/dequeue" method="post">
+        <button type="submit">Dequeue</button>
+    </form>
+
+    <div class="queue_line">
+        <h3>Queue Line:</h3>
+        {% if queue %}
+            {% for item in queue %}
+                <div class="item">{{ item }}</div>
+            {% endfor %}
+        {% else %}
+            <p>The queue is empty.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
