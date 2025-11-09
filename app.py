@@ -1,7 +1,10 @@
 # pip install Flask
 # Two lines spacing for each route
 
+
 from flask import Flask, render_template, request, redirect, url_for
+from queues import Queue  # Import the Queue class
+from deques import Deque  # Import the Deque class
 
 website = Flask(__name__)
 
@@ -16,7 +19,6 @@ def home():
 
 @website.route("/profile")
 def profile():
-    # Each image and its matching HTML file (same order)
     characters = [
         {"img": "orbista.png", "page": "ced", "left_img": "ced-left.png", "right_img": "ced-right.png"},
         {"img": "aeron.png", "page": "deqs", "left_img": "deqs-left.png", "right_img": "deqs-right.png"},
@@ -34,79 +36,99 @@ def profile():
 
 @website.route("/works")
 def works():
-    return render_template("#works.html")  # Change #works.html per member
+    return render_template("/works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
-queue_line = []
+queue_line = Queue()
 
 
-@website.route('/queue')
-def queue():
-    return render_template('queue.html', queue_line=queue_line)
+# 🔹 Special route for Laei that handles both GET + POST
+@website.route("/profile/laei", methods=["GET", "POST"])
+def laei_profile():
+    if request.method == "POST":
+        action = request.form.get("action")
+        item = request.form.get("user_enqueue")
+
+        if action == "enqueue" and item:
+            queue_line.enqueue(item)
+        elif action == "dequeue":
+            queue_line.dequeue()
+        elif action == "clear":
+            queue_line.clear()
+
+    # Always render same page with updated queue
+    items = queue_line.display()
+    return render_template("member_profiles/laei.html", queue_items=items)
 
 
-@website.route('/enqueue', methods=['POST'])
-def enqueue():
-    item = request.form.get('user_enqueue')
-    if item:
-        queue_line.append(item)
+@website.route('/clear_queue', methods=['POST'])
+def clear_queue():
+    queue_line.clear()
     return redirect(url_for('queue'))
+    # Always render same page with updated queue
+    items = queue_line.display()
+    return render_template("member_profiles/laei.html", queue_items=items)
 
 
-@website.route('/dequeue', methods=['POST'])
-def dequeue():
-    if queue_line:
-        queue_line.pop(0)
-    return redirect(url_for('queue'))
+# =====================================================
+# DEQUE System (no changes)
+# =====================================================
+
+deque_line = Deque()
 
 
-# End of Queue
-
-
-# Start of DEqueue
-
-
-dequeue_line = []
-
-
-@website.route('/DEqueue')
+@website.route('/deque')
 def dob_queue():
-    return render_template('dequeue.html', dequeue_line=dequeue_line)
+    return render_template('deque.html', deque_items=deque_line.display())
 
-@website.route('/enqueue_left', methods=['POST'])
-def enqueue_left():
+
+@website.route('/enqueue_front', methods=['POST'])
+def enqueue_front():
     item = request.form.get('user_enqueue')
     if item:
-        dequeue_line.append(item)
+        deque_line.enqueue_front(item)
     return redirect(url_for('dob_queue'))
 
 
-@website.route('/dequeue_right', methods=['POST'])
-def dequeue_right():
-    if dequeue_line:
-        dequeue_line.pop(0)
+@website.route('/dequeue_rear', methods=['POST'])
+def dequeue_rear():
+    if not deque_line.is_empty():
+        deque_line.dequeue_rear()
     return redirect(url_for('dob_queue'))
 
 
-@website.route('/enqueue_head', methods=['POST'])
-def enqueue_head():
+@website.route('/enqueue_rear', methods=['POST'])
+def enqueue_rear():
     item = request.form.get('user_enqueue')
     if item:
-        dequeue_line.insert(0, item)
+        deque_line.enqueue_rear(item)
     return redirect(url_for('dob_queue'))
 
-@website.route('/dequeue_tail', methods=['POST'])
-def dequeue_tail():
-    if dequeue_line:
-        dequeue_line.pop()
+
+@website.route('/dequeue_front', methods=['POST'])
+def dequeue_front():
+    if not deque_line.is_empty():
+        deque_line.dequeue_front()
+    return redirect(url_for('dob_queue'))
+
+
+@website.route('/clear_dob_queue', methods=['POST'])
+def clear_dob_queue():
+    deque_line.clear()
     return redirect(url_for('dob_queue'))
 
 
 
 # End of DEqueue
 
+#WORKS (ON PROGRESS)
 
-# 🔹 Route for each member’s individual HTML file
+@website.route('/project')
+def project():
+    return render_template("project.html")
+
+
+# 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")
 def profile_member(name):
     print("🔍 Trying to open:", f"member_profiles/{name}.html")
