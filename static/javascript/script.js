@@ -63,8 +63,4 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/profile";
     }, 1400); // match CSS duration
   });
-<<<<<<< HEAD:static/javascript/script.js
-});
-=======
-;
->>>>>>> 81fe032b710654ed00e8b2c3a9f0dd58534d819c:static/script.js
+
