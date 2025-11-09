@@ -2,6 +2,7 @@
 # Two lines spacing for each route
 
 from flask import Flask, render_template, request, redirect, url_for
+from queues import Queue  # Import the Queue class from static folder
 
 website = Flask(__name__)
 
@@ -37,7 +38,7 @@ def works():
     return render_template("#works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
-queue_line = []
+queue_line = Queue()
 
 
 @website.route('/queue')
@@ -49,14 +50,14 @@ def queue():
 def enqueue():
     item = request.form.get('user_enqueue')
     if item:
-        queue_line.append(item)
+        queue_line.enqueue(item)
     return redirect(url_for('queue'))
 
 
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
-    if queue_line:
-        queue_line.pop(0)
+    if not queue_line.is_empty():
+        queue_line.dequeue()
     return redirect(url_for('queue'))
 
 

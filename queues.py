@@ -1,16 +1,19 @@
-# queue_linkedlist.py
+# queues.py
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-        
-class Queues:
+from node import Node
+
+class Queue:
     def __init__(self):
         self.head = None
         self.tail = None
 
-    def enqueues(self, data):  # Insert at end
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current.data
+            current = current.next
+
+    def enqueue(self, data):  # Insert at end
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
@@ -19,7 +22,7 @@ class Queues:
             self.tail.next = new_node
             self.tail = new_node
     
-    def dequeues(self):  # Remove at front
+    def dequeue(self):  # Remove at front
         if self.head:
             current_node = self.head
             self.head = current_node.next
