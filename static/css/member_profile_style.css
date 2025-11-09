@@ -281,6 +281,30 @@ body::after {
   box-shadow: 0 0 15px #161566, 0 0 30px #161566;
 }
 
+.queue-back {
+  position: fixed;
+  top: 90vh;
+  left: 1vw;
+  padding: 0.8vw 2vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #161566;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  z-index: 6;
+  text-shadow: 0 0 5px #161566, 0 0 10px #161566;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.4);
+}
+
+.queue-back:hover {
+  color: black;
+  background: #161566;
+  box-shadow: 0 0 15px #161566, 0 0 30px #161566;
+}
+
 
 /* === Loading Screen === */
 .loading-screen {
@@ -344,3 +368,105 @@ body::after {
   opacity: 0;
   pointer-events: none;
 }
+
+.queue-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.splat-enqueue {
+  position: fixed;
+  top: -35vh;
+  left: 2.5vw;
+  width: 80vw;
+  height: auto;
+  z-index: 5;
+}
+
+.splat-enqueue2 {
+  position: fixed;
+  top: -35vh;
+  left: -35vw;
+  width: 80vw;
+  height: auto;
+  rotate: 90deg;
+  z-index: 5;
+}
+
+.splat-enqueue3 {
+  position: fixed;
+  top: 50vh;
+  left: -35vw;
+  width: 80vw;
+  height: auto;
+  rotate: 90deg;
+  z-index: 5;
+}
+
+.splat-enqueue4 {
+  position: fixed;
+  top: -25vh;
+  left: -50vw;
+  width: 150vw;
+  height: 50;
+  rotate: 90deg;
+  z-index: 3;
+}
+
+.splat-name {
+  position: fixed;
+  top: 30vh;
+  left: 25vw;
+  width: 100vw;
+  height: auto;
+  rotate: -5deg;
+  z-index: 3;
+}
+
+.splat-screen {
+  position: fixed;
+  top: 30vh;
+  left: 70vw;
+  width: 60vw;
+  height: auto;
+  rotate: -5deg;
+  z-index: 6;
+}
+
+.queue-text {
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  font-size: 5vw;
+  font-weight: 700;
+  rotate: -3deg;
+  display: inline-block;
+  letter-spacing: -0.5vw;
+  background: linear-gradient(90deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.2vw black;
+  z-index: 5;
+}
+
+.queue-textline {
+  position: absolute;
+  top: 76vh;
+  left: 60vw;
+  font-size: 6vw;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.5vw;
+  background: linear-gradient(90deg, #0000ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.2vw black;
+  z-index: 7;
+}
+

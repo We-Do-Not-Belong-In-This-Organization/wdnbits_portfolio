@@ -61,12 +61,6 @@ def dequeue():
         queue_line.dequeue()
     return redirect(url_for('queue'))
 
-
-@website.route('/clear_dob_queue', methods=['POST'])
-def clear_dob_queue():
-    queue.clear()
-    return redirect(url_for('queue'))
-
 # End of Queue
 
 

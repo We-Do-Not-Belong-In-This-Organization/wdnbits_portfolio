@@ -8,56 +8,42 @@
 </head>
 <body>
   <!-- Back Button -->
-  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+  <a href="{{ url_for('profile') }}" class="queue-back">Back</a>
   <!-- Moving background layer -->
-  <div class="moving-bg">
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
-  </div>
-
   <div class="container fade-in">
-    <div class="rectangle"></div>
-
-    <div class="main-image">
-      <img src="{{ url_for('static', filename='images/img1.jpg') }}"
-           alt="Character Image"
-           style="width: 100%; display: block;">
     </div>
 
-    <img src="{{ url_for('static', filename='images/paint.png') }}"
-         alt="Paint Splatter"
-         class="splatter">
+    
+    <img src="{{ url_for('static', filename='images/queue_ui.png') }}"
+         alt="Queue Bg"
+         class="queue-bg">
 
-    <div class="text-big">CEDRIQUE</div>
-    <div class="text-small"><i>ORBISTA</i></div>
-    <div class="adjective-big">D-1 GOONER</div>
-    <div class="text-contracts">CONTRACTS:</div>
-    <div class="text-contacts">CONTACTS:</div>
-    <div class="vertical-line"></div>
-    <div class="text-fighting-style">FIGHTING STYLE:</div>
-<div class="bullet-contracts"><u>
-  • Amongus<br>
-  • About<br>
-  • Services<br>
-  • Contact
-  </u>
-</div>
-<div class="bullet-contacts"><u>
-  • GITHUB<br>
-  • Email<br>
-  • Number<br>  
-  </u>
-</div>
-<div class="bullet-fighting-style"><u>
-  • Python<br>
-  • Judo<br>
-  </u>
-</div>
-  </div>
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue2">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue3">
+
+    <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}"
+         alt="Splat Enqueue"
+         class="splat-enqueue4">
+
+    <img src="{{ url_for('static', filename='images/splat_name.png') }}"
+         alt="Splat name"
+         class="splat-name">
+
+    <img src="{{ url_for('static', filename='images/splat_screen.png') }}"
+         alt="Splat screen"
+         class="splat-screen">
+
+             <div class="queue-text">QUEUE</div>
+             <div class="queue-textline">QUEUE LINE</div>
 
     <!-- Loading Screen -->
   <div class="loading-screen">
