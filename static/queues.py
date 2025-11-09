@@ -1,6 +1,10 @@
 # queue_linkedlist.py
-from node import Node
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
 class Queues:
     def __init__(self):
         self.head = None
