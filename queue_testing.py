@@ -46,5 +46,12 @@ class TestQueues(unittest.TestCase):
         self.assertEqual(self.queue.display(), [30])
         self.assertEqual(self.queue.remove_at(5), None)
 
+    def test_iterator(self):
+        self.queue.enqueues(10)
+        self.queue.enqueues(20)
+        self.queue.enqueues(30)
+        items = [item for item in self.queue]
+        self.assertEqual(items, [10, 20, 30])
+
 if __name__ == '__main__':
     unittest.main()

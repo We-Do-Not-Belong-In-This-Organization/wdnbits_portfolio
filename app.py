@@ -2,6 +2,8 @@
 # Two lines spacing for each route
 
 from flask import Flask, render_template, request, redirect, url_for
+from queues import Queue  # Import the Queue class
+from deques import Deque  # Import the Deque class
 
 website = Flask(__name__)
 
@@ -37,7 +39,7 @@ def works():
     return render_template("#works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
-queue_line = []
+queue_line = Queue()
 
 
 @website.route('/queue')
@@ -49,14 +51,14 @@ def queue():
 def enqueue():
     item = request.form.get('user_enqueue')
     if item:
-        queue_line.append(item)
+        queue_line.enqueue(item)
     return redirect(url_for('queue'))
 
 
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
-    if queue_line:
-        queue_line.pop(0)
+    if not queue_line.is_empty():
+        queue_line.dequeue()
     return redirect(url_for('queue'))
 
 
@@ -66,39 +68,40 @@ def dequeue():
 # Start of DEqueue
 
 
-dequeue_line = []
+deque_line = Deque()
 
 
-@website.route('/DEqueue')
+@website.route('/deque')
 def dob_queue():
-    return render_template('dequeue.html', dequeue_line=dequeue_line)
+    return render_template('deque.html', deque_line=deque_line)
 
-@website.route('/enqueue_left', methods=['POST'])
-def enqueue_left():
+
+@website.route('/enqueue_front', methods=['POST'])
+def enqueue_front():
     item = request.form.get('user_enqueue')
     if item:
-        dequeue_line.append(item)
+        deque_line.enqueue_front(item)
     return redirect(url_for('dob_queue'))
 
 
-@website.route('/dequeue_right', methods=['POST'])
-def dequeue_right():
-    if dequeue_line:
-        dequeue_line.pop(0)
+@website.route('/dequeue_rear', methods=['POST'])
+def dequeue_rear():
+    if deque_line:
+        deque_line.dequeue_rear()
     return redirect(url_for('dob_queue'))
 
 
-@website.route('/enqueue_head', methods=['POST'])
-def enqueue_head():
+@website.route('/enqueue_rear', methods=['POST'])
+def enqueue_rear():
     item = request.form.get('user_enqueue')
     if item:
-        dequeue_line.insert(0, item)
+        deque_line.enqueue_rear(item)
     return redirect(url_for('dob_queue'))
 
-@website.route('/dequeue_tail', methods=['POST'])
-def dequeue_tail():
-    if dequeue_line:
-        dequeue_line.pop()
+@website.route('/dequeue_front', methods=['POST'])
+def dequeue_front():
+    if deque_line:
+        deque_line.dequeue_front()
     return redirect(url_for('dob_queue'))
 
 
