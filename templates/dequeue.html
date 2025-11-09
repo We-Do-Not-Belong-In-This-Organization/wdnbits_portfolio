@@ -10,23 +10,24 @@
 <body>
     <h1>Queue Line</h1>
 
-    <form action="/enqueue_left" method="post">
+    <form action="/enqueue_head" action="/enqueue_left" method="post">
         <input type="text" name="user_enqueue" placeholder="Enter item" required>
         <button type="submit">Enqueue Behind</button>
+        <button type="submit">Enqueue Ahead</button>
     </form>
 
     <form action="/dequeue_right" method="post">
         <button type="submit">Dequeue Ahead</button>
     </form>
 
-    <form action="/enqueue_head" method="post">
-        <input type="text" name="user_enqueue" placeholder="Enter item" required>
-        <button type="submit">Enqueue Ahead</button>
-    </form>
-
     <form action="/dequeue_tail" method="post">
         <button type="submit">Dequeue Behind</button>
     </form>
+
+    <form action="/clear_dob_queue" method="post">
+        <button type="submit">Clear Queue</button>
+    </form>
+
 
     <div class="queue_line">
         <h3>Queue Line:</h3>

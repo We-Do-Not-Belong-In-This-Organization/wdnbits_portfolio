@@ -60,6 +60,11 @@ def dequeue():
     return redirect(url_for('queue'))
 
 
+
+@website.route('/clear_queue', methods=['POST'])
+def clear_queue():
+    queue_line.clear()
+    return redirect(url_for('queue'))
 # End of Queue
 
 
@@ -99,6 +104,12 @@ def enqueue_head():
 def dequeue_tail():
     if dequeue_line:
         dequeue_line.pop()
+    return redirect(url_for('dob_queue'))
+
+
+@website.route('/clear_dob_queue', methods=['POST'])
+def clear_dob_queue():
+    dequeue_line.clear()
     return redirect(url_for('dob_queue'))
 
 

@@ -19,6 +19,10 @@
         <button type="submit">Dequeue</button>
     </form>
 
+    <form action="/clear_queue" method="post">
+        <button type="submit">Clear Queue</button>
+    </form>
+
     <div class="queue_line">
         <h3>Queue Line:</h3>
         {% if queue_line %}
