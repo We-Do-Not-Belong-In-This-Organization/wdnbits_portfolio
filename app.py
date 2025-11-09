@@ -56,7 +56,7 @@ def enqueue():
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
     if queue_line:
-        queue.pop(0)
+        queue_line.pop(0)
     return redirect(url_for('queue'))
 
 
@@ -73,16 +73,16 @@ dequeue_line = []
 def dob_queue():
     return render_template('dequeue.html', dequeue_line=dequeue_line)
 
-@website.route('/enqueue', methods=['POST'])
-def enqueue():
+@website.route('/enqueue_left', methods=['POST'])
+def enqueue_left():
     item = request.form.get('user_enqueue')
     if item:
         dequeue_line.append(item)
     return redirect(url_for('dob_queue'))
 
 
-@website.route('/dequeue', methods=['POST'])
-def dequeue():
+@website.route('/dequeue_right', methods=['POST'])
+def dequeue_right():
     if dequeue_line:
         dequeue_line.pop(0)
     return redirect(url_for('dob_queue'))
