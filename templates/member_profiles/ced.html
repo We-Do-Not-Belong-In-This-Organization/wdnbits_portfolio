@@ -3,149 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>lole</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      position: relative;
-      font-family: 'Work Sans', sans-serif;
-    }
-
-    .container {
-      position: relative;
-      width: 100%;
-      height: 100vh; /* full screen height */
-      z-index: 1;
-    }
-
-    .rectangle {
-      position: absolute;
-      top: 30vh;
-      right: 10vw;
-      width: 40vw;
-      height: 50vh;
-      background-color: #161566;
-      border: 5px solid black;
-      border-radius: 0;
-      z-index: 1; /* below splatter */
-    }
-
-    .main-image {
-      position: absolute;
-      top: 20vh;
-      left: 10vw;
-      width: 30vw;
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 1; /* below splatter */
-    }
-
-    .splatter {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;   /* full width */
-      height: auto;   /* keep aspect ratio */
-      transform: translate(-50%, -50%);
-      z-index: 2;     /* above rectangle & image */
-    }
-
-    .text-big {
-      position: absolute;
-      top: 1vh;
-      left: 30vw;
-      font-size: 6vw;       /* scales with screen width */
-      font-weight: 700;
-      display: inline-block;
-      letter-spacing: -0.5vw;
-      background: linear-gradient(90deg, #0000ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.2vw black;
-      z-index: 3; /* above splatter */
-    }
-
-    .text-small {
-      position: absolute;
-      top: 15vh;
-      left: 45vw;
-      font-size: 3vw;       /* scales with screen width */
-      font-weight: 700;
-      letter-spacing: -0.2vw;
-      color: white;
-      text-shadow: 0.1vw 0.1vw 0.2vw rgba(0,0,0,0.7);
-      z-index: 3; /* above splatter */
-    }
-
-.loop-text-row {
-  position: absolute;
-  left: 0;
-  width: 200%;                   /* double width for seamless scroll */
-  white-space: nowrap;
-  font-size: 6vw;                /* responsive */
-  font-weight: bold;
-  color: rgba(255,255,255,0.05); /* faint behind content */
-  animation: scrollRightToLeft 20s linear infinite;
-  z-index: 1.5;                  /* behind main elements */
-  transform-origin: left center; /* keeps rotation anchored properly */
-}
-
-@keyframes scrollRightToLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-
-  </style>
 </head>
 <body>
-
-  <div class="container fade-in">
-
-    <!-- Rectangle -->
-    <div class="rectangle"></div>
-
-    <!-- Main Image -->
-    <div class="main-image">
-      <img src="{{ url_for('static', filename='images/img1.jpg') }}" 
-           alt="Character Image" 
-           style="width: 100%; display: block;">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_style.css') }}">
-</head>
-<body>
-
-  <!-- Loading Screen -->
-  <div class="loading-screen">
-    <div class="loading-content">
-      
-      <div class="loading-spinner"></div>
-    </div>
+  <!-- Back Button -->
+  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+  <!-- Moving background layer -->
+  <div class="moving-bg">
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
+    <div class="row"><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span><span>CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE </span></div>
   </div>
 
-    <!-- Paint splatter layer -->
-    <img src="{{ url_for('static', filename='images/paint.png') }}" 
+  <div class="container fade-in">
+    <div class="rectangle"></div>
+
+    <div class="main-image">
+      <img src="{{ url_for('static', filename='images/img1.jpg') }}"
+           alt="Character Image"
+           style="width: 100%; display: block;">
+    </div>
+
+    <img src="{{ url_for('static', filename='images/paint.png') }}"
          alt="Paint Splatter"
          class="splatter">
 
-    <!-- Texts above everything -->
     <div class="text-big">CEDRIQUE</div>
-    <div class="text-small">ORBISTA</div>
-<!-- Right-to-left scrolling text background -->
-<!-- Right-to-left scrolling text background with slight rotation -->
-<div class="loop-text-row" style="top: 0%; transform: rotate(-5deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
-<div class="loop-text-row" style="top: 20%; transform: rotate(3deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
-<div class="loop-text-row" style="top: 40%; transform: rotate(-3deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
-<div class="loop-text-row" style="top: 60%; transform: rotate(4deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
-<div class="loop-text-row" style="top: 80%; transform: rotate(-2deg);">CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE CEDRIQUE</div>
-
-
-
-
-  <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
-
+    <div class="text-small"><i>ORBISTA</i></div>
+    <div class="adjective-big">D-1 GOONER</div>
+    <div class="text-contracts">CONTRACTS:</div>
+    <div class="text-contacts">CONTACTS:</div>
+    <div class="vertical-line"></div>
+    <div class="text-fighting-style">FIGHTING STYLE:</div>
+<div class="bullet-contracts"><u>
+  • Amongus<br>
+  • About<br>
+  • Services<br>
+  • Contact
+  </u>
+</div>
+<div class="bullet-contacts"><u>
+  • GITHUB<br>
+  • Email<br>
+  • Number<br>  
+  </u>
+</div>
+<div class="bullet-fighting-style"><u>
+  • Python<br>
+  • Judo<br>
+  </u>
+</div>
   </div>
 
 </body>
