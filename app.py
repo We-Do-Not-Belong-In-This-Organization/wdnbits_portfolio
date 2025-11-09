@@ -36,7 +36,7 @@ def profile():
 
 @website.route("/works")
 def works():
-    return render_template("#works.html")  # Change #works.html per member
+    return render_template("/works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
 queue_line = Queue()
@@ -118,6 +118,12 @@ def clear_dob_queue():
 
 
 # End of DEqueue
+
+#WORKS (ON PROGRESS)
+
+@website.route('/project')
+def project():
+    return render_template("project.html")
 
 
 # 🔹 Route for each member’s individual HTML file
