@@ -3,18 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>lole</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Back Button -->
+  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+  <!-- Moving background layer -->
+<div class="moving-bg">
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+  <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
+</div>
+
+
   <div class="container fade-in">
-    <h1>lol</h1>
-    <div style="margin: 20px auto; width: 200px; border: 2px solid #0ff; border-radius: 10px; overflow: hidden;">
-  
+    <div class="rectangle"></div>
+
+    <div class="main-image">
+      <img src="{{ url_for('static', filename='images/img1.jpg') }}"
+           alt="Character Image"
+           style="width: 100%; display: block;">
     </div>
 
-    <p style="margin-top: 20px;">This is the profile page for character.</p>
+    <img src="{{ url_for('static', filename='images/paint.png') }}"
+         alt="Paint Splatter"
+         class="splatter">
 
-  
+    <div class="text-big">MATTHEW</div>
+    <div class="text-small"><i>SOSA</i></div>
+    <div class="adjective-big">MR. I GET PEGGED</div>
+    <div class="text-contracts">CONTRACTS:</div>
+    <div class="text-contacts">CONTACTS:</div>
+    <div class="vertical-line"></div>
+    <div class="text-fighting-style">FIGHTING STYLE:</div>
+<div class="bullet-contracts"><u>
+  • Amongus<br>
+  • About<br>
+  • Services<br>
+  • Contact
+  </u>
+</div>
+<div class="bullet-contacts"><u>
+  • GITHUB<br>
+  • Email<br>
+  • Number<br>  
+  </u>
+</div>
+<div class="bullet-fighting-style"><u>
+  • Python<br>
+  • Judo<br>
+  </u>
+</div>
   </div>
+
+    <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
+  
 </body>
 </html>

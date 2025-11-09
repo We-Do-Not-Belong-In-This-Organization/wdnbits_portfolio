@@ -64,3 +64,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1400); // match CSS duration
   });
 ;
+
