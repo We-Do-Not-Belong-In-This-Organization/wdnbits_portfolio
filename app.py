@@ -1,6 +1,7 @@
 # pip install Flask
 # Two lines spacing for each route
 
+
 from flask import Flask, render_template, request, redirect, url_for
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
@@ -55,6 +56,9 @@ def laei_profile():
         elif action == "clear":
             queue_line.clear()
 
+    # Always render same page with updated queue
+    items = queue_line.display()
+    return render_template("member_profiles/laei.html", queue_items=items)
 
 
 @website.route('/clear_queue', methods=['POST'])
