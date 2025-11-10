@@ -42,30 +42,33 @@ def works():
 queue_line = Queue()
 
 
-# 🔹 Special route for Laei that handles both GET + POST
-@website.route("/profile/laei", methods=["GET", "POST"])
-def laei_profile():
-    if request.method == "POST":
-        action = request.form.get("action")
-        item = request.form.get("user_enqueue")
+# Route for Queue
+@website.route('/queue')
+def queue():
+    return render_template('queue.html', queue_line=queue_line)
 
-        if action == "enqueue" and item:
-            queue_line.enqueue(item)
-        elif action == "dequeue":
-            queue_line.dequeue()
-        elif action == "clear":
-            queue_line.clear()
 
-    # Always render same page with updated queue
-    items = queue_line.display()
-    return render_template("member_profiles/laei.html", queue_items=items)
+# Method for enqueue-ing
+@website.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('user_enqueue')
+    if item:
+        queue_line.enqueue(item)
+    return redirect(url_for('queue'))
+
+
+# Method for dequeue-ing
+@website.route('/dequeue', methods=['POST'])
+def dequeue():
+    if not queue_line.is_empty():
+        queue_line.dequeue()
+    return redirect(url_for('queue'))
 
 
 @website.route('/clear_queue', methods=['POST'])
 def clear_queue():
     queue_line.clear()
     return redirect(url_for('queue'))
-    # Always render same page with updated queue
     items = queue_line.display()
     return render_template("member_profiles/laei.html", queue_items=items)
 
