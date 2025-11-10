@@ -2,46 +2,303 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deque</title>
-  <!-- removed {{ url_for('static', filename='styles.css') }} in href-->
-  <link rel="stylesheet" href=""> 
+  <title>DEQUE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  .queue-zone {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  }
+
+  /* ---- Zone Positions ---- */
+  .left-zone {
+    top: 59vh;
+    left: 73vw;
+    width: 18vw;
+    height: 10vh;
+  }
+
+  .right-zone {
+    top: 37vh;
+    left: 73vw;
+    width: 18vw;
+    height: 10vh;
+  }
+
+  .bottom-zone {
+    top: 80vh;
+    left: 54vw;
+    transform: translateX(-50%);
+    width: 20vw;
+    height: 10vh;
+  }
+
+  /* ---- Input Box Zone ---- */
+  .input-zone {
+    position: absolute;
+    top: 12vh;
+    left: 70vw;
+    transform: translateX(-50%);
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+  }
+
+  /* ---- Enqueue Front Button ---- */
+  .enqueue-front-button {
+    position: absolute;
+    top: 39vh;   /* adjust vertical position */
+    left: 44vw;  /* adjust horizontal position */
+    z-index: 60;
+  }
+
+  /* ---- Enqueue Rear Button ---- */
+  .enqueue-rear-button {
+    position: absolute;
+    top: 60vh;   /* adjust vertical position */
+    left: 45vw;  /* adjust horizontal position */
+    z-index: 60;
+  }
+
+  /* ---- Form Styles ---- */
+  .queue-form input {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+  }
+
+  .queue-form button {
+    font-family: 'Work Sans';
+    font-weight: bold;
+    padding: 12px 50px;
+    background: #16156600;
+    color: white;
+    border: 2px solid #8ea6cd00;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 28px;
+    transition: all 0.3s ease;
+  }
+
+  .queue-form button:hover {
+    background: #161566;
+    color: #000000;
+    border-color: #161566;
+    box-shadow: 0 0 20px #161566;
+  }
+
+  .enqueue-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgba(212, 195, 195, 0.971);
+    backdrop-filter: blur(4px);
+    margin-bottom: 20px;
+  }
+
+  .enqueue-button {
+    font-family: 'Work Sans';
+    font-weight: bold;
+    padding: 12px 50px;
+    background: #16156600;
+    color: rgb(255, 255, 255);
+    border: 2px solid #8ea6cd00;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 28px;
+    transition: all 0.3s ease;
+  }
+
+  .enqueue-button:hover {
+    background: #161566;
+    color: #000000;
+    border-color: #161566;
+    box-shadow: 0 0 20px #161566;
+  }
+
+  /* ---- Queue Display ---- */
+  .queue-display {
+    position: absolute;
+    top: 9vh;
+    left: 20.5%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    z-index: 100;
+  }
+
+  .queue-display ul {
+    font-size: 20px;
+    line-height: 1.5;
+    padding-left: 0;
+    list-style: none;
+    max-height: 1000px;
+    overflow-y: auto;
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .queue-display li {
+    margin: 5px 0;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .queue-display p {
+    font-size: 20px;
+  }
+
+  /* ---- Text Titles ---- */
+  .queue-text {
+    position: absolute;
+    top: 2vh;
+    left: 10vw;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 80px;
+    font-family: 'Work Sans';
+    font-weight: 700;
+    letter-spacing: 5px;
+    z-index: 90;
+  }
+
+  .queue-textline {
+    position: absolute;
+    top: 76vh;
+    left: 80vw;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 60px;
+    font-family: 'Work Sans';
+    font-weight: 700;
+    letter-spacing: 2px;
+    z-index: 90;
+  }
+
+/* ---- Back Button ---- */
+.queue-back {
+  position: fixed;
+  top: 90vh;
+  left: 1vw;
+  padding: 0.8vw 2vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #161566;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  z-index: 6;
+  text-shadow: 0 0 5px #161566, 0 0 10px #161566;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.4);
+}
+
+.queue-back:hover {
+  color: black;
+  background: #161566;
+  box-shadow: 0 0 15px #161566, 0 0 30px #161566;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Deque Line</h1>
+  <a href="{{ url_for('profile') }}" class="queue-back">Back</a>
 
-    <form action="/enqueue_rear"method="post">
-        <input type="text" name="user_enqueue" placeholder="Enter item" required>
-        <button type="submit" >Enqueue End</button>
-        <button type="submit" formaction="/enqueue_front">Enqueue Front</button>
+  <div class="container fade-in"></div>
+
+  <!-- Background and splat images -->
+  <img src="{{ url_for('static', filename='images/dequeue_ui.png') }}" alt="Queue Bg" class="queue-bg">
+  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue">
+  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue2">
+  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue3">
+  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue4">
+  <img src="{{ url_for('static', filename='images/splat_name.png') }}" alt="Splat name" class="splat-name">
+  <img src="{{ url_for('static', filename='images/splat_screen.png') }}" alt="Splat screen" class="splat-screen">
+
+  <div class="queue-text">DEQUE</div>
+  <div class="queue-textline">DEQUE LINE</div>
+
+  <!-- Input Box Zone -->
+  <div class="queue-zone input-zone">
+    <form action="/enqueue_rear" method="post" class="queue-form">
+      <input type="text" name="user_enqueue" placeholder="Enter item" class="enqueue-input" required>
     </form>
+  </div>
 
-    <form action="/enqueue_rear" method="post">
-        <button type="submit">Enqueue Front</button>
+  <!-- Enqueue Front Button Zone -->
+  <div class="queue-zone enqueue-front-button">
+    <form action="/enqueue_front" method="post" class="queue-form">
+      <button type="submit" class="enqueue-button">Enqueue Front</button>
     </form>
+  </div>
 
-    <form action="/dequeue_rear" method="post">
-        <button type="submit">Dequeue End</button>
+  <!-- Enqueue Rear Button Zone -->
+  <div class="queue-zone enqueue-rear-button">
+    <form action="/enqueue_rear" method="post" class="queue-form">
+      <button type="submit" class="enqueue-button">Enqueue Rear</button>
     </form>
+  </div>
 
-    <form action="/dequeue_front" method="post">
-        <button type="submit">Dequeue Front</button>
+  <!-- Dequeue Front -->
+  <div class="queue-zone left-zone">
+    <form action="/dequeue_front" method="post" class="queue-form">
+      <button type="submit">Dequeue Front</button>
     </form>
+  </div>
 
-    <form action="/clear_dob_queue" method="post">
-        <button type="submit">Clear Queue</button>
+  <!-- Dequeue Rear -->
+  <div class="queue-zone right-zone">
+    <form action="/dequeue_rear" method="post" class="queue-form">
+      <button type="submit">Dequeue Rear</button>
     </form>
+  </div>
 
+  <!-- Clear Queue -->
+  <div class="queue-zone bottom-zone">
+    <form action="/clear_dob_queue" method="post" class="queue-form">
+      <button type="submit">Clear Queue</button>
+    </form>
+  </div>
 
-    <div class="dequeue_line">
-        <h3>Queue Line:</h3>
-        {% if deque_line %}
-            {% for item in deque_line %}
-                <div class="item">{{ item }}</div>
-            {% endfor %}
-        {% else %}
-            <p>The queue is empty.</p>
-        {% endif %}
+  <!-- Queue Display -->
+  <div class="queue-display">
+    <h3></h3>
+    {% if deque_line %}
+      <ul>
+        {% for item in deque_line %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>The deque is empty.</p>
+    {% endif %}
+  </div>
+
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
     </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
 </body>
 </html>
