@@ -26,25 +26,23 @@
 <img src="https://komarev.com/ghpvc/?username=Mattillac&style=for-the-badge&color=305CDE" alt="View Counter" draggable="false" width="195" height="195"/>
 </p>
 
-<p 𝒮𝒾𝓃𝑒𝓉𝒸𝒽 𝒾𝓉𝑒𝓎! 𝒢𝓊𝓈𝓉𝑜𝓃𝑔 𝓂𝒶𝓀𝒾𝓉𝒶 𝒶𝓃𝑔 𝑔𝒶𝓌𝒶 𝓅𝑒𝓇𝑜 𝓉𝒾𝓃𝒶𝓉𝒶𝓂𝒶𝒹 𝒾-𝒹𝑜𝓌𝓃𝓁𝑜𝒶𝒹?>
-</p>
 
 <p align="center">
   <img src="https://media1.tenor.com/m/2JadSPd49K0AAAAC/cyberpunk-hacker.gif" alt= START/>
 </p>
 
 # Here's the snapshots of our Web Portfolio:
-### 🌃 _You want to view it but don't want to download all of my files?_
+### 𝙁𝙚𝙚𝙡 𝙛𝙧𝙚𝙚 𝙩𝙤 𝙨𝙘𝙧𝙤𝙡𝙡 𝙙𝙤𝙬𝙣 𝙖𝙣𝙙 𝙫𝙞𝙚𝙬 𝙤𝙪𝙧 𝙬𝙤𝙧𝙠 𝙥𝙧𝙤𝙟𝙚𝙘𝙩!?
 
 ## _d o n ' t_ &nbsp; _w o r r y_ &nbsp; _i_ &nbsp; _g o t_ &nbsp; _y o u......_
 
 ### **h e r e** &nbsp; **y o u** &nbsp; **g o** 📼🌸🐬
 
-![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162033.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme1.png)
 
-![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162044.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme2.png)
 
-![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162059.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme3.png)
 
 <h2> 💻 &nbsp;𝙎𝙤𝙢𝙚 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚𝙨 𝙖𝙣𝙙 𝙄𝘿𝙀 𝙒𝙚 𝙃𝙖𝙫𝙚 𝙐𝙨𝙚𝙙 𝙖𝙣𝙙 𝙇𝙚𝙖𝙧𝙣𝙚𝙙: </h2>
 <p align="left">
