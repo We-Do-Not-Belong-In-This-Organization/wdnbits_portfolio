@@ -43,7 +43,7 @@ queue_line = Queue()
 
 
 # 🔹 Special route for Laei that handles both GET + POST
-@website.route("/profile/laei", methods=["GET", "POST"])
+@website.route("/queue", methods=["GET", "POST"])
 def laei_profile():
     if request.method == "POST":
         action = request.form.get("action")
