@@ -1,35 +1,37 @@
+<h1 align="center">🕹️👾 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏 𝐏𝐎𝐑𝐓𝐅𝐎𝐋𝐈𝐎 🕹️👾 </h1>
 <p align="center">
   <img src="https://text.media.giphy.com/v1/media/giphy.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJwcm9kLTIwMjAtMDQtMjIiLCJzdHlsZSI6Im1vbmtleWlzbGFuZCIsInRleHQiOiJXRE5CSVRTIiwiaWF0IjoxNzYyNzA5NTg0fQ.hS9vj17UNI2vNf-jbuuZ_xvzWs7kvnnTTd5ZYDhZHYE" alt= START/>
 </p>
 
-<h1 align="center">🕹️👾 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏 𝐏𝐎𝐑𝐓𝐅𝐎𝐋𝐈𝐎 🕹️👾 </h1>
-
-<h3 align="center"> 𝙄𝙉𝙏𝙍𝙄𝙂𝙐𝙀𝘿? 𝙎𝙘𝙧𝙤𝙡𝙡 𝙙𝙤𝙬𝙣 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙢𝙤𝙧𝙚 𝙖𝙗𝙤𝙪𝙩 𝙪𝙨! </h3>
 
 <p align="center">𝙿𝚛𝚘𝚙𝚎𝚛𝚝𝚢 𝚘𝚏</p>
 
-<p align="center"> 🐞 ⋆ 🐹  🎀  𝒲𝒟𝒩𝐵𝐼𝒯𝒮  🎀  🐹 ⋆ 🐞 </p>
+<p align="center"> ▌│█║▌║▌║ ᴡᴅɴʙɪᴛꜱ ║▌║▌║█│▌ </p>
 
+<h3 align="center"> 𝙄𝙉𝙏𝙍𝙄𝙂𝙐𝙀𝘿? 𝙎𝙘𝙧𝙤𝙡𝙡 𝙙𝙤𝙬𝙣 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙢𝙤𝙧𝙚 𝙖𝙗𝙤𝙪𝙩 𝙪𝙨! </h3>
 
-<p align="center">
-<img src="https://komarev.com/ghpvc/?username=Mattillac&style=for-the-badge&color=305CDE" alt="View Counter" draggable="false" width="195" height="195"/>
-</p>
-
-## But first, let us introduce ourselves:
+<h2 align="center">𝘽𝙪𝙩 𝙛𝙞𝙧𝙨𝙩, 𝙡𝙚𝙩 𝙪𝙨 𝙞𝙣𝙩𝙧𝙤𝙙𝙪𝙘𝙚 𝙤𝙪𝙧𝙨𝙚𝙡𝙫𝙚𝙨 </h2>
 <h3 align="center"> 𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙒𝘿𝙉𝘽𝙄𝙏𝙎: 𝙒𝙚 𝘿𝙤 𝙉𝙤𝙩 𝘽𝙚𝙡𝙤𝙣𝙜 𝙄𝙣 𝙏𝙝𝙞𝙨 𝙎𝙘𝙝𝙤𝙤𝙡
 
 𝙏𝙝𝙖𝙣𝙠 𝙮𝙤𝙪 𝙛𝙤𝙧 𝙡𝙚𝙣𝙙𝙞𝙣𝙜 𝙪𝙨 𝙮𝙤𝙪𝙧 𝙩𝙞𝙢𝙚 𝙩𝙤 𝙘𝙝𝙚𝙘𝙠 𝙤𝙪𝙩 𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥 𝙥𝙤𝙧𝙩𝙛𝙤𝙡𝙞𝙤!
 
 𝙏𝙝𝙞𝙨 𝙥𝙤𝙧𝙩𝙛𝙤𝙡𝙞𝙤 𝙞𝙨 𝙖 𝙘𝙤𝙡𝙡𝙚𝙘𝙩𝙞𝙤𝙣 𝙤𝙛 𝙤𝙪𝙧 𝙘𝙧𝙚𝙖𝙩𝙞𝙫𝙚 𝙬𝙤𝙧𝙠𝙨 𝙖𝙣𝙙 𝙥𝙚𝙧𝙨𝙤𝙣𝙖𝙡 𝙞𝙣𝙛𝙤𝙧𝙢𝙖𝙩𝙞𝙤𝙣. 𝙄𝙩'𝙨 𝙬𝙝𝙚𝙧𝙚 𝙬𝙚 𝙘𝙖𝙣 𝙨𝙝𝙤𝙬 𝙬𝙝𝙖𝙩 𝙢𝙖𝙠𝙚𝙨 𝙪𝙨 𝙙𝙞𝙛𝙛𝙚𝙧𝙚𝙣𝙩 𝙖𝙣𝙙 𝙝𝙤𝙬 𝙬𝙚 𝙖𝙥𝙥𝙧𝙤𝙖𝙘𝙝 𝙩𝙝𝙞𝙣𝙜𝙨 𝙞𝙣 𝙤𝙪𝙧 𝙤𝙬𝙣 𝙬𝙖𝙮. 𝙔𝙤𝙪 𝙢𝙞𝙜𝙝𝙩 𝙗𝙚 𝙬𝙤𝙣𝙙𝙚𝙧𝙞𝙣𝙜 𝙬𝙝𝙖𝙩'𝙨 𝙩𝙝𝙚 𝙨𝙩𝙤𝙧𝙮 𝙤𝙧 𝙬𝙝𝙖𝙩'𝙨 𝙩𝙝𝙚 𝙢𝙚𝙖𝙣𝙞𝙣𝙜 𝙗𝙚𝙝𝙞𝙣𝙙 𝙩𝙝𝙚 𝙣𝙖𝙢𝙚 "𝙒𝘿𝙉𝘽𝙄𝙏𝙎". 𝙒𝘿𝙉𝘽𝙄𝙏𝙎 𝙞𝙨 𝙤𝙪𝙧 𝙬𝙖𝙮 𝙤𝙛 𝙨𝙖𝙮𝙞𝙣𝙜 𝙬𝙚 𝙙𝙤𝙣'𝙩 𝙛𝙞𝙩 𝙞𝙣𝙩𝙤 𝙩𝙝𝙚 𝙩𝙮𝙥𝙞𝙘𝙖𝙡 𝙨𝙤𝙘𝙞𝙚𝙩𝙮 𝙤𝙧 𝙞𝙩 𝙘𝙖𝙣 𝙗𝙚 𝙖 𝙨𝙩𝙖𝙩𝙚𝙢𝙚𝙣𝙩 𝙤𝙛 𝙤𝙪𝙧 𝙞𝙣𝙙𝙞𝙫𝙞𝙙𝙪𝙖𝙡𝙞𝙩𝙮. 𝙏𝙝𝙞𝙨 𝙣𝙖𝙢𝙚 𝙧𝙚𝙥𝙧𝙚𝙨𝙚𝙣𝙩𝙨 𝙤𝙪𝙧 𝙪𝙣𝙞𝙦𝙪𝙚 𝙦𝙪𝙖𝙡𝙞𝙩𝙞𝙚𝙨 𝙖𝙣𝙙 𝙩𝙝𝙚 𝙬𝙖𝙮 𝙬𝙚 𝙨𝙩𝙖𝙣𝙙 𝙤𝙪𝙩 𝙛𝙧𝙤𝙢 𝙩𝙝𝙚 𝙘𝙧𝙤𝙬𝙙. 
 
-𝙒𝙚 𝙝𝙤𝙥𝙚 𝙮𝙤𝙪 𝙚𝙣𝙟𝙤𝙮 𝙡𝙤𝙤𝙠𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥 𝙥𝙤𝙧𝙩𝙛𝙤𝙡𝙞𝙤 𝙩𝙤 𝙜𝙚𝙩 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙪𝙨 𝙢𝙤𝙧𝙚 𝙖𝙣𝙙 𝙨𝙚𝙚𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙩𝙝𝙚 𝙩𝙝𝙞𝙣𝙜𝙨 𝙬𝙚'𝙧𝙚 𝙥𝙖𝙨𝙨𝙞𝙤𝙣𝙖𝙩𝙚 𝙖𝙗𝙤𝙪𝙩! 
+𝙒𝙚 𝙝𝙤𝙥𝙚 𝙮𝙤𝙪 𝙚𝙣𝙟𝙤𝙮 𝙡𝙤𝙤𝙠𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥 𝙥𝙤𝙧𝙩𝙛𝙤𝙡𝙞𝙤 𝙩𝙤 𝙜𝙚𝙩 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙪𝙨 𝙢𝙤𝙧𝙚 𝙖𝙣𝙙 𝙨𝙚𝙚𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙩𝙝𝙚 𝙩𝙝𝙞𝙣𝙜𝙨 𝙬𝙚'𝙧𝙚 𝙥𝙖𝙨𝙨𝙞𝙤𝙣𝙖𝙩𝙚 𝙖𝙗𝙤𝙪𝙩! </h3>
 
-<br>-------------------------------------------------------------------------------------------------------<br>
+<br>---------------------------------------------------------------------------------------------------------------------------------<br>
+
 
 <p align="center">
-  <img src="https://images.squarespace-cdn.com/content/v1/5aca32bf5b409b3ac7b1e7d8/1529423765645-RE1YS0CHAF2EB5M5GTP3/press+start+retro+gaming.gif?format=2500w" alt= visual/>
+<img src="https://komarev.com/ghpvc/?username=Mattillac&style=for-the-badge&color=305CDE" alt="View Counter" draggable="false" width="195" height="195"/>
 </p>
 
+<p 𝒮𝒾𝓃𝑒𝓉𝒸𝒽 𝒾𝓉𝑒𝓎! 𝒢𝓊𝓈𝓉𝑜𝓃𝑔 𝓂𝒶𝓀𝒾𝓉𝒶 𝒶𝓃𝑔 𝑔𝒶𝓌𝒶 𝓅𝑒𝓇𝑜 𝓉𝒾𝓃𝒶𝓉𝒶𝓂𝒶𝒹 𝒾-𝒹𝑜𝓌𝓃𝓁𝑜𝒶𝒹?>
+</p>
+
+<p align="center">
+  <img src="https://media1.tenor.com/m/2JadSPd49K0AAAAC/cyberpunk-hacker.gif" alt= START/>
+</p>
 
 # Here's the snapshots of our Web Portfolio:
 ### 🌃 _You want to view it but don't want to download all of my files?_
