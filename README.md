@@ -1,3 +1,53 @@
-# wdnbits_portfolio
-A group portfolio in dedication to the subject Data Structures and Algorithms to showcase our team’s profiles and works.
-trial
+<p align="center">
+  <img src="https://text.media.giphy.com/v1/media/giphy.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJwcm9kLTIwMjAtMDQtMjIiLCJzdHlsZSI6Im1vbmtleWlzbGFuZCIsInRleHQiOiJXRE5CSVRTIiwiaWF0IjoxNzYyNzA5NTg0fQ.hS9vj17UNI2vNf-jbuuZ_xvzWs7kvnnTTd5ZYDhZHYE" alt= START/>
+</p>
+
+<h1 align="center">🕹️👾 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏 𝐏𝐎𝐑𝐓𝐅𝐎𝐋𝐈𝐎 🕹️👾 </h1>
+
+<h3 align="center"> 𝙄𝙉𝙏𝙍𝙄𝙂𝙐𝙀𝘿? 𝙎𝙘𝙧𝙤𝙡𝙡 𝙙𝙤𝙬𝙣 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙢𝙤𝙧𝙚 𝙖𝙗𝙤𝙪𝙩 𝙪𝙨! </h3>
+
+<p align="center">𝙿𝚛𝚘𝚙𝚎𝚛𝚝𝚢 𝚘𝚏</p>
+
+<p align="center"> 🐞 ⋆ 🐹  🎀  𝒲𝒟𝒩𝐵𝐼𝒯𝒮  🎀  🐹 ⋆ 🐞 </p>
+
+
+<p align="center">
+<img src="https://komarev.com/ghpvc/?username=Mattillac&style=for-the-badge&color=305CDE" alt="View Counter" draggable="false" width="195" height="195"/>
+</p>
+
+<p 𝒮𝒾𝓃𝑒𝓉𝒸𝒽 𝒾𝓉𝑒𝓎! 𝒢𝓊𝓈𝓉𝑜𝓃𝑔 𝓂𝒶𝓀𝒾𝓉𝒶 𝒶𝓃𝑔 𝑔𝒶𝓌𝒶 𝓅𝑒𝓇𝑜 𝓉𝒾𝓃𝒶𝓉𝒶𝓂𝒶𝒹 𝒾-𝒹𝑜𝓌𝓃𝓁𝑜𝒶𝒹?>
+</p>
+
+<p align="center">
+  <img src="https://i.pinimg.com/originals/60/c9/ed/60c9edfa76f791e77d4bfe78828d40ac.gif" alt= START/>
+</p>
+
+ 
+# "All of my images" used in this portfolio came from <br> ["Pinterest"](https://ph.pinterest.com/pin/43910165110412752/).
+ 
+### 🌃 _You want to view it but don't want to download all of my files?_
+
+## _d o n ' t_ &nbsp; _w o r r y_ &nbsp; _i_ &nbsp; _g o t_ &nbsp; _y o u......_
+
+### **h e r e** &nbsp; **y o u** &nbsp; **g o** 📼🌸🐬
+
+![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162033.png)
+
+![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162044.png)
+
+![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162059.png)
+
+<h2> 💻 &nbsp;𝙎𝙤𝙢𝙚 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚𝙨 𝙒𝙚 𝙃𝙖𝙫𝙚 𝙐𝙨𝙚𝙙 𝙖𝙣𝙙 𝙇𝙚𝙖𝙧𝙣𝙚𝙙: </h2>
+<p align="left">
+<img src="https://raw.githubusercontent.com/Rokawoo/Rokawoo/main/Logos/HTML5.gif" alt="HTML" width="55" height="55"/>
+
+<img src="https://raw.githubusercontent.com/Rokawoo/Rokawoo/main/Logos/CSS3.gif" alt="css" width="55" height="55"/>
+
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*-tOldEbfjijxn9VqZeULqg.gif" alt="javascript" width="55" height="55"/>
+
+<img src="https://user-images.githubusercontent.com/74038190/212257472-08e52665-c503-4bd9-aa20-f5a4dae769b5.gif" alt="python" width="55" height="55"/>
+
+<img src="https://user-images.githubusercontent.com/74038190/212257468-1e9a91f1-b626-4baa-b15d-5c385dfa7ed2.gif" alt="github" width="55" height="55"/>
+
+<img src="https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif" alt="vscode" width="55" height="55"/>
+</p>
