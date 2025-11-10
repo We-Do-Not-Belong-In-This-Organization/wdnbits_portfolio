@@ -15,11 +15,11 @@
 <img src="https://komarev.com/ghpvc/?username=Mattillac&style=for-the-badge&color=305CDE" alt="View Counter" draggable="false" width="195" height="195"/>
 </p>
 
-<p 𝒮𝒾𝓃𝑒𝓉𝒸𝒽 𝒾𝓉𝑒𝓎! 𝒢𝓊𝓈𝓉𝑜𝓃𝑔 𝓂𝒶𝓀𝒾𝓉𝒶 𝒶𝓃𝑔 𝑔𝒶𝓌𝒶 𝓅𝑒𝓇𝑜 𝓉𝒾𝓃𝒶𝓉𝒶𝓂𝒶𝒹 𝒾-𝒹𝑜𝓌𝓃𝓁𝑜𝒶𝒹?>
-</p>
+## 𝒮𝒾𝓃𝑒𝓉𝒸𝒽 𝒾𝓉𝑒𝓎! 𝒢𝓊𝓈𝓉𝑜𝓃𝑔 𝓂𝒶𝓀𝒾𝓉𝒶 𝒶𝓃𝑔 𝑔𝒶𝓌𝒶 𝓅𝑒𝓇𝑜 𝓉𝒾𝓃𝒶𝓉𝒶𝓂𝒶𝒹 𝒾-𝒹𝑜𝓌𝓃𝓁𝑜𝒶𝒹?>
+
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/60/c9/ed/60c9edfa76f791e77d4bfe78828d40ac.gif" alt= START/>
+  <img src="https://images.squarespace-cdn.com/content/v1/5aca32bf5b409b3ac7b1e7d8/1529423765645-RE1YS0CHAF2EB5M5GTP3/press+start+retro+gaming.gif?format=2500w" alt= visual/>
 </p>
 
  
@@ -37,7 +37,7 @@
 
 ![sneak p e e k](https://github.com/Mattillac/personal_web_portfolio/blob/main/static/images/Screenshot%202025-10-08%20162059.png)
 
-<h2> 💻 &nbsp;𝙎𝙤𝙢𝙚 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚𝙨 𝙒𝙚 𝙃𝙖𝙫𝙚 𝙐𝙨𝙚𝙙 𝙖𝙣𝙙 𝙇𝙚𝙖𝙧𝙣𝙚𝙙: </h2>
+<h2> 💻 &nbsp;𝙎𝙤𝙢𝙚 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚𝙨 𝙖𝙣𝙙 𝙄𝘿𝙀 𝙒𝙚 𝙃𝙖𝙫𝙚 𝙐𝙨𝙚𝙙 𝙖𝙣𝙙 𝙇𝙚𝙖𝙧𝙣𝙚𝙙: </h2>
 <p align="left">
 <img src="https://raw.githubusercontent.com/Rokawoo/Rokawoo/main/Logos/HTML5.gif" alt="HTML" width="55" height="55"/>
 
@@ -50,4 +50,8 @@
 <img src="https://user-images.githubusercontent.com/74038190/212257468-1e9a91f1-b626-4baa-b15d-5c385dfa7ed2.gif" alt="github" width="55" height="55"/>
 
 <img src="https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif" alt="vscode" width="55" height="55"/>
+
+<img src="https://cliply.co/wp-content/uploads/2021/08/372108630_DISCORD_LOGO_400.gif" alt="discord" width="55" height="55"/>
+
+<img src="https://cliply.co/wp-content/uploads/2021/08/372108630_DISCORD_LOGO_400.gif" alt="discord" width="55" height="55"/>
 </p>
