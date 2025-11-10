@@ -2,73 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BUSTAMANTE</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+  <title>JAYVEE Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-  <!-- Back Button -->
-  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
-  <!-- Moving background layer -->
-<div class="moving-bg">
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-  <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
-</div>
+<body class="member">
 
+  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+
+  <div class="moving-bg">
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+    <div class="row"><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span><span>JAYVEE JAYVEE JAYVEE JAYVEE JAYVEE </span></div>
+  </div>
 
   <div class="container fade-in">
     <div class="rectangle"></div>
+    <div class="vertical-line"></div>
 
     <div class="main-image">
-      <img src="{{ url_for('static', filename='images/img6.jpg') }}"
-           alt="Character Image"
-           style="width: 100%; display: block;">
+      <img src="{{ url_for('static', filename='images/jayvee.png') }}" alt="Character Image">
+      <img src="{{ url_for('static', filename='images/jayvee.gif') }}" alt="GIF Animation" class="hover-gif">
     </div>
 
-    <img src="{{ url_for('static', filename='images/paint.png') }}"
-         alt="Paint Splatter"
-         class="splatter">
+    <img src="{{ url_for('static', filename='images/paint.png') }}" alt="Paint Splatter" class="splatter">
 
     <div class="text-big">JAYVEE</div>
     <div class="text-small"><i>BUSTAMANTE</i></div>
-    <div class="adjective-big">FOUNDING GOONER</div>
+    <div class="adjective-big">WEBSITE TESTER</div>
     <div class="text-contracts">CONTRACTS:</div>
     <div class="text-contacts">CONTACTS:</div>
     <div class="vertical-line"></div>
     <div class="text-fighting-style">FIGHTING STYLE:</div>
-<div class="bullet-contracts"><u>
-  • Amongus<br>
-  • About<br>
-  • Services<br>
-  • Contact
-  </u>
-</div>
-<div class="bullet-contacts"><u>
-  • GITHUB<br>
-  • Email<br>
-  • Number<br>  
-  </u>
-</div>
-<div class="bullet-fighting-style"><u>
-  • Python<br>
-  • Judo<br>
-  </u>
-</div>
+
+    <div class="bullet-contracts">
+      <ul>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
+      </ul>
+    </div>
+
+    <div class="bullet-contacts">
+      <ul>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Number</a></li>
+      </ul>
+    </div>
+
+    <div class="bullet-fighting-style">
+      <ul>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">See More</a></li>
+      </ul>
+    </div>
   </div>
 
-  
-    <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loading-content">
-      
       <div class="loading-spinner"></div>
     </div>
-    
-    <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
-  
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -20,16 +20,16 @@ def home():
 @website.route("/profile")
 def profile():
     characters = [
-        {"img": "img1.jpg", "page": "ced"},
-        {"img": "img2.jpg", "page": "deqs"},
-        {"img": "img3.jpg", "page": "hassan"},
-        {"img": "img4.jpg", "page": "ian"},
-        {"img": "img5.jpg", "page": "james"},
-        {"img": "img6.jpg", "page": "jayvee"},
-        {"img": "img7.jpg", "page": "jed"},
-        {"img": "img8.jpg", "page": "laei"},
-        {"img": "img9.jpg", "page": "marx"},
-        {"img": "img10.jpg", "page": "matt"}
+        {"img": "orbista.png", "page": "ced", "left_img": "ced-left.png", "right_img": "ced-right.png"},
+        {"img": "aeron.png", "page": "deqs", "left_img": "deqs-left.png", "right_img": "deqs-right.png"},
+        {"img": "hassan.png", "page": "hassan", "left_img": "hassan-left.png", "right_img": "hassan-right.png"},
+        {"img": "rafael.png", "page": "ian", "left_img": "rafael-left.png", "right_img": "rafael-right.png"},
+        {"img": "james.png", "page": "james", "left_img": "james-left.png", "right_img": "james-right.png"},
+        {"img": "jayvee.png", "page": "jayvee", "left_img": "jayvee-left.png", "right_img": "jayvee-right.png"},
+        {"img": "jed.png", "page": "jed", "left_img": "jed-left.png", "right_img": "jed-right.png"},
+        {"img": "laei.png", "page": "laei", "left_img": "laei-left.png", "right_img": "laei-right.png"},
+        {"img": "marx.png", "page": "marx", "left_img": "marx-left.png", "right_img": "marx-right.png"},
+        {"img": "matt.png", "page": "matt", "left_img": "matt-left.png", "right_img": "matt-right.png"}
     ]
     return render_template("profile.html", characters=characters)
 
@@ -137,7 +137,7 @@ def profile_member(name):
     except Exception as e:
         print("⚠️ Error:", e)
         return "Profile not found", 404
-
+    
 
 if __name__ == '__main__':
     website.run(debug=True)

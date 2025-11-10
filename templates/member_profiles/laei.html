@@ -2,196 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WORKS</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/member_profile_style.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
-
-  <style>
-    .queue-zone {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 50;
-    }
-
-    .right-zone {
-      top: 36vh;
-      left: 74.5vw;
-      width: 15vw;
-      height: 10vh;
-    }
-
-    .bottom-zone {
-      top: 55.5vh;
-      left: 54vw;
-      width: 30vw;
-      height: 20vh;
-    }
-
-    .queue-form input {
-      padding: 8px;
-      border-radius: 8px;
-      border: none;
-      margin-right: 8px;
-    }
-
-    .queue-form button {
-      font-family: 'Work Sans';
-      font-weight: bold;
-      padding: 12px 70px;
-      background: #16156600;
-      color: white;
-      border: 2px solid #8ea6cd00;  
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .queue-form button:hover {
-      background: #161566;
-      color: #000000;
-      border-color: #161566;
-      box-shadow: 0 0 20px #161566;
-    }
-
-    .queue-display {
-      position: absolute;
-      top: 9vh;
-      left: 20.5%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
-      font-family: 'Work Sans', sans-serif;
-      z-index: 100;
-    }
-
-    /* ====== Queue list size & styling ====== */
-    .queue-display ul {
-      font-size: 20px;       /* size of queue items */
-      line-height: 1.5;      /* spacing between items */
-      padding-left: 0;       /* remove default bullets */
-      list-style: none;      /* remove default bullets */
-      max-height: 1000px;     /* optional: limit height */
-      overflow-y: auto;      /* scroll if too long */
-      width: 300px;          /* optional width */
-      margin: 0 auto;        /* center the list */
-    }
-
-    .queue-display li {
-      margin: 5px 0;         /* spacing between items */
-      padding: 8px 12px;     /* space inside each item */
-      background: rgba(255, 255, 255, 0.1); /* optional background */
-      border-radius: 6px;    /* optional rounded corners */
-      text-align: center;    /* center text */
-    }
-
-    .queue-display p {
-      font-size: 20px;       /* size of "queue empty" text */
-    }
-
-    .input-zone {
-      position: absolute;
-      top: 33vh;          
-      left: 56vw;         
-      transform: translateX(-50%);
-      width: 20vw;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      z-index: 60;
-    }
-
-    .enqueue-input {
-      position: absolute;
-      top: -25vh;
-      left: 10vw;
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0);
-      font-size: 16px;
-      text-align: center;
-      box-sizing: border-box;
-      background-color: rgba(255, 255, 255, 0);
-      color: rgba(212, 195, 195, 0.971);
-      backdrop-filter: blur(4px);
-      margin-right: 20px;
-    }
-
-    .enqueue-button {
-      position: absolute;
-      top: 4.5vh;
-      left: 20.5;
-      font-family: 'Work Sans';
-      font-weight: bold;
-      padding: 12px 50px;
-      background: #16156600;
-      color: rgb(255, 255, 255);
-      border: 2px solid #8ea6cd00;  
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .enqueue-button:hover {
-      background: #161566;
-      color: #000000;
-      border-color: #161566;
-      box-shadow: 0 0 20px #161566;
-    }
-  </style>
+  <title>JEDRICK Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+<body class="member">
 
-<body>
-  <a href="{{ url_for('profile') }}" class="queue-back">Back</a>
+  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
 
-  <div class="container fade-in"></div>
-
-  <img src="{{ url_for('static', filename='images/queue_ui.png') }}" alt="Queue Bg" class="queue-bg">
-  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue">
-  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue2">
-  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue3">
-  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" alt="Splat Enqueue" class="splat-enqueue4">
-  <img src="{{ url_for('static', filename='images/splat_name.png') }}" alt="Splat name" class="splat-name">
-  <img src="{{ url_for('static', filename='images/splat_screen.png') }}" alt="Splat screen" class="splat-screen">
-
-  <div class="queue-text">QUEUE</div>
-  <div class="queue-textline">QUEUE LINE</div>
-
-  <div class="queue-zone input-zone">
-    <form action="/profile/laei" method="POST" class="queue-form">
-      <input type="text" name="user_enqueue" placeholder="Enter item" class="enqueue-input">
-      <button type="submit" name="action" value="enqueue" class="enqueue-button">Enqueue</button>
-    </form>
+  <div class="moving-bg">
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
+    <div class="row"><span>LAEI LAEI LAEI LAEI LAEI </span><span>LAEI LAEI LAEI LAEI LAEI </span></div>
   </div>
 
-  <div class="queue-zone right-zone">
-    <form action="/profile/laei" method="POST" class="queue-form">
-      <button type="submit" name="action" value="dequeue">Dequeue</button>
-    </form>
-  </div>
+  <div class="container fade-in">
+    <div class="rectangle"></div>
+    <div class="vertical-line"></div>
 
-  <div class="queue-zone bottom-zone">
-    <form action="/profile/laei" method="POST" class="queue-form">
-      <button type="submit" name="action" value="clear">Clear Queue</button>
-    </form>
-  </div>
+    <div class="main-image">
+      <img src="{{ url_for('static', filename='images/laei.png') }}" alt="Character Image">
+      <img src="{{ url_for('static', filename='images/laei.gif') }}" alt="GIF Animation" class="hover-gif">
+    </div>
 
-  <div class="queue-display">
-    <h3></h3>
-    {% if queue_items %}
+    <img src="{{ url_for('static', filename='images/paint.png') }}" alt="Paint Splatter" class="splatter">
+
+    <div class="text-big">JOHN LAEI</div>
+    <div class="text-small"><i>DE GUZMAN</i></div>
+    <div class="adjective-big"></div>
+    <div class="text-contracts">CONTRACTS:</div>
+    <div class="text-contacts">CONTACTS:</div>
+    <div class="vertical-line"></div>
+    <div class="text-fighting-style">FIGHTING STYLE:</div>
+
+    <div class="bullet-contracts">
       <ul>
-        {% for item in queue_items %}
-          <li>{{ item }}</li>
-        {% endfor %}
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Works</a></li>
       </ul>
-    {% else %}
-      <p>The queue is empty.</p>
-    {% endif %}
+    </div>
+
+    <div class="bullet-contacts">
+      <ul>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Number</a></li>
+      </ul>
+    </div>
+
+    <div class="bullet-fighting-style">
+      <ul>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">See More</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="loading-screen">
@@ -200,6 +68,10 @@
     </div>
   </div>
 
+<<<<<<< HEAD
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+=======
   <script src="{{ url_for('static', filename='javascript/profile_javascript.js') }}"></script>
+>>>>>>> 58485db1026011a15a384bcc768f0adcfda04e45
 </body>
 </html>
