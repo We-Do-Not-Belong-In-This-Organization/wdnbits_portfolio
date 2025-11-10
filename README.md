@@ -25,7 +25,7 @@
 𝙒𝙚 𝙝𝙤𝙥𝙚 𝙮𝙤𝙪 𝙚𝙣𝙟𝙤𝙮 𝙡𝙤𝙤𝙠𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥 𝙥𝙤𝙧𝙩𝙛𝙤𝙡𝙞𝙤 𝙩𝙤 𝙜𝙚𝙩 𝙩𝙤 𝙠𝙣𝙤𝙬 𝙪𝙨 𝙢𝙤𝙧𝙚 𝙖𝙣𝙙 𝙨𝙚𝙚𝙞𝙣𝙜 𝙩𝙝𝙧𝙤𝙪𝙜𝙝 𝙩𝙝𝙚 𝙩𝙝𝙞𝙣𝙜𝙨 𝙬𝙚'𝙧𝙚 𝙥𝙖𝙨𝙨𝙞𝙤𝙣𝙖𝙩𝙚 𝙖𝙗𝙤𝙪𝙩! </p>
 
 <p align="center">
-  <img src="https://images.squarespace-cdn.com/content/v1/5aca32bf5b409b3ac7b1e7d8/1529423765645-RE1YS0CHAF2EB5M5GTP3/press+start+retro+gaming.gif?format=2500w" alt= visual/>
+  <img src="https://tenor.com/view/animate-background-technology-gif-4142333308159596986" alt= visual/>
 </p>
 
 
