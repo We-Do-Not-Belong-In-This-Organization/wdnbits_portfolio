@@ -56,18 +56,26 @@ characters.forEach(char => {
 });
 
   // ------------------- LOADING SCREEN -------------------
-  const loadingScreen = document.querySelector('.loading-screen');
-  if (loadingScreen) {
-    setTimeout(() => {
-      loadingScreen.classList.add('hidden');
-      setTimeout(() => loadingScreen.remove(), 1000);
-    }, 2000);
-  }
+const loadingScreen = document.querySelector('.loading-screen');
+if (loadingScreen) {
+  setTimeout(() => {
+    loadingScreen.classList.add('hidden');
+    setTimeout(() => loadingScreen.remove(), 1000);
+  }, 2000);
+}
 
 });
 
 // ------------------- QUEUE PAGE ENQUEUE ANIMATION -------------------
-  const queueBox = document.querySelector('.queue-box');
-  if (queueBox) {
-    queueBox.scrollTop = queueBox.scrollHeight;
-  }
+const queueBox = document.querySelector('.queue-box');
+if (queueBox) {
+  queueBox.scrollTop = queueBox.scrollHeight;
+}
+
+// Auto-scroll deque box to bottom on page load
+window.addEventListener('load', () => {
+    const dequeBox = document.querySelector('.queue-box');
+    if (dequeBox) {
+        dequeBox.scrollTop = dequeBox.scrollHeight;
+    }
+});
