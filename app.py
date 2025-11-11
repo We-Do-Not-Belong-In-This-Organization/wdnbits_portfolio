@@ -7,7 +7,8 @@ from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
 
 website = Flask(__name__)
-
+queue_line = Queue()
+deque_line = Deque()
 # For Navigation Bar
 
 
@@ -39,46 +40,40 @@ def works():
     return render_template("/works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
-queue_line = Queue()
+
+# ---- queue system ----
+
+@website.route('/queue')
+def queue_page():
+    return render_template('queue.html', queue_items=queue_line.display())
 
 
-# 🔹 Special route for Laei that handles both GET + POST
-@website.route("/profile/laei", methods=["GET", "POST"])
-def laei_profile():
-    if request.method == "POST":
-        action = request.form.get("action")
-        item = request.form.get("user_enqueue")
+@website.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('user_enqueue')
+    if item:
+        queue_line.enqueue(item)
+    return redirect(url_for('queue_page'))
 
-        if action == "enqueue" and item:
-            queue_line.enqueue(item)
-        elif action == "dequeue":
-            queue_line.dequeue()
-        elif action == "clear":
-            queue_line.clear()
 
-    # Always render same page with updated queue
-    items = queue_line.display()
-    return render_template("member_profiles/laei.html", queue_items=items)
+@website.route('/dequeue', methods=['POST'])
+def dequeue():
+    if not queue_line.is_empty():
+        queue_line.dequeue()
+    return redirect(url_for('queue_page'))
 
 
 @website.route('/clear_queue', methods=['POST'])
 def clear_queue():
     queue_line.clear()
-    return redirect(url_for('queue'))
-    # Always render same page with updated queue
-    items = queue_line.display()
-    return render_template("member_profiles/laei.html", queue_items=items)
-
+    return redirect(url_for('queue_page'))
 
 # =====================================================
 # DEQUE System (no changes)
 # =====================================================
 
-deque_line = Deque()
-
-
 @website.route('/deque')
-def dob_queue():
+def deque_page():
     return render_template('deque.html', deque_items=deque_line.display())
 
 
@@ -87,14 +82,14 @@ def enqueue_front():
     item = request.form.get('user_enqueue')
     if item:
         deque_line.enqueue_front(item)
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/dequeue_rear', methods=['POST'])
 def dequeue_rear():
     if not deque_line.is_empty():
         deque_line.dequeue_rear()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/enqueue_rear', methods=['POST'])
@@ -102,20 +97,20 @@ def enqueue_rear():
     item = request.form.get('user_enqueue')
     if item:
         deque_line.enqueue_rear(item)
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/dequeue_front', methods=['POST'])
 def dequeue_front():
     if not deque_line.is_empty():
         deque_line.dequeue_front()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/clear_dob_queue', methods=['POST'])
 def clear_dob_queue():
     deque_line.clear()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 
