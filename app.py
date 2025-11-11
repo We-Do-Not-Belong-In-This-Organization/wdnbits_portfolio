@@ -43,10 +43,10 @@ def works():
 
 # ---- queue system ----
 
+
 @website.route('/queue')
 def queue_page():
-    return render_template('queue.html', queue_items=queue_line.display())
-
+    return render_template('queue.html', queue_line=queue_line.display())
 
 @website.route('/enqueue', methods=['POST'])
 def enqueue():
@@ -55,18 +55,16 @@ def enqueue():
         queue_line.enqueue(item)
     return redirect(url_for('queue_page'))
 
-
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
-    if not queue_line.is_empty():
-        queue_line.dequeue()
+    queue_line.dequeue()
     return redirect(url_for('queue_page'))
-
 
 @website.route('/clear_queue', methods=['POST'])
 def clear_queue():
     queue_line.clear()
     return redirect(url_for('queue_page'))
+
 
 # =====================================================
 # DEQUE System (no changes)
@@ -126,9 +124,8 @@ def project():
 # 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")
 def profile_member(name):
-    print("🔍 Trying to open:", f"member_profiles/{name}.html")
     try:
-        return render_template(f"member_profiles/{name}.html")
+        return render_template(f"member_profiles/{name}.html", member=name)
     except Exception as e:
         print("⚠️ Error:", e)
         return "Profile not found", 404

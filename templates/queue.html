@@ -4,34 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Queue</title>
-  <!-- removed {{ url_for('static', filename='styles.css') }} in href-->
-  <link rel="stylesheet" href=""> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <h1>Queue Line</h1>
+<body class="queue-body">
 
-    <form action="/enqueue" method="post">
-        <input type="text" name="user_enqueue" placeholder="Enter item" required>
-        <button type="submit">Enqueue</button>
-    </form>
+  <!-- SPLATTER BACKGROUND -->
+  <img src="{{ url_for('static', filename='images/splat_chdesc.png') }}" class="queue-splatter top-left">
+  <img src="{{ url_for('static', filename='images/splat_name.png') }}" class="queue-splatter top-right">
+  <img src="{{ url_for('static', filename='images/splat_qline.png') }}" class="queue-splatter bottom-left">
+  <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" class="queue-splatter bottom-right">
 
-    <form action="/dequeue" method="post">
-        <button type="submit">Dequeue</button>
-    </form>
+  <div class="queue-wrapper">
 
-    <form action="/clear_queue" method="post">
-        <button type="submit">Clear Queue</button>
-    </form>
-
-    <div class="queue_line">
-        <h3>Queue Line:</h3>
+    <!-- LEFT PANEL -->
+    <div class="queue-panel-left">
+      <h2 class="queue-title-big">QUEUE:</h2>
+      <div class="queue-box">
         {% if queue_line %}
-            {% for item in queue_line %}
-                <div class="item">{{ item }}</div>
-            {% endfor %}
+          {% for item in queue_line %}
+            <div class="queue-item">{{ loop.index }}. {{ item }}</div>
+          {% endfor %}
         {% else %}
-            <p>The queue is empty.</p>
+          <p class="empty-text">No items in queue</p>
         {% endif %}
+      </div>
     </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="queue-panel-right">
+
+      <input type="text" name="user_enqueue" placeholder="Insert queue" form="enqueueForm" class="queue-input-custom">
+
+      <div class="queue-buttons">
+
+        <form id="enqueueForm" action="/enqueue" method="post">
+          <button class="queue-btn">Enqueue</button>
+        </form>
+
+        <form action="/dequeue" method="post">
+          <button class="queue-btn">Dequeue</button>
+        </form>
+      </div>
+
+      <form action="/clear_queue" method="post">
+        <button class="queue-btn clear">CLEAR</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <h2 class="queue-footer-title">QUEUE LINE</h2>
+
 </body>
 </html>

@@ -65,3 +65,9 @@ characters.forEach(char => {
   }
 
 });
+
+// ------------------- QUEUE PAGE ENQUEUE ANIMATION -------------------
+  const queueBox = document.querySelector('.queue-box');
+  if (queueBox) {
+    queueBox.scrollTop = queueBox.scrollHeight;
+  }
