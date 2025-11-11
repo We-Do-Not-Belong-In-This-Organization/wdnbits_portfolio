@@ -65,3 +65,63 @@ characters.forEach(char => {
   }
 
 });
+
+// Jan Ruzzel Easter Egg
+
+document.addEventListener("DOMContentLoaded", () => {
+  let inactivityTimer;
+const flashImages = window.flashImages || [];
+
+const flashImg = document.createElement("img");
+flashImg.style.position = "fixed";
+flashImg.style.top = "0";
+flashImg.style.left = "0";
+flashImg.style.width = "100%";
+flashImg.style.height = "100%";
+flashImg.style.objectFit = "cover";
+flashImg.style.zIndex = "9999";
+flashImg.style.display = "none";
+flashImg.style.transition = "opacity 0.15s";
+document.body.appendChild(flashImg);
+
+function flashMultipleTimes(times = 5, interval = 400) {
+  let count = 0;
+    const flashInterval = setInterval(() => {
+      if (count >= times) {
+        clearInterval(flashInterval);
+        return;
+      }
+
+      const randomImage =
+        flashImages[Math.floor(Math.random() * flashImages.length)];
+      flashImg.src = randomImage;
+      flashImg.style.display = "block";
+      flashImg.style.opacity = "1";
+
+      new Audio(window.screamSound).play();
+
+      setTimeout(() => {
+        flashImg.style.opacity = "0";
+        setTimeout(() => (flashImg.style.display = "none"), 150);
+      }, 150);
+
+      count++;
+    }, interval);
+  }
+
+  function showRandomFlash() {
+    if (flashImages.length === 0) return;
+    flashMultipleTimes(6, 300); // 6 flashes every 300ms
+  }
+
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(showRandomFlash, 15000); // 15 seconds
+  }
+
+  ["mousemove", "keydown", "click", "scroll"].forEach((event) =>
+    document.addEventListener(event, resetInactivityTimer)
+  );
+
+  resetInactivityTimer();
+});
