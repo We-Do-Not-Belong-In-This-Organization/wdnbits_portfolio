@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JAYVEE Profile</title>
+  <title>Jayvee's Profile</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body class="member">
@@ -39,18 +39,27 @@
 
     <div class="bullet-contracts">
       <ul>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">Works</a></li>
+        <li><a href="{{ url_for('queue_page') }}">Queue Line</a></li>
+        <li><a href="{{ url_for('deque_page') }}">Deque Line</a></li>
+        <li><a href="#" target="_blank">Works</a></li>
+        <li><a href="#" target="_blank">Works</a></li>
       </ul>
     </div>
 
     <div class="bullet-contacts">
       <ul>
-        <li><a href="#">GitHub</a></li>
-        <li><a href="#">Email</a></li>
-        <li><a href="#">Number</a></li>
+        <li>
+          <a href="https://github.com/FriedPotatoess" target="_blank">
+            <img src="{{ url_for('static', filename='images/github.png') }}" alt="GitHub" class="icon">
+              GitHub
+          </a>
+        </li>
+        <li>
+          <a href="mailto:bustamantejayvee6@gmail.com">
+            <img src="{{ url_for('static', filename='images/gmail.png') }}" alt="Email" class="icon">
+              Email
+          </a>
+        </li>
       </ul>
     </div>
 

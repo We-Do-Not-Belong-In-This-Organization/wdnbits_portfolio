@@ -7,7 +7,8 @@ from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
 
 website = Flask(__name__)
-
+queue_line = Queue()
+deque_line = Deque()
 # For Navigation Bar
 
 
@@ -39,49 +40,38 @@ def works():
     return render_template("/works.html")  # Change #works.html per member
 
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
-queue_line = Queue()
+
+# ---- queue system ----
 
 
-# Route for Queue
 @website.route('/queue')
-def queue():
-    return render_template('queue.html', queue_line=queue_line)
+def queue_page():
+    return render_template('queue.html', queue_line=queue_line.display())
 
-
-# Method for enqueue-ing
 @website.route('/enqueue', methods=['POST'])
 def enqueue():
     item = request.form.get('user_enqueue')
     if item:
         queue_line.enqueue(item)
-    return redirect(url_for('queue'))
+    return redirect(url_for('queue_page'))
 
-
-# Method for dequeue-ing
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
-    if not queue_line.is_empty():
-        queue_line.dequeue()
-    return redirect(url_for('queue'))
-
+    queue_line.dequeue()
+    return redirect(url_for('queue_page'))
 
 @website.route('/clear_queue', methods=['POST'])
 def clear_queue():
     queue_line.clear()
-    return redirect(url_for('queue'))
-    items = queue_line.display()
-    return render_template("member_profiles/laei.html", queue_items=items)
+    return redirect(url_for('queue_page'))
 
 
 # =====================================================
 # DEQUE System (no changes)
 # =====================================================
 
-deque_line = Deque()
-
-
 @website.route('/deque')
-def dob_queue():
+def deque_page():
     return render_template('deque.html', deque_items=deque_line.display())
 
 
@@ -90,14 +80,14 @@ def enqueue_front():
     item = request.form.get('user_enqueue')
     if item:
         deque_line.enqueue_front(item)
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/dequeue_rear', methods=['POST'])
 def dequeue_rear():
     if not deque_line.is_empty():
         deque_line.dequeue_rear()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/enqueue_rear', methods=['POST'])
@@ -105,20 +95,20 @@ def enqueue_rear():
     item = request.form.get('user_enqueue')
     if item:
         deque_line.enqueue_rear(item)
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/dequeue_front', methods=['POST'])
 def dequeue_front():
     if not deque_line.is_empty():
         deque_line.dequeue_front()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 @website.route('/clear_dob_queue', methods=['POST'])
 def clear_dob_queue():
     deque_line.clear()
-    return redirect(url_for('dob_queue'))
+    return redirect(url_for('deque_page'))
 
 
 
@@ -134,9 +124,8 @@ def project():
 # 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")
 def profile_member(name):
-    print("🔍 Trying to open:", f"member_profiles/{name}.html")
     try:
-        return render_template(f"member_profiles/{name}.html")
+        return render_template(f"member_profiles/{name}.html", member=name)
     except Exception as e:
         print("⚠️ Error:", e)
         return "Profile not found", 404
