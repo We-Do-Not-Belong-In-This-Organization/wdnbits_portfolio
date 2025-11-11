@@ -24,6 +24,12 @@
       <p class="tagline">Nakasisigurong gamot ay laging bago.</p>
     </footer>
   </div>
+  <script>
+    window.flashImages = [
+      "{{ url_for('static', filename='images/ruzzel_creepy_pasta.jpg') }}"
+    ];
+    window.screamSound = "{{ url_for('static', filename='sounds/scream2.mp3') }}";
+  </script>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
