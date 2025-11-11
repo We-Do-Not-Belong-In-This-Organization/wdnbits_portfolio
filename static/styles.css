@@ -590,3 +590,27 @@ footer .tagline { margin-top: 10px; font-style: italic; color: #e0f7fa; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .loading-screen.hidden { opacity: 0; pointer-events: none; }
+
+
+/* ----- icon ----- */
+
+.icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+  filter: drop-shadow(0 0 4px #ffffff);
+  transition: transform 0.2s ease;
+}
+
+.bullet-contacts ul li a {
+  display: relative;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.bullet-contacts ul li a:hover .icon {
+  transform: scale(1.15);
+}
