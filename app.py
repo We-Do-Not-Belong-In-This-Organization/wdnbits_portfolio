@@ -46,7 +46,8 @@ def works():
 
 @website.route('/queue')
 def queue_page():
-    return render_template('queue.html', queue_line=queue_line.display())
+    from_page = request.args.get('from', '')
+    return render_template('queue.html', queue_line=queue_line.display(), from_page=from_page)
 
 @website.route('/enqueue', methods=['POST'])
 def enqueue():
@@ -72,7 +73,8 @@ def clear_queue():
 
 @website.route('/deque')
 def deque_page():
-    return render_template('deque.html', deque_items=deque_line.display())
+    from_page = request.args.get('from', '')
+    return render_template('deque.html', deque_items=deque_line.display(), from_page=from_page)
 
 
 @website.route('/enqueue_front', methods=['POST'])
@@ -130,6 +132,17 @@ def profile_member(name):
         print("⚠️ Error:", e)
         return "Profile not found", 404
     
+
+# Route for the back button of queue and deque page
+
+@website.route('/<member_name>/queue')
+def member_queue(member_name):
+    return render_template('queue.html', queue_line=queue_line.display(), member_name=member_name)
+
+@website.route('/<member_name>/deque')
+def member_deque(member_name):
+    return render_template('deque.html', deque_items=deque_line.display(), member_name=member_name)
+
 
 if __name__ == '__main__':
     website.run(debug=True)
