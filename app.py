@@ -118,10 +118,6 @@ def clear_dob_queue():
 
 #WORKS (ON PROGRESS)
 
-@website.route('/project')
-def project():
-    return render_template("project.html")
-
 
 # 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")

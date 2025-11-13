@@ -79,3 +79,6 @@ window.addEventListener('load', () => {
         dequeBox.scrollTop = dequeBox.scrollHeight;
     }
 });
+
+// ------------------- EASTER EGG -------------------
+
