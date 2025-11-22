@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Tree</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="queue-body">
+  <a href="{{ url_for('profile_member', name=member) }}" class="back-button">Back</a>
+
+  <div class="container fade-in">
+    <h1>Binary Tree</h1>
+
+    <img src="{{ url_for('static', filename='images/binary_tree.png') }}" 
+         alt="Binary Tree" 
+         style="display:block; margin:20px auto; max-width:400px;">
+
+    <!-- Button to show traversal -->
+    <button id="showTraversalBtn" class="queue-btn">Post-Order Traversal</button>
+
+    <!-- Hidden container for traversal -->
+    <div id="traversalContainer" style="display:none; margin-top:20px; font-size:1.2em;">
+      {% if traversal %}
+        <p>{{ traversal | join(' → ') }}</p>
+      {% else %}
+        <p class="empty-text">No nodes in tree</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("showTraversalBtn");
+    const container = document.getElementById("traversalContainer");
+
+    btn.addEventListener("click", () => {
+      container.style.display = "block";  // show the traversal
+      btn.style.display = "none";         // hide the button after click
+    });
+  </script>
+</body>
+</html>
