@@ -184,7 +184,7 @@ def postorder_page():
 
     traversal_result = tree.post_traversal(root, [])
     
-    return render_template("post_order.html", member=member_name, traversal=traversal_result)
+    return render_template("post-order.html", member=member_name, traversal=traversal_result)
 
 
 
