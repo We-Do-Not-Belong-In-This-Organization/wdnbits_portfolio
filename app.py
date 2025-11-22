@@ -46,7 +46,7 @@ def works():
 
 @website.route('/queue')
 def queue_page():
-    from_page = request.args.get('from', '')
+    from_page = request.args.get('from_page', '')
     return render_template('queue.html', queue_line=queue_line.display(), from_page=from_page)
 
 @website.route('/enqueue', methods=['POST'])
@@ -73,7 +73,7 @@ def clear_queue():
 
 @website.route('/deque')
 def deque_page():
-    from_page = request.args.get('from', '')
+    from_page = request.args.get('from_page', '')
     return render_template('deque.html', deque_items=deque_line.display(), from_page=from_page)
 
 
@@ -146,7 +146,7 @@ def member_deque(member_name):
 # For binary tree
 @website.route("/postorder")
 def postorder_page():
-    member_name = request.args.get('from', '')  # read member from query parameter
+    member_name = request.args.get('from_page', '')  # read member from query parameter
     
     # Build the example binary tree
     tree = BinaryTree()
