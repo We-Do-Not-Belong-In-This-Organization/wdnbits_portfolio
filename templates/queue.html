@@ -38,16 +38,23 @@
 
       <div class="queue-buttons">
 
+        <!-- ENQUEUE -->
         <form id="enqueueForm" action="/enqueue" method="post">
+          <input type="hidden" name="from_page" value="{{ from_page }}">
           <button class="queue-btn">Enqueue</button>
         </form>
 
+        <!-- DEQUEUE -->
         <form action="/dequeue" method="post">
+          <input type="hidden" name="from_page" value="{{ from_page }}">
           <button class="queue-btn">Dequeue</button>
         </form>
+
       </div>
 
+      <!-- CLEAR QUEUE -->
       <form action="/clear_queue" method="post">
+        <input type="hidden" name="from_page" value="{{ from_page }}">
         <button class="queue-btn clear">CLEAR</button>
       </form>
 
