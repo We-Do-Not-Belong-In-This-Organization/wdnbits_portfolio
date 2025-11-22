@@ -1,6 +1,7 @@
 from tree_node import Node
 
 
+# Binary Tree
 class BinaryTree:
     """A binary tree data structure."""
     def __init__(self, root_value=None):
@@ -47,6 +48,14 @@ class BinaryTree:
             traversal = self.post_traversal(start.right, traversal)
             traversal.append(start.data)
         return traversal
+
+    def search(self, root, key):
+        """Search for a value in the tree."""
+        pass
+
+    def delete_node(self, root, key):
+        """Delete a node with the given value from the tree."""
+        pass
 
 
 # Build a larger tree
