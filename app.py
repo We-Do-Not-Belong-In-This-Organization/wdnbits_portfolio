@@ -43,6 +43,10 @@ def worksoon():
 def works():
     return render_template("/works.html")  # Change #works.html per member
 
+@website.route("/secret")
+def secret():
+    return render_template("secret.html")
+
 # For members, copy and paste this to your own portfolio including the 'queue.html' and 'dequeue.html" file
 
 # ---- queue system ----
