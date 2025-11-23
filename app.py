@@ -38,7 +38,7 @@ def profile():
 def worksoon():
     from_page = request.args.get("from_page", None)
     return render_template("coming-soon.html", from_page=from_page)
-    
+
 @website.route("/works")
 def works():
     return render_template("/works.html")  # Change #works.html per member
@@ -172,8 +172,8 @@ def member_deque(member_name):
     return render_template('deque.html', deque_items=deque_line.display(), member_name=member_name)
 
 # For binary tree
-@website.route("/postorder")
-def postorder_page():
+@website.route("/binarytree")
+def binarytree_page():
     member_name = request.args.get('from_page', '')  # read member from query parameter
     
     # Build the example binary tree
@@ -188,7 +188,7 @@ def postorder_page():
 
     traversal_result = tree.post_traversal(root, [])
     
-    return render_template("post-order.html", member=member_name, traversal=traversal_result)
+    return render_template("binary-tree.html", member=member_name, traversal=traversal_result)
 
 
 
