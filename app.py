@@ -49,25 +49,34 @@ def works():
 
 @website.route('/queue')
 def queue_page():
-    from_page = request.args.get('from', '')
+    from_page = request.args.get('from_page', '')
     return render_template('queue.html', queue_line=queue_line.display(), from_page=from_page)
 
 @website.route('/enqueue', methods=['POST'])
 def enqueue():
     item = request.form.get('user_enqueue')
+    from_page = request.form.get('from_page')
+
     if item:
         queue_line.enqueue(item)
-    return redirect(url_for('queue_page'))
+
+    return redirect(url_for('queue_page', from_page=from_page))
 
 @website.route('/dequeue', methods=['POST'])
 def dequeue():
+    from_page = request.form.get('from_page')
+
     queue_line.dequeue()
-    return redirect(url_for('queue_page'))
+
+    return redirect(url_for('queue_page', from_page=from_page))
 
 @website.route('/clear_queue', methods=['POST'])
 def clear_queue():
+    from_page = request.form.get('from_page')
+
     queue_line.clear()
-    return redirect(url_for('queue_page'))
+
+    return redirect(url_for('queue_page', from_page=from_page))
 
 
 # =====================================================
@@ -76,44 +85,59 @@ def clear_queue():
 
 @website.route('/deque')
 def deque_page():
-    from_page = request.args.get('from', '')
+    from_page = request.args.get('from_page', '')
     return render_template('deque.html', deque_items=deque_line.display(), from_page=from_page)
 
 
 @website.route('/enqueue_front', methods=['POST'])
 def enqueue_front():
     item = request.form.get('user_enqueue')
+    from_page = request.form.get('from_page')
+
     if item:
         deque_line.enqueue_front(item)
-    return redirect(url_for('deque_page'))
+
+    return redirect(url_for('deque_page', from_page=from_page))
 
 
 @website.route('/dequeue_rear', methods=['POST'])
 def dequeue_rear():
+    from_page = request.form.get('from_page')
+
     if not deque_line.is_empty():
         deque_line.dequeue_rear()
-    return redirect(url_for('deque_page'))
+
+    return redirect(url_for('deque_page', from_page=from_page))
 
 
 @website.route('/enqueue_rear', methods=['POST'])
 def enqueue_rear():
     item = request.form.get('user_enqueue')
+    from_page = request.form.get('from_page')
+
     if item:
         deque_line.enqueue_rear(item)
-    return redirect(url_for('deque_page'))
+
+    return redirect(url_for('deque_page', from_page=from_page))
 
 
 @website.route('/dequeue_front', methods=['POST'])
 def dequeue_front():
+    from_page = request.form.get('from_page')
+
     if not deque_line.is_empty():
         deque_line.dequeue_front()
-    return redirect(url_for('deque_page'))
+
+    return redirect(url_for('deque_page', from_page=from_page))
 
 
 @website.route('/clear_dob_queue', methods=['POST'])
 def clear_dob_queue():
+    from_page = request.form.get('from_page')
+
     deque_line.clear()
-    return redirect(url_for('deque_page'))
+
+    return redirect(url_for('deque_page', from_page=from_page))
 
 
 
@@ -149,7 +173,7 @@ def member_deque(member_name):
 # For binary tree
 @website.route("/postorder")
 def postorder_page():
-    member_name = request.args.get('from', '')  # read member from query parameter
+    member_name = request.args.get('from_page', '')  # read member from query parameter
     
     # Build the example binary tree
     tree = BinaryTree()
@@ -163,7 +187,7 @@ def postorder_page():
 
     traversal_result = tree.post_traversal(root, [])
     
-    return render_template("post_order.html", member=member_name, traversal=traversal_result)
+    return render_template("post-order.html", member=member_name, traversal=traversal_result)
 
 
 

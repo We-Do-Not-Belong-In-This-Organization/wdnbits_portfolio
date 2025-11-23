@@ -36,8 +36,9 @@
 
       <!-- SINGLE FORM FOR BOTH ENQUEUE BUTTONS -->
       <form action="" method="post">
+        <input type="hidden" name="from_page" value="{{ from_page }}">
         <input type="text" name="user_enqueue" placeholder="Insert item" class="queue-input-custom" required>
-
+        
         <div class="queue-buttons">
           <button class="queue-btn" type="submit" formaction="/enqueue_front">Enqueue Front</button>
           <button class="queue-btn" type="submit" formaction="/enqueue_rear">Enqueue Rear</button>
@@ -47,15 +48,19 @@
       <!-- DEQUEUE BUTTONS -->
       <div class="queue-buttons">
         <form action="/dequeue_front" method="post">
+          <input type="hidden" name="from_page" value="{{ from_page }}">
           <button class="queue-btn">Dequeue Front</button>
         </form>
+
         <form action="/dequeue_rear" method="post">
+          <input type="hidden" name="from_page" value="{{ from_page }}">
           <button class="queue-btn">Dequeue Rear</button>
         </form>
       </div>
 
       <!-- CLEAR DEQUE -->
       <form action="/clear_dob_queue" method="post">
+        <input type="hidden" name="from_page" value="{{ from_page }}">
         <button class="queue-btn clear">CLEAR</button>
       </form>
 
