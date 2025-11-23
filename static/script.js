@@ -63,7 +63,23 @@ if (loadingScreen) {
     setTimeout(() => loadingScreen.remove(), 1000);
   }, 2000);
 }
+const tips = [
+  'The "WDNBITS" name was founded by Jayvee',
+  "If you're reading this, tag your tropa!",
+  "Hassan is the youngest in the WDNBITS group",
+  "Eh naglapag ng tips",
+  "Some tips are randomly given!",
+  "Si Jed ay Bass Player",
+  "Si Matt ay may 7 dogs",
+  "Tag mo yung tropa mo!",
+  ".--- .- -. ....... .-. ..- --.. --..\n . .-.. .-.. ....... --- .-. --.- ..- .. .-",
+];
 
+// Picks a random phrase
+const randomTip = tips[Math.floor(Math.random() * tips.length)];
+
+// Displayer CAPITAL P, Powerful to!
+document.getElementById("randText").textContent = randomTip;
 });
 
 // ------------------- QUEUE PAGE ENQUEUE ANIMATION -------------------

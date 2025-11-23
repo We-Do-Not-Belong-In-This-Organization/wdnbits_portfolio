@@ -1,7 +1,7 @@
 # pip install Flask
 # Two lines spacing for each route
 
-
+from binary_tree import BinaryTree, Node
 from flask import Flask, render_template, request, redirect, url_for
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
@@ -34,6 +34,9 @@ def profile():
     ]
     return render_template("profile.html", characters=characters)
 
+@website.route("/works")
+def worksoon():
+    return render_template("/coming-soon.html")  # Change #works.html per member
 
 @website.route("/works")
 def works():
@@ -142,6 +145,27 @@ def member_queue(member_name):
 @website.route('/<member_name>/deque')
 def member_deque(member_name):
     return render_template('deque.html', deque_items=deque_line.display(), member_name=member_name)
+
+# For binary tree
+@website.route("/postorder")
+def postorder_page():
+    member_name = request.args.get('from', '')  # read member from query parameter
+    
+    # Build the example binary tree
+    tree = BinaryTree()
+    root = Node(10)
+    root.left = Node(5)
+    root.right = Node(15)
+    root.left.left = Node(2)
+    root.left.right = Node(7)
+    root.right.left = Node(12)
+    root.right.right = Node(20)
+
+    traversal_result = tree.post_traversal(root, [])
+    
+    return render_template("post_order.html", member=member_name, traversal=traversal_result)
+
+
 
 
 if __name__ == '__main__':
