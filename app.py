@@ -34,6 +34,9 @@ def profile():
     ]
     return render_template("profile.html", characters=characters)
 
+@website.route("/works")
+def worksoon():
+    return render_template("/coming-soon.html")  # Change #works.html per member
 
 @website.route("/works")
 def works():
