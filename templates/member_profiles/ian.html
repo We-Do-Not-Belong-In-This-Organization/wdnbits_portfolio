@@ -39,10 +39,10 @@
 
     <div class="bullet-contracts">
       <ul>
-        <li><a href="{{ url_for('queue_page') }}?from=ian">Queue Line</a></li>
-        <li><a href="{{ url_for('deque_page') }}?from=ian">Deque Line</a></li>
-        <li><a href="{{ url_for('postorder_page') }}?from=ian">Binary Tree</a></li>
-        <li><a href="#" target="_blank">Works</a></li>
+        <li><a href="{{ url_for('queue_page', from_page='ian') }}">Queue Line</a></li>
+        <li><a href="{{ url_for('deque_page', from_page='ian') }}">Deque Line</a></li>
+        <li><a href="{{ url_for('postorder_page', from_page='ian') }}">Binary Tree</a></li>    
+        <li><a href="{{ url_for('worksoon') }}?from=ian">Works</a></li>
       </ul>
     </div>
 
