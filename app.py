@@ -36,8 +36,9 @@ def profile():
 
 @website.route("/works")
 def worksoon():
-    return render_template("/coming-soon.html")  # Change #works.html per member
-
+    from_page = request.args.get("from_page", None)
+    return render_template("coming-soon.html", from_page=from_page)
+    
 @website.route("/works")
 def works():
     return render_template("/works.html")  # Change #works.html per member
