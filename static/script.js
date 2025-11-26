@@ -77,6 +77,7 @@ const tips = [
   "Si Matt ay may 7 dogs",
   "Tag mo yung tropa mo!",
   ".--- .- -. ....... .-. ..- --.. --..\n . .-.. .-.. ....... --- .-. --.- ..- .. .-",
+  "3-I",
 ];
 
 // Picks a random phrase
