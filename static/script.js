@@ -19,21 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ------------------- PROFILE HOVER SIDE IMAGES -------------------
 const characters = document.querySelectorAll(".character");
+const grid = document.querySelector(".grid");
 
 characters.forEach(char => {
   let leftImg, rightImg;
 
   char.addEventListener("mouseenter", () => {
-    const grid = document.querySelector(".grid"); // append relative to grid
+    if (!grid) return;
+
+    if (leftImg) leftImg.remove();
+    if (rightImg) rightImg.remove();
 
     leftImg = document.createElement("img");
     leftImg.src = `/static/images/${char.dataset.left}`;
     leftImg.className = "side-image left-side";
-    grid.appendChild(leftImg);
 
     rightImg = document.createElement("img");
     rightImg.src = `/static/images/${char.dataset.right}`;
     rightImg.className = "side-image right-side";
+
+    grid.appendChild(leftImg);
     grid.appendChild(rightImg);
 
     requestAnimationFrame(() => {
@@ -43,18 +48,17 @@ characters.forEach(char => {
   });
 
   char.addEventListener("mouseleave", () => {
-    if (leftImg && rightImg) {
-      leftImg.classList.remove("show");
-      rightImg.classList.remove("show");
+    if (!leftImg || !rightImg) return;
 
-      setTimeout(() => {
-        leftImg.remove();
-        rightImg.remove();
-      }, 500);
-    }
+    leftImg.classList.remove("show");
+    rightImg.classList.remove("show");
+
+    setTimeout(() => {
+      leftImg.remove();
+      rightImg.remove();
+    }, 500);
   });
 });
-
   // ------------------- LOADING SCREEN -------------------
 const loadingScreen = document.querySelector('.loading-screen');
 if (loadingScreen) {
@@ -63,7 +67,24 @@ if (loadingScreen) {
     setTimeout(() => loadingScreen.remove(), 1000);
   }, 2000);
 }
+const tips = [
+  'The "WDNBITS" name was founded by Jayvee',
+  "If you're reading this, tag your tropa!",
+  "Hassan is the youngest in the WDNBITS group",
+  "Eh naglapag ng tips",
+  "Some tips are randomly given!",
+  "Si Jed ay Bass Player",
+  "Si Matt ay may 7 dogs",
+  "Tag mo yung tropa mo!",
+  ".--- .- -. ....... .-. ..- --.. --..\n . .-.. .-.. ....... --- .-. --.- ..- .. .-",
+  "3-I",
+];
 
+// Picks a random phrase
+const randomTip = tips[Math.floor(Math.random() * tips.length)];
+
+// Displayer CAPITAL P, Powerful to!
+document.getElementById("randText").textContent = randomTip;
 });
 
 // ------------------- QUEUE PAGE ENQUEUE ANIMATION -------------------
