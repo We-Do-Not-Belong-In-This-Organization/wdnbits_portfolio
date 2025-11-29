@@ -148,13 +148,6 @@ def clear_dob_queue():
 
 # End of DEqueue
 
-#WORKS (ON PROGRESS)
-
-@website.route('/project')
-def project():
-    return render_template("project.html")
-
-
 # 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")
 def profile_member(name):
@@ -163,17 +156,6 @@ def profile_member(name):
     except Exception as e:
         print("⚠️ Error:", e)
         return "Profile not found", 404
-    
-
-# Route for the back button of queue and deque page
-
-@website.route('/<member_name>/queue')
-def member_queue(member_name):
-    return render_template('queue.html', queue_line=queue_line.display(), member_name=member_name)
-
-@website.route('/<member_name>/deque')
-def member_deque(member_name):
-    return render_template('deque.html', deque_items=deque_line.display(), member_name=member_name)
 
 # For binary tree
 @website.route("/binarytree")
