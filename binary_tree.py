@@ -28,7 +28,7 @@ class BinaryTree:
     def preorder_traversal(self, start,traversal):
         """Traverse the tree in preorder (root, left, right)."""
         if start:
-            traversal += (str(start.value) + " ")
+            traversal += (str(start.data) + " ")
             traversal = self.preorder_traversal(start.left,traversal)
             traversal = self.preorder_traversal(start.right,traversal)
         return traversal    
@@ -37,7 +37,7 @@ class BinaryTree:
         """Traverse the tree in inorder (left, root, right)."""
         if start:
             traversal = self.inorder_traversal(start.left,traversal)
-            traversal += (str(start.value) + " ")
+            traversal += (str(start.data) + " ")
             traversal = self.inorder_traversal(start.right,traversal)
         return traversal    
     
@@ -50,21 +50,16 @@ class BinaryTree:
         return traversal
 
     def search(self, root, key):
-<<<<<<< HEAD
-        while root:
-            if root.data == key:
+        binary_tree = self.post_traversal(root, [])
+        print(binary_tree)
+        counter = 0
+        while counter < len(binary_tree):
+            if binary_tree[counter] == key:
                 return True
             else:
-                self.search(root.right, key)
-=======
-        """Search for a value in the tree."""
-        pass
-
-    def delete_node(self, root, key):
-        """Delete a node with the given value from the tree."""
-        pass
-
->>>>>>> lab2
+                counter += 1
+        else:
+            return False
 
 # Build a larger tree
 tree = BinaryTree()
@@ -80,5 +75,7 @@ root.right.left = Node(12)
 root.right.right = Node(20)
 
 # Test post-order traversal
-result = tree.post_traversal(root, [])
-print(tree.search(root, 2))
+result = tree.inorder_traversal(root, [])
+print(tree.search(root, 15))
+
+print(result)
