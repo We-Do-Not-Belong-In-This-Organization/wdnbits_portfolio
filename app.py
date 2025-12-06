@@ -5,7 +5,7 @@ from binary_tree import BinaryTree, Node
 from flask import Flask, render_template, request, redirect, url_for
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
-from binary_search_tree import BinaryTree, Node
+from binary_search_tree import BinarySearchTree, Node
 
 
 website = Flask(__name__)
@@ -211,7 +211,7 @@ def bst_page():
     root.right.left = Node(35)
     root.right.right = Node(50)
 
-    tree = BinaryTree()  
+    tree = BinarySearchTree()  
 
     max_value = tree.get_max_value(root) 
 

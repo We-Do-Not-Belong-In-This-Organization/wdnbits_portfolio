@@ -6,7 +6,7 @@ class Node:
         self.left = None
         self.right = None
 
-class BinaryTree:
+class BinarySearchTree:
     """Binary Search Tree (BST)"""
 
     def __init__(self, root_value=None):
