@@ -1,8 +1,9 @@
 # pip install Flask
 # Two lines spacing for each route
 
-from binary_tree import BinaryTree, Node
-from flask import Flask, render_template, request, redirect, url_for
+from binary_tree import BinaryTree
+from tree_node import Node
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
 
@@ -157,24 +158,94 @@ def profile_member(name):
         print("⚠️ Error:", e)
         return "Profile not found", 404
 
+
 # For binary tree
+tree = BinaryTree()
+tree.root = Node("Root")  # ensure root exists on startup
+
+
+def serialize(node):
+    """Convert Python Node to JSON-friendly dict (or None)."""
+    if node is None:
+        return None
+    return {
+        "id": node.id,
+        "data": node.data,
+        "left": serialize(node.left),
+        "right": serialize(node.right)
+    }
+
+
 @website.route("/binarytree")
 def binarytree_page():
-    member_name = request.args.get('from_page', '')  # read member from query parameter
-    
-    # Build the example binary tree
-    tree = BinaryTree()
-    root = Node(10)
-    root.left = Node(5)
-    root.right = Node(15)
-    root.left.left = Node(2)
-    root.left.right = Node(7)
-    root.right.left = Node(12)
-    root.right.right = Node(20)
+    from_page = request.args.get("from_page", "")
+    return render_template("binary-tree.html", from_page=from_page)
 
-    traversal_result = tree.post_traversal(root, [])
-    
-    return render_template("binary-tree.html", member=member_name, traversal=traversal_result)
+
+@website.route("/get_tree")
+def get_tree():
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/insert_left", methods=["POST"])
+def insert_left():
+    payload = request.get_json(force=True)
+    parent = payload.get("parent")
+    value = payload.get("value")
+    if parent is None or value is None:
+        return jsonify(serialize(tree.root)), 400
+
+    node = tree.search(tree.root, parent)
+    if node:
+        tree.insert_left(node, value)
+    # return current tree regardless (so frontend can re-draw)
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/insert_right", methods=["POST"])
+def insert_right():
+    payload = request.get_json(force=True)
+    parent = payload.get("parent")
+    value = payload.get("value")
+    if parent is None or value is None:
+        return jsonify(serialize(tree.root)), 400
+
+    node = tree.search(tree.root, parent)
+    if node:
+        tree.insert_right(node, value)
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/delete", methods=["POST"])
+def delete_node():
+    payload = request.get_json(force=True)
+    node_id = payload.get("nodeId")
+    if node_id is None:
+        return jsonify(serialize(tree.root)), 400
+
+    # deleting root
+    if tree.root and tree.root.id == node_id:
+        tree.root = None
+        return jsonify(None)
+
+    parent, side = find_parent(tree.root, node_id)
+
+    if parent is None:
+        return jsonify(serialize(tree.root)), 400
+
+    if side == "left":
+        parent.left = None
+    else:
+        parent.right = None
+
+    return jsonify(serialize(tree.root))
+
+
+
+@website.route("/reset", methods=["POST"])
+def reset_tree():
+    tree.root = Node("Root")
+    return jsonify(serialize(tree.root))
 
 
 
