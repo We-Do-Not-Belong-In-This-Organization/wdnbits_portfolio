@@ -61,6 +61,15 @@ class BinaryTree:
         else:
             return False
 
+    def delete(self, root, key):
+        if root == None:
+            print("No root or binary tree detected")
+
+        if root.data == key:
+            if root.left != None:
+                root.data = root.left.data
+            elif root.right != None:
+                root.data == root.right.data
 # Build a larger tree
 tree = BinaryTree()
 
@@ -75,7 +84,8 @@ root.right.left = Node(12)
 root.right.right = Node(20)
 
 # Test post-order traversal
+
+tree.delete(root, 2)
 result = tree.inorder_traversal(root, [])
 print(tree.search(root, 15))
 
-print(result)
