@@ -62,6 +62,12 @@ class BinaryTree:
             traversal.append(start.data)
         return traversal
 
+    def search(self, root, key):
+        while root:
+            if root.data == key:
+                return True
+            else:
+                self.search(root.right, key)
 
     def search_by_id(self, root, node_id):
         if root is None:
