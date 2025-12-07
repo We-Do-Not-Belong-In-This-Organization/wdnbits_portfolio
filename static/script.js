@@ -193,13 +193,26 @@ canvas.addEventListener("click", function (e) {
 });
 
 function updateSelectedDisplay() {
-  document.getElementById("selectedDisplay").innerText =
-    "Selected Node ID: " + (selected ?? "None");
+  if (selected === null) {
+    document.getElementById("selectedDisplay").innerText = "Selected Node: None";
+    return;
+  }
+
+  // Find node object in nodePositions
+  const node = nodePositions.find(n => n.id === selected);
+  if (node) {
+    document.getElementById("selectedDisplay").innerText = "Selected Node: " + node.data;
+  } else {
+    document.getElementById("selectedDisplay").innerText = "Selected Node: None";
+  }
 }
+
+
+
 
 function insertLeft() {
   const value = document.getElementById("valueInput").value;
-  if (!selected || !value) return alert("Select a parent and enter a value.");
+  if (selected === null || value.trim() === "") return alert("Select a parent and enter a value.");
 
   fetch("/insert_left", {
     method: "POST",
@@ -207,16 +220,18 @@ function insertLeft() {
     body: JSON.stringify({ parent: selected, value})
   })
     .then(res => res.json())
-    .then(tree => {
+    .then(res => {
+      if (res.error) return alert(res.error);
       document.getElementById("valueInput").value = "";
-      drawTree(tree);
+      drawTree(res);
     })
+
     .catch(err => console.error("insertLeft error:", err));
 }
 
 function insertRight() {
   const value = document.getElementById("valueInput").value;
-  if (!selected || !value) return alert("Select a parent and enter a value.");
+  if (selected === null || value.trim() === "") return alert("Select a parent and enter a value.");
 
   fetch("/insert_right", {
     method: "POST",
@@ -224,10 +239,12 @@ function insertRight() {
     body: JSON.stringify({ parent: selected, value})
   })
     .then(res => res.json())
-    .then(tree => {
+    .then(res => {
+      if (res.error) return alert(res.error);
       document.getElementById("valueInput").value = "";
-      drawTree(tree);
+      drawTree(res);
     })
+
     .catch(err => console.error("insertRight error:", err));
 }
 

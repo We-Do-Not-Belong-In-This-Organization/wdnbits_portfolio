@@ -14,23 +14,18 @@ class BinaryTree:
     # INSERTIONS
     # -----------------------------------------
     def insert_left(self, current_node, value):
-        """Insert a node as the left child of the current node."""
-        if current_node.left is None:
-            current_node.left = Node(value)
-        else:
-            new_node = Node(value)
-            new_node.left = current_node.left
-            current_node.left = new_node
+        if current_node.left is not None:
+            return False  # parent already has a left child
+        current_node.left = Node(value)
+        return True
 
 
     def insert_right(self, current_node, value):
-        """Insert a node as the right child of the current node."""
-        if current_node.right is None:
-            current_node.right = Node(value)
-        else:
-            new_node = Node(value)
-            new_node.right = current_node.right
-            current_node.right = new_node
+        if current_node.right is not None:
+            return False  # parent already has a right child
+        current_node.right = Node(value)
+        return True
+
 
 
     # -----------------------------------------
@@ -63,94 +58,106 @@ class BinaryTree:
         return traversal
 
     def search(self, root, key):
-        while root:
-            if root.data == key:
-                return True
-            else:
-                self.search(root.right, key)
-
-    def search_by_id(self, root, node_id):
         if root is None:
             return None
-        if root.id == node_id:
+        if root.id == key:
             return root
 
-        left = self.search_by_id(root.left, node_id)
+        left = self.search(root.left, key)
         if left:
             return left
 
-        return self.search_by_id(root.right, node_id)
+        return self.search(root.right, key)
+
+
 
     # -----------------------------------------
     # DELETE NODE
     # -----------------------------------------
-    def delete_node(self, root, key):
-        """Delete a node from a general binary tree."""
-        if root is None:
-            return None
+    def find_min(self, root):
+        while root.left:
+            root = root.left
+        return root
 
-        # Case: only one node
-        if root.data == key and root.left is None and root.right is None:
-            return None
+    
+    def get_deepest_node(self, root):
+        """Return the deepest (last) node and its parent."""
+        if not root:
+            return None, None
 
-        target = None
-        last = None
-        queue = [root]
+        queue = [(root, None)]  # (node, parent)
+        last_node, parent = None, None
 
-        # Perform BFS search
         while queue:
-            last = queue.pop(0)
+            last_node, parent = queue.pop(0)
+            if last_node.left:
+                queue.append((last_node.left, last_node))
+            if last_node.right:
+                queue.append((last_node.right, last_node))
+        
+        return last_node, parent
 
-            if last.data == key:
-                target = last
+    def delete(self, root, target_id):
+        if not root:
+            return None
 
-            if last.left:
-                queue.append(last.left)
+        # If tree has only one node
+        if root.left is None and root.right is None:
+            if root.id == target_id:
+                return None
+            else:
+                return root
 
-            if last.right:
-                queue.append(last.right)
+        # Find node to delete
+        queue = [root]
+        node_to_delete = None
 
-        # If target node does not exist
-        if target is None:
-            return root
+        while queue:
+            node = queue.pop(0)
+            if node.id == target_id:
+                node_to_delete = node
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
 
-        # Replace target node's data with deepest node's data
-        target.data = last.data
+        if node_to_delete is None:
+            return root  # node not found
 
-        # Remove deepest node
-        self._delete_deepest(root, last)
+        # Get deepest node
+        deepest, parent_of_deepest = self.get_deepest_node(root)
+
+        # Replace target node's data & id with deepest node
+        node_to_delete.data = deepest.data
+        node_to_delete.id = deepest.id
+
+        # Remove the deepest node from its parent
+        if parent_of_deepest.left == deepest:
+            parent_of_deepest.left = None
+        else:
+            parent_of_deepest.right = None
 
         return root
 
 
-    # Helper to delete deepest node
-    def _delete_deepest(self, root, dnode):
-        queue = [root]
 
-        while queue:
-            temp = queue.pop(0)
 
-            if temp.left:
-                if temp.left is dnode:
-                    temp.left = None
-                    return
-                queue.append(temp.left)
-
-            if temp.right:
-                if temp.right is dnode:
-                    temp.right = None
-                    return
-                queue.append(temp.right)
-
-    def find_parent(root, target_id, parent=None):
+    def find_parent(self, root, target_id, parent=None):
         if root is None:
             return None, None
         if root.id == target_id:
-            return parent, "left" if parent and parent.left == root else "right"
+            # determine if left or right child
+            if parent:
+                if parent.left == root:
+                    return parent, "left"
+                elif parent.right == root:
+                    return parent, "right"
+            return parent, None
         
-        left = find_parent(root.left, target_id, root)
-        if left[0]:
-            return left
+        left_parent, side = self.find_parent(root.left, target_id, root)
+        if left_parent:
+            return left_parent, side
 
-        return find_parent(root.right, target_id, root)
+        return self.find_parent(root.right, target_id, root)
+
 

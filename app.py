@@ -197,7 +197,9 @@ def insert_left():
 
     node = tree.search(tree.root, parent)
     if node:
-        tree.insert_left(node, value)
+        ok = tree.insert_left(node, value)
+        if not ok:
+            return jsonify({"error": "Left child already exists"}), 400
     # return current tree regardless (so frontend can re-draw)
     return jsonify(serialize(tree.root))
 
@@ -212,7 +214,9 @@ def insert_right():
 
     node = tree.search(tree.root, parent)
     if node:
-        tree.insert_right(node, value)
+        ok = tree.insert_right(node, value)
+        if not ok:
+            return jsonify({"error": "Right child already exists"}), 400
     return jsonify(serialize(tree.root))
 
 
@@ -221,24 +225,13 @@ def delete_node():
     payload = request.get_json(force=True)
     node_id = payload.get("nodeId")
     if node_id is None:
-        return jsonify(serialize(tree.root)), 400
+        return jsonify({"error": "missing nodeId"}), 400
 
-    # deleting root
-    if tree.root and tree.root.id == node_id:
-        tree.root = None
-        return jsonify(None)
-
-    parent, side = find_parent(tree.root, node_id)
-
-    if parent is None:
-        return jsonify(serialize(tree.root)), 400
-
-    if side == "left":
-        parent.left = None
-    else:
-        parent.right = None
+    # Perform deletion
+    tree.root = tree.delete(tree.root, node_id)
 
     return jsonify(serialize(tree.root))
+
 
 
 
