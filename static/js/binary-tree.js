@@ -12,8 +12,8 @@ canvas.height = 500;
 
 // ------------------- FLOATING DOT BACKGROUND -------------------
 
-const dotColors = ["white", "#0081f1", "#1962e9"];
-const dotCount = 70;
+const dotColors = ["white", "#0081f1", "#800080"];
+const dotCount = 220;
 let dots = [];
 
 function initDots() {
@@ -21,7 +21,7 @@ function initDots() {
         dots.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 3 + 1,
+            size: Math.random() * 0.5 + 1,
             speedX: (Math.random() - 0.5) * 0.4,
             speedY: (Math.random() - 0.5) * 0.4,
             color: dotColors[Math.floor(Math.random() * dotColors.length)]
