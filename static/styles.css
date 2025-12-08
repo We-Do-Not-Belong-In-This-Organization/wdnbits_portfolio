@@ -990,3 +990,73 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
   font-family: 'Work Sans', sans-serif;
   z-index: 5;
 }
+
+/* BINARY TREE */
+
+
+
+.bt-container {
+    z-index: 1000;
+    position: fixed;
+}
+
+
+.binary-tree {
+    position: relative;   /* NOT fixed */
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+/* Traversal text above canvas */
+.traversal-display {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* FLEX: canvas left, buttons right */
+.bt-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+/* Canvas center + styling */
+#treeCanvas {
+    border: 1px solid #444;
+    background: #fafafa;
+}
+
+/* Buttons container */
+.binary-tree-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+/* Button + input styling */
+.binary-tree-buttons input,
+.binary-tree-buttons button {
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Selected node label */
+#selectedDisplay {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.traversal-display {
+    background: white;
+    color: #1962e9;
+    font-weight: 700;
+    padding: 2px;
+}
+
