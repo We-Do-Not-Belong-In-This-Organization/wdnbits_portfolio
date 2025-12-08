@@ -30,6 +30,8 @@ function drawNode(node, x, y, spacing) {
   if (!node) return;
 
   const radius = 20;
+  ctx.strokeStyle = "#0099ffff";
+  ctx.lineWidth = 2.5;
 
   // Draw connecting lines first (so lines are under circles)
   if (node.left) {
@@ -48,12 +50,12 @@ function drawNode(node, x, y, spacing) {
   // Draw node circle
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = (selected === node.id) ? "#55ff5dff" : "#ffffff";
+  ctx.fillStyle = (selected === node.id) ? "#00d5ffff" : "#ffffff";
   ctx.fill();
   ctx.stroke();
 
   // Draw text
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#000000ff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(String(node.data), x, y);
