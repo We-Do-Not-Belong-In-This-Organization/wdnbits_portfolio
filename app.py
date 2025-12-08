@@ -241,6 +241,38 @@ def reset_tree():
     return jsonify(serialize(tree.root))
 
 
+@website.route("/traverse", methods=["POST"])
+def traverse():
+    payload = request.get_json(force=True)
+    traverse = payload.get("type")
+
+    if traverse == "inorder":
+        result = tree.inorder_traversal(tree.root, "")
+    elif traverse == "preorder":
+        result = tree.preorder_traversal(tree.root, "")
+    elif traverse == "postorder":
+        arr = []
+        arr = tree.post_traversal(tree.root, arr)
+        result = " ".join(str(x) for x in arr)
+    else:
+        return jsonify({"error": "Unknown traversal type"}), 400
+
+    return jsonify({"result": result})
+
+
+@website.route("/search_node", methods=["POST"])
+def search_node():
+    payload = request.get_json(force=True)
+    value = payload.get("value")
+    if not value:
+        return jsonify({"error": "Please enter a value"}), 400
+
+    node = tree.search_by_value(tree.root, value)
+    if node:
+        return jsonify({"found": True, "id": node.id})
+    else:
+        return jsonify({"found": False, "error": "Node not found"}), 404
+
 
 
 if __name__ == '__main__':

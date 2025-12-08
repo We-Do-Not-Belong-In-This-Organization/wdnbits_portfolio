@@ -125,7 +125,7 @@ function fetchTree() {
 function drawTree(tree) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   nodePositions = [];
-  if (tree) drawNode(tree, canvas.width / 2, 40, 150);
+  if (tree) drawNode(tree, canvas.width / 2, 40, 200);
   updateSelectedDisplay();
 }
 
@@ -138,20 +138,20 @@ function drawNode(node, x, y, spacing) {
   if (node.left) {
     ctx.beginPath();
     ctx.moveTo(x, y + radius);
-    ctx.lineTo(x - spacing, y + 80 - radius);
+    ctx.lineTo(x - spacing, y + 100 - radius);
     ctx.stroke();
   }
   if (node.right) {
     ctx.beginPath();
     ctx.moveTo(x, y + radius);
-    ctx.lineTo(x + spacing, y + 80 - radius);
+    ctx.lineTo(x + spacing, y + 100 - radius);
     ctx.stroke();
   }
 
   // Draw node circle
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = (selected === node.id) ? "#ffaa55" : "#ffffff";
+  ctx.fillStyle = (selected === node.id) ? "#55ff5dff" : "#ffffff";
   ctx.fill();
   ctx.stroke();
 
@@ -165,8 +165,8 @@ function drawNode(node, x, y, spacing) {
   nodePositions.push({ id: node.id, data: String(node.data), x, y, r: radius });
 
   // Recurse to children
-  if (node.left) drawNode(node.left, x - spacing, y + 80, spacing / 1.8);
-  if (node.right) drawNode(node.right, x + spacing, y + 80, spacing / 1.8);
+  if (node.left) drawNode(node.left, x - spacing, y + 100, spacing / 1.8);
+  if (node.right) drawNode(node.right, x + spacing, y + 100, spacing / 1.8);
 }
 
 // single click listener (no repeated listeners)
@@ -273,6 +273,73 @@ function resetTree() {
     })
     .catch(err => console.error("resetTree error:", err));
 }
+
+function inorderTraversal() {
+  fetch("/traverse", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "inorder" })
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.error);
+      document.querySelector(".traversal-display").innerHTML =
+        `<p><b>In-order:</b> ${res.result}</p>`;
+    });
+}
+
+function preorderTraversal() {
+  fetch("/traverse", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "preorder" })
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.error);
+      document.querySelector(".traversal-display").innerHTML =
+        `<p><b>Pre-order:</b> ${res.result}</p>`;
+    });
+}
+
+function postorderTraversal() {
+  fetch("/traverse", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "postorder" })
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.error);
+      document.querySelector(".traversal-display").innerHTML =
+        `<p><b>Post-order:</b> ${res.result}</p>`;
+    });
+}
+
+
+function search() {
+    const value = document.getElementById("valueInput").value.trim();
+    if (value === "") return alert("Please enter a value.");
+
+    fetch("/search_node", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ value })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.found) {
+            selected = res.id;       // highlight the found node
+            updateSelectedDisplay();
+            fetchTree();             // redraw tree to show highlight
+        } else {
+            alert(res.error);        // node not found
+        }
+    })
+    .catch(err => console.error("search error:", err));
+}
+
+
 
 // INITIAL LOAD
 fetchTree();

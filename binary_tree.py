@@ -58,6 +58,7 @@ class BinaryTree:
         return traversal
 
     def search(self, root, key):
+        """Search by node id (used for insert/delete)."""
         if root is None:
             return None
         if root.id == key:
@@ -69,6 +70,16 @@ class BinaryTree:
 
         return self.search(root.right, key)
 
+    def search_by_value(self, root, value):
+        """Return the first node with the given data, or None if not found."""
+        if root is None:
+            return None
+        if str(root.data) == str(value):
+            return root
+        left_result = self.search_by_value(root.left, value)
+        if left_result:
+            return left_result
+        return self.search_by_value(root.right, value)
 
 
     # -----------------------------------------

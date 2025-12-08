@@ -8,24 +8,32 @@
 </head>
 <body>
   <a href="{{ url_for('profile_member', name=from_page) }}" class="back-button">Back</a>
+  
+  <div class="bt-container">
+  <h2>Binary Tree</h2>
 
-  <h2>Binary Tree Visualizer</h2>
-
-  <div class="binary-tree">
-    <canvas id="treeCanvas" width="900" height="500"></canvas>
-
-    <div class="controls">
-      <input id="valueInput" type="text" placeholder="Value" />
-      <button onclick="createRoot()">Create Root</button>
-      <button onclick="insertLeft()">Insert Left</button>
-      <button onclick="insertRight()">Insert Right</button>
-      <button onclick="deleteNode()">Delete Selected</button>
-      <button onclick="resetTree()">Reset Tree</button>
+    <div class="traversal-display">
+      <p>Traversal</p>
     </div>
+    <div class="binary-tree">
+      <div class="bt-flex">
+        <canvas id="treeCanvas" width="900" height="500"></canvas>
 
-    <div id="selectedDisplay">Selected Node: None</div>
+        <div class="binary-tree-buttons">
+          <input id="valueInput" type="text" placeholder="Value" />
+          <button onclick="resetTree()">Reset Tree</button>
+          <button onclick="insertLeft()">Insert Left</button>
+          <button onclick="insertRight()">Insert Right</button>
+          <button onclick="deleteNode()">Delete Selected</button>
+          <button onclick="search()">Search</button>
+          <button onclick="inorderTraversal()">In-order Traversal</button>
+          <button onclick="preorderTraversal()">Pre-order Traversal</button>
+          <button onclick="postorderTraversal()">Post-order Traversal</button>
+        </div>
+      </div>
+      <div id="selectedDisplay">Selected Node: None</div>
+    </div>
   </div>
-
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
