@@ -2,6 +2,7 @@
 # Two lines spacing for each route
 
 from binary_tree import BinaryTree
+from binary_search_tree import BinarySearchTree
 from tree_node import Node
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from queues import Queue  # Import the Queue class
@@ -274,43 +275,103 @@ def search_node():
     else:
         return jsonify({"found": False, "error": "Node not found"}), 404
 
-@website.route("/bst")
+
+
+# ----------- Binary Search Tree -----------
+
+bstree = BinarySearchTree()
+bstree.root = None  # start with empty tree
+
+@website.route("/binarysearchtree")
 def bst_page():
-    member_name = request.args.get('from_page', '')  # read member from query parameter
-    search_value = request.args.get('search_value', None)
+    from_page = request.args.get("from_page", "")
+    return render_template("binary-search-tree.html", from_page=from_page)
 
-    # Build the Binary Search Tree
-    root = Node(30)
-    root.left = Node(20)
-    root.right = Node(40)
-    root.left.left = Node(10)
-    root.left.right = Node(25)
-    root.right.left = Node(35)
-    root.right.right = Node(50)
 
-    tree = BinarySearchTree()  
+@website.route("/get_bstree")
+def get_bstree():
+    return jsonify(serialize(bstree.root))
 
-    max_value = tree.get_max_value(root) 
 
-   
-    search_result = None
-    if search_value:
-        try:
-            value = int(search_value)
-            found = tree.search_bst(root, value)
-            if found:
-                search_result = f"Value {value} was found in the BST."
-            else:
-                search_result = f"Value {value} was NOT found in the BST."
-        except ValueError:
-            search_result = "Invalid input. Please enter a number."
+@website.route("/insert", methods=["POST"])
+def insert():
+    payload = request.get_json(force=True)
+    value = payload.get("value")
+    if not value:
+        return jsonify({"error": "Missing value"}), 400
 
-    return render_template(
-        "binary-search-tree.html",
-        member=member_name,
-        max_value=max_value,
-        search_result=search_result
-    )
+    try:
+        val = int(value)
+    except ValueError:
+        return jsonify({"error": "Value must be an integer"}), 400
+
+    ok = bstree.insert(val)
+    if not ok:
+        return jsonify({"error": "Value already exists"}), 400
+
+    return jsonify(serialize(bstree.root))
+
+
+
+@website.route("/delete_bst", methods=["POST"])
+def delete_bst_node():
+    payload = request.get_json(force=True)
+    value = payload.get("value")
+    if not value:
+        return jsonify({"error": "Missing value"}), 400
+
+    try:
+        val = int(value)
+    except ValueError:
+        return jsonify({"error": "Value must be an integer"}), 400
+
+    bstree.delete(val)
+    return jsonify(serialize(bstree.root))
+
+
+
+@website.route("/reset_bst", methods=["POST"])
+def reset_bstree():
+    bstree.root = None
+    return jsonify(serialize(bstree.root))
+
+
+
+@website.route("/traverse_bst", methods=["POST"])
+def traverse_bst():
+    payload = request.get_json(force=True)
+    t_type = payload.get("type")
+    result = ""
+    if t_type == "inorder":
+        result = bstree.inorder_traversal().strip()
+    elif t_type == "preorder":
+        result = bstree.preorder_traversal().strip()
+    elif t_type == "postorder":
+        result = bstree.postorder_traversal().strip()
+    else:
+        return jsonify({"error": "Unknown traversal type"}), 400
+
+    return jsonify({"result": result})
+
+
+
+@website.route("/search_bst", methods=["POST"])
+def search_bst():
+    payload = request.get_json(force=True)
+    value = payload.get("value")
+    if not value:
+        return jsonify({"error": "Missing value"}), 400
+
+    try:
+        val = int(value)
+    except ValueError:
+        return jsonify({"error": "Value must be an integer"}), 400
+
+    node = bstree.search(val)
+    if node:
+        return jsonify({"found": True, "id": node.id})
+    else:
+        return jsonify({"found": False, "error": "Node not found"}), 404
 
 
 
