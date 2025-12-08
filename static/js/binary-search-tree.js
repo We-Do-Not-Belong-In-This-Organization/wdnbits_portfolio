@@ -1,4 +1,4 @@
-// ------------------- BINARY TREE -------------------
+// ------------------- BINARY SEARCH TREE -------------------
 
 let selected = null;
 let nodePositions = []; // {data, x, y, radius}
@@ -10,7 +10,7 @@ canvas.width = 900;
 canvas.height = 500;
 
 function fetchTree() {
-  fetch('/get_tree')
+  fetch('/get_bstree')
     .then(response => response.json())
     .then(tree => {
       console.log("TREE RECEIVED:", tree);
@@ -30,8 +30,7 @@ function drawNode(node, x, y, spacing) {
   if (!node) return;
 
   const radius = 20;
-  ctx.strokeStyle = "#0099ffff";
-  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = "#000000ff";
 
   // Draw connecting lines first (so lines are under circles)
   if (node.left) {
@@ -50,7 +49,7 @@ function drawNode(node, x, y, spacing) {
   // Draw node circle
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = (selected === node.id) ? "#00d5ffff" : "#ffffff";
+  ctx.fillStyle = (selected === node.id) ? "#55ff5dff" : "#ffffffff";
   ctx.fill();
   ctx.stroke();
 
@@ -108,63 +107,60 @@ function updateSelectedDisplay() {
 
 
 
+function insertNode() {
+  const value = document.getElementById("valueInput").value.trim();
+  if (value === "") return alert("Enter a value to insert.");
 
-function insertLeft() {
-  const value = document.getElementById("valueInput").value;
-  if (selected === null || value.trim() === "") return alert("Select a parent and enter a value.");
+  // Easter egg: show an image if value is 1987
+  if (value === "1987") {
+    const canvas = document.getElementById("treeCanvas");
+    const ctx = canvas.getContext("2d");
 
-  fetch("/insert_left", {
+    const img = new Image();
+    img.src = "/static/images/ruzzel_creepy_pasta.jpg"; // put your image in static/images
+    img.onload = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    return; // stop further insertion
+  }
+
+  fetch("/insert", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ parent: selected, value})
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ value })
   })
-    .then(res => res.json())
-    .then(res => {
-      if (res.error) return alert(res.error);
-      document.getElementById("valueInput").value = "";
-      drawTree(res);
-    })
-
-    .catch(err => console.error("insertLeft error:", err));
+  .then(res => res.json())
+  .then(res => {
+    if (res.error) return alert(res.error);
+    document.getElementById("valueInput").value = "";
+    drawTree(res);
+  })
+  .catch(err => console.error("insert error:", err));
 }
 
-function insertRight() {
-  const value = document.getElementById("valueInput").value;
-  if (selected === null || value.trim() === "") return alert("Select a parent and enter a value.");
-
-  fetch("/insert_right", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ parent: selected, value})
-  })
-    .then(res => res.json())
-    .then(res => {
-      if (res.error) return alert(res.error);
-      document.getElementById("valueInput").value = "";
-      drawTree(res);
-    })
-
-    .catch(err => console.error("insertRight error:", err));
-}
 
 function deleteNode() {
-  if (!selected) return alert("Select a node to delete.");
+  const value = document.getElementById("valueInput").value.trim();
+  if (value === "") return alert("Enter a value to delete.");
 
-  fetch("/delete", {
+  fetch("/delete_bst", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nodeId: selected })
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ value })
   })
-    .then(res => res.json())
-    .then(tree => {
-      selected = null;
-      drawTree(tree);
-    })
-    .catch(err => console.error("deleteNode error:", err));
+  .then(res => res.json())
+  .then(tree => {
+    document.getElementById("valueInput").value = "";
+    drawTree(tree);
+  })
+  .catch(err => console.error("delete error:", err));
 }
 
+
+
 function resetTree() {
-  fetch("/reset", { method: "POST" })
+  fetch("/reset_bst", { method: "POST" })
     .then(res => res.json())
     .then(tree => {
       selected = null;
@@ -174,7 +170,7 @@ function resetTree() {
 }
 
 function inorderTraversal() {
-  fetch("/traverse", {
+  fetch("/traverse_bst", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ type: "inorder" })
@@ -188,7 +184,7 @@ function inorderTraversal() {
 }
 
 function preorderTraversal() {
-  fetch("/traverse", {
+  fetch("/traverse_bst", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ type: "preorder" })
@@ -202,7 +198,7 @@ function preorderTraversal() {
 }
 
 function postorderTraversal() {
-  fetch("/traverse", {
+  fetch("/traverse_bst", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ type: "postorder" })
@@ -220,7 +216,7 @@ function search() {
     const value = document.getElementById("valueInput").value.trim();
     if (value === "") return alert("Please enter a value.");
 
-    fetch("/search_node", {
+    fetch("/search_bst", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ value })
