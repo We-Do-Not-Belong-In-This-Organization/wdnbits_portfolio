@@ -6,7 +6,6 @@ from tree_node import Node
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
-from binary_search_tree import BinarySearchTree, Node
 
 
 website = Flask(__name__)
