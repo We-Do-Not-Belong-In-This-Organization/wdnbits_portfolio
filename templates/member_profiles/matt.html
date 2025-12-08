@@ -41,7 +41,8 @@
       <ul>
         <li><a href="{{ url_for('queue_page', from_page='matt') }}">Queue Line</a></li>
         <li><a href="{{ url_for('deque_page', from_page='matt') }}">Deque Line</a></li>
-        <li><a href="{{ url_for('binarytree_page', from_page='matt') }}">Binary Tree</a></li>    
+        <li><a href="{{ url_for('binarytree_page', from_page='matt') }}">Binary Tree</a></li>   
+        <li><a href="{{ url_for('bst_page', from_page='matt') }}">BST</a></li> 
         <li><a href="{{ url_for('worksoon', from_page='matt') }}">Works</a></li>
       </ul>
     </div>
@@ -79,13 +80,12 @@
           <!-- RANDOM TIPS -->
     <div class="title">
       <h1 class="loadfont" id="randText">Loading...</h1>
-    <script src="script.js"></script></div>
 
     <div class="loading-content">
       <div class="loading-spinner"></div>
   </div>
   </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

@@ -41,7 +41,8 @@
       <ul>
         <li><a href="{{ url_for('queue_page', from_page='jayvee') }}">Queue Line</a></li>
         <li><a href="{{ url_for('deque_page', from_page='jayvee') }}">Deque Line</a></li>
-        <li><a href="{{ url_for('binarytree_page', from_page='jayvee') }}">Binary Tree</a></li>    
+        <li><a href="{{ url_for('binarytree_page', from_page='jayvee') }}">Binary Tree</a></li>  
+        <li><a href="{{ url_for('bst_page', from_page='jayvee') }}">BST</a></li>  
         <li><a href="{{ url_for('worksoon', from_page='jayvee') }}">Works</a></li>
       </ul>
     </div>
@@ -82,6 +83,6 @@
   </div>
   </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

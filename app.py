@@ -1,10 +1,12 @@
 # pip install Flask
 # Two lines spacing for each route
 
-from binary_tree import BinaryTree, Node
-from flask import Flask, render_template, request, redirect, url_for
+from binary_tree import BinaryTree
+from tree_node import Node
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
+
 
 website = Flask(__name__)
 queue_line = Queue()
@@ -148,13 +150,6 @@ def clear_dob_queue():
 
 # End of DEqueue
 
-#WORKS (ON PROGRESS)
-
-@website.route('/project')
-def project():
-    return render_template("project.html")
-
-
 # 🔹 Route for each member’s HTML
 @website.route("/profile/<name>")
 def profile_member(name):
@@ -163,36 +158,160 @@ def profile_member(name):
     except Exception as e:
         print("⚠️ Error:", e)
         return "Profile not found", 404
-    
 
-# Route for the back button of queue and deque page
-
-@website.route('/<member_name>/queue')
-def member_queue(member_name):
-    return render_template('queue.html', queue_line=queue_line.display(), member_name=member_name)
-
-@website.route('/<member_name>/deque')
-def member_deque(member_name):
-    return render_template('deque.html', deque_items=deque_line.display(), member_name=member_name)
 
 # For binary tree
+tree = BinaryTree()
+tree.root = Node("Root")  # ensure root exists on startup
+
+
+def serialize(node):
+    """Convert Python Node to JSON-friendly dict (or None)."""
+    if node is None:
+        return None
+    return {
+        "id": node.id,
+        "data": node.data,
+        "left": serialize(node.left),
+        "right": serialize(node.right)
+    }
+
+
 @website.route("/binarytree")
 def binarytree_page():
-    member_name = request.args.get('from_page', '')  # read member from query parameter
-    
-    # Build the example binary tree
-    tree = BinaryTree()
-    root = Node(10)
-    root.left = Node(5)
-    root.right = Node(15)
-    root.left.left = Node(2)
-    root.left.right = Node(7)
-    root.right.left = Node(12)
-    root.right.right = Node(20)
+    from_page = request.args.get("from_page", "")
+    return render_template("binary-tree.html", from_page=from_page)
 
-    traversal_result = tree.post_traversal(root, [])
-    
-    return render_template("binary-tree.html", member=member_name, traversal=traversal_result)
+
+@website.route("/get_tree")
+def get_tree():
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/insert_left", methods=["POST"])
+def insert_left():
+    payload = request.get_json(force=True)
+    parent = payload.get("parent")
+    value = payload.get("value")
+    if parent is None or value is None:
+        return jsonify(serialize(tree.root)), 400
+
+    node = tree.search(tree.root, parent)
+    if node:
+        ok = tree.insert_left(node, value)
+        if not ok:
+            return jsonify({"error": "Left child already exists"}), 400
+    # return current tree regardless (so frontend can re-draw)
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/insert_right", methods=["POST"])
+def insert_right():
+    payload = request.get_json(force=True)
+    parent = payload.get("parent")
+    value = payload.get("value")
+    if parent is None or value is None:
+        return jsonify(serialize(tree.root)), 400
+
+    node = tree.search(tree.root, parent)
+    if node:
+        ok = tree.insert_right(node, value)
+        if not ok:
+            return jsonify({"error": "Right child already exists"}), 400
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/delete", methods=["POST"])
+def delete_node():
+    payload = request.get_json(force=True)
+    node_id = payload.get("nodeId")
+    if node_id is None:
+        return jsonify({"error": "missing nodeId"}), 400
+
+    # Perform deletion
+    tree.root = tree.delete(tree.root, node_id)
+
+    return jsonify(serialize(tree.root))
+
+
+
+
+@website.route("/reset", methods=["POST"])
+def reset_tree():
+    tree.root = Node("Root")
+    return jsonify(serialize(tree.root))
+
+
+@website.route("/traverse", methods=["POST"])
+def traverse():
+    payload = request.get_json(force=True)
+    traverse = payload.get("type")
+
+    if traverse == "inorder":
+        result = tree.inorder_traversal(tree.root, "")
+    elif traverse == "preorder":
+        result = tree.preorder_traversal(tree.root, "")
+    elif traverse == "postorder":
+        arr = []
+        arr = tree.post_traversal(tree.root, arr)
+        result = " ".join(str(x) for x in arr)
+    else:
+        return jsonify({"error": "Unknown traversal type"}), 400
+
+    return jsonify({"result": result})
+
+
+@website.route("/search_node", methods=["POST"])
+def search_node():
+    payload = request.get_json(force=True)
+    value = payload.get("value")
+    if not value:
+        return jsonify({"error": "Please enter a value"}), 400
+
+    node = tree.search_by_value(tree.root, value)
+    if node:
+        return jsonify({"found": True, "id": node.id})
+    else:
+        return jsonify({"found": False, "error": "Node not found"}), 404
+
+@website.route("/bst")
+def bst_page():
+    member_name = request.args.get('from_page', '')  # read member from query parameter
+    search_value = request.args.get('search_value', None)
+
+    # Build the Binary Search Tree
+    root = Node(30)
+    root.left = Node(20)
+    root.right = Node(40)
+    root.left.left = Node(10)
+    root.left.right = Node(25)
+    root.right.left = Node(35)
+    root.right.right = Node(50)
+
+    tree = BinarySearchTree()  
+
+    max_value = tree.get_max_value(root) 
+
+   
+    search_result = None
+    if search_value:
+        try:
+            value = int(search_value)
+            found = tree.search_bst(root, value)
+            if found:
+                search_result = f"Value {value} was found in the BST."
+            else:
+                search_result = f"Value {value} was NOT found in the BST."
+        except ValueError:
+            search_result = "Invalid input. Please enter a number."
+
+    return render_template(
+        "binary-search-tree.html",
+        member=member_name,
+        max_value=max_value,
+        search_result=search_result
+    )
+
 
 
 
