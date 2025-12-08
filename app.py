@@ -6,6 +6,8 @@ from tree_node import Node
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
+from binary_search_tree import BinarySearchTree, Node
+
 
 website = Flask(__name__)
 queue_line = Queue()
@@ -272,6 +274,46 @@ def search_node():
         return jsonify({"found": True, "id": node.id})
     else:
         return jsonify({"found": False, "error": "Node not found"}), 404
+
+@website.route("/bst")
+def bst_page():
+    member_name = request.args.get('from_page', '')  # read member from query parameter
+    search_value = request.args.get('search_value', None)
+
+    # Build the Binary Search Tree
+    root = Node(30)
+    root.left = Node(20)
+    root.right = Node(40)
+    root.left.left = Node(10)
+    root.left.right = Node(25)
+    root.right.left = Node(35)
+    root.right.right = Node(50)
+
+    tree = BinarySearchTree()  
+
+    max_value = tree.get_max_value(root) 
+
+   
+    search_result = None
+    if search_value:
+        try:
+            value = int(search_value)
+            found = tree.search_bst(root, value)
+            if found:
+                search_result = f"Value {value} was found in the BST."
+            else:
+                search_result = f"Value {value} was NOT found in the BST."
+        except ValueError:
+            search_result = "Invalid input. Please enter a number."
+
+    return render_template(
+        "binary-search-tree.html",
+        member=member_name,
+        max_value=max_value,
+        search_result=search_result
+    )
+
+
 
 
 

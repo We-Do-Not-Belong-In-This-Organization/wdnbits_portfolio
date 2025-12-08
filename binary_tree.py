@@ -151,8 +151,6 @@ class BinaryTree:
         return root
 
 
-
-
     def find_parent(self, root, target_id, parent=None):
         if root is None:
             return None, None
