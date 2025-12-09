@@ -282,6 +282,18 @@ def search_node():
 bstree = BinarySearchTree()
 bstree.root = None  # start with empty tree
 
+
+def serialize_bst(node):
+    if node is None:
+        return None
+    return {
+        "id": node.id,
+        "data": int(node.data),
+        "left": serialize_bst(node.left),
+        "right": serialize_bst(node.right)
+    }
+
+
 @website.route("/binarysearchtree")
 def bst_page():
     from_page = request.args.get("from_page", "")
@@ -290,7 +302,7 @@ def bst_page():
 
 @website.route("/get_bstree")
 def get_bstree():
-    return jsonify(serialize(bstree.root))
+    return jsonify(serialize_bst(bstree.root))
 
 
 @website.route("/insert", methods=["POST"])
@@ -309,7 +321,7 @@ def insert():
     if not ok:
         return jsonify({"error": "Value already exists"}), 400
 
-    return jsonify(serialize(bstree.root))
+    return jsonify(serialize_bst(bstree.root))
 
 
 
@@ -326,14 +338,14 @@ def delete_bst_node():
         return jsonify({"error": "Value must be an integer"}), 400
 
     bstree.delete(val)
-    return jsonify(serialize(bstree.root))
+    return jsonify(serialize_bst(bstree.root))
 
 
 
 @website.route("/reset_bst", methods=["POST"])
 def reset_bstree():
     bstree.root = None
-    return jsonify(serialize(bstree.root))
+    return jsonify(serialize_bst(bstree.root))
 
 
 
@@ -350,7 +362,7 @@ def traverse_bst():
         result = bstree.postorder_traversal().strip()
     else:
         return jsonify({"error": "Unknown traversal type"}), 400
-
+    print("TRAVERSE CALLED:", t_type)
     return jsonify({"result": result})
 
 
