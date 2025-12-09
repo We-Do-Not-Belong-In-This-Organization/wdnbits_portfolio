@@ -55,39 +55,42 @@ class BinarySearchTree:
     # -----------------------------------------
     # TRAVERSALS
     # -----------------------------------------
-    def inorder_traversal(self, node=None):
-        """Left → Root → Right"""
+    def inorder_traversal(self):
+        """Public wrapper: returns a string for whole tree (left, root, right)."""
+        return self._inorder(self.root).strip()
+
+    def _inorder(self, node):
         if node is None:
-            node = self.root
-        if node is None:
-            return ""  # empty tree
+            return ""
         return (
-            self.inorder_traversal(node.left) +
+            self._inorder(node.left) +
             str(node.data) + " " +
-            self.inorder_traversal(node.right)
+            self._inorder(node.right)
         )
 
-    def preorder_traversal(self, node=None):
-        """Root → Left → Right"""
-        if node is None:
-            node = self.root
+    def preorder_traversal(self):
+        """Public wrapper: root, left, right."""
+        return self._preorder(self.root).strip()
+
+    def _preorder(self, node):
         if node is None:
             return ""
         return (
             str(node.data) + " " +
-            self.preorder_traversal(node.left) +
-            self.preorder_traversal(node.right)
+            self._preorder(node.left) +
+            self._preorder(node.right)
         )
 
-    def postorder_traversal(self, node=None):
-        """Left → Right → Root"""
-        if node is None:
-            node = self.root
+    def postorder_traversal(self):
+        """Public wrapper: left, right, root."""
+        return self._postorder(self.root).strip()
+
+    def _postorder(self, node):
         if node is None:
             return ""
         return (
-            self.postorder_traversal(node.left) +
-            self.postorder_traversal(node.right) +
+            self._postorder(node.left) +
+            self._postorder(node.right) +
             str(node.data) + " "
         )
 
