@@ -3,6 +3,7 @@
 let selected = null;
 let nodePositions = []; // {data, x, y, radius}
 let currentTree = null;
+let startTime = Date.now();
 
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
@@ -75,6 +76,28 @@ function animate() {
 
 animate();
 
+// ------------------- GRADIENT ANIMATION -------------------
+
+
+// Helper to get gradient offset (always 0–1, loops smoothly)
+function getGradientOffset(speed = 0.0005) { // speed = fraction per ms
+    const elapsed = Date.now() - startTime;
+    return (elapsed * speed) % 1; // loops from 0 → 1 continuously
+}
+
+// Create a neon gradient between two points
+function getNeonGradient(x1, y1, x2, y2) {
+    const grad = ctx.createLinearGradient(x1, y1, x2, y2);
+    const offset1 = getGradientOffset();
+    const offset2 = (offset1 + 0.5) % 1;
+
+    grad.addColorStop(offset1, "#9900ffff");
+    grad.addColorStop(offset2, "#6f00ffff");
+
+    return grad;
+}
+
+
 // ------------------- TREE RENDERING & INTERACTIONS -------------------
 
 
@@ -99,28 +122,57 @@ function drawNode(node, x, y, spacing) {
   if (!node) return;
 
   const radius = 20;
-  ctx.strokeStyle = "#0099ffff";
-  ctx.lineWidth = 2.5;
 
+  
   // Draw connecting lines first (so lines are under circles)
+
   if (node.left) {
-    ctx.beginPath();
-    ctx.moveTo(x, y + radius);
-    ctx.lineTo(x - spacing, y + 100 - radius);
-    ctx.stroke();
+      const x2 = x - spacing;
+      const y2 = y + 100 - radius;
+
+      ctx.strokeStyle = getNeonGradient(x, y + radius, x2, y2);
+      ctx.lineWidth = 3;
+
+      // neon glow
+      ctx.shadowColor = ctx.strokeStyle;
+      ctx.shadowBlur = 10;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y + radius);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      ctx.shadowBlur = 0; // reset
   }
-  if (node.right) {
-    ctx.beginPath();
-    ctx.moveTo(x, y + radius);
-    ctx.lineTo(x + spacing, y + 100 - radius);
-    ctx.stroke();
-  }
+
+    if (node.right) {
+        const x2 = x + spacing;
+        const y2 = y + 100 - radius;
+
+        ctx.strokeStyle = getNeonGradient(x, y + radius, x2, y2);
+        ctx.lineWidth = 3;
+
+        // neon glow
+        ctx.shadowColor = ctx.strokeStyle;
+        ctx.shadowBlur = 10;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y + radius);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        ctx.shadowBlur = 0; // reset
+    }
 
   // Draw node circle
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = (selected === node.id) ? "#ffee00ff" : "#ffffffff";
+  ctx.fillStyle = (selected === node.id) ? "#00ccffff" : "#ffffffff";
   ctx.fill();
+  ctx.strokeStyle = "#9900ffff";  // separate border color
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = "#9900ffff";   // glow for node border
+  ctx.shadowBlur = 8;
   ctx.stroke();
 
   // Draw text
