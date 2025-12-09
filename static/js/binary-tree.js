@@ -112,7 +112,7 @@ function drawNode(node, x, y, spacing) {
     // Draw node circle
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.fillStyle = (selected === node.id) ? "#00d5ffff" : "#ffffff";
+    ctx.fillStyle = (selected === node.id) ? "#ffee00ff" : "#ffffff";
     ctx.fill();
     ctx.stroke();
 
