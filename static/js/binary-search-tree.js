@@ -2,6 +2,8 @@
 
 let selected = null;
 let nodePositions = []; // {data, x, y, radius}
+let currentTree = null;
+let startTime = Date.now();
 
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
@@ -9,11 +11,101 @@ const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 500;
 
+
+// ------------------- FLOATING DOT BACKGROUND -------------------
+
+const dotColors = ["white", "#0081f1", "#800080"];
+const dotCount = 220;
+let dots = [];
+
+function initDots() {
+    for (let i = 0; i < dotCount; i++) {
+        dots.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 0.5 + 1,
+            speedX: (Math.random() - 0.5) * 0.4,
+            speedY: (Math.random() - 0.5) * 0.4,
+            color: dotColors[Math.floor(Math.random() * dotColors.length)]
+        });
+    }
+}
+
+function updateDots() {
+    for (let d of dots) {
+        d.x += d.speedX;
+        d.y += d.speedY;
+
+        // wrap around screen
+        if (d.x < 0) d.x = canvas.width;
+        if (d.x > canvas.width) d.x = 0;
+        if (d.y < 0) d.y = canvas.height;
+        if (d.y > canvas.height) d.y = 0;
+    }
+}
+
+function drawDots() {
+    for (let d of dots) {
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+        ctx.fillStyle = d.color;
+        ctx.fill();
+    }
+}
+
+// ------------------- ANIMATION LOOP -------------------
+
+initDots();
+
+function animate() {
+    updateDots();
+
+    // Draw background
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawDots();
+
+    // Draw tree on top
+    if (currentTree) {
+        nodePositions = [];
+        drawNode(currentTree, canvas.width / 2, 40, 200);
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ------------------- GRADIENT ANIMATION -------------------
+
+
+// Helper to get gradient offset (always 0–1, loops smoothly)
+function getGradientOffset(speed = 0.0005) { // speed = fraction per ms
+    const elapsed = Date.now() - startTime;
+    return (elapsed * speed) % 1; // loops from 0 → 1 continuously
+}
+
+// Create a neon gradient between two points
+function getNeonGradient(x1, y1, x2, y2) {
+    const grad = ctx.createLinearGradient(x1, y1, x2, y2);
+    const offset1 = getGradientOffset();
+    const offset2 = (offset1 + 0.5) % 1;
+
+    grad.addColorStop(offset1, "#9900ffff");
+    grad.addColorStop(offset2, "#6f00ffff");
+
+    return grad;
+}
+
+
+// ------------------- TREE RENDERING & INTERACTIONS -------------------
+
+
 function fetchTree() {
   fetch('/get_bstree')
     .then(response => response.json())
     .then(tree => {
-      console.log("TREE RECEIVED:", tree);
+      currentTree = tree;
       drawTree(tree);
     })
     .catch(err => console.error("fetchTree error:", err));
@@ -30,27 +122,57 @@ function drawNode(node, x, y, spacing) {
   if (!node) return;
 
   const radius = 20;
-  ctx.strokeStyle = "#000000ff";
 
+  
   // Draw connecting lines first (so lines are under circles)
+
   if (node.left) {
-    ctx.beginPath();
-    ctx.moveTo(x, y + radius);
-    ctx.lineTo(x - spacing, y + 100 - radius);
-    ctx.stroke();
+      const x2 = x - spacing;
+      const y2 = y + 100 - radius;
+
+      ctx.strokeStyle = getNeonGradient(x, y + radius, x2, y2);
+      ctx.lineWidth = 3;
+
+      // neon glow
+      ctx.shadowColor = ctx.strokeStyle;
+      ctx.shadowBlur = 10;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y + radius);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      ctx.shadowBlur = 0; // reset
   }
-  if (node.right) {
-    ctx.beginPath();
-    ctx.moveTo(x, y + radius);
-    ctx.lineTo(x + spacing, y + 100 - radius);
-    ctx.stroke();
-  }
+
+    if (node.right) {
+        const x2 = x + spacing;
+        const y2 = y + 100 - radius;
+
+        ctx.strokeStyle = getNeonGradient(x, y + radius, x2, y2);
+        ctx.lineWidth = 3;
+
+        // neon glow
+        ctx.shadowColor = ctx.strokeStyle;
+        ctx.shadowBlur = 10;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y + radius);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        ctx.shadowBlur = 0; // reset
+    }
 
   // Draw node circle
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = (selected === node.id) ? "#55ff5dff" : "#ffffffff";
+  ctx.fillStyle = (selected === node.id) ? "#00ccffff" : "#ffffffff";
   ctx.fill();
+  ctx.strokeStyle = "#9900ffff";  // separate border color
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = "#9900ffff";   // glow for node border
+  ctx.shadowBlur = 8;
   ctx.stroke();
 
   // Draw text
@@ -134,6 +256,7 @@ function insertNode() {
   .then(res => {
     if (res.error) return alert(res.error);
     document.getElementById("valueInput").value = "";
+    currentTree = res;
     drawTree(res);
   })
   .catch(err => console.error("insert error:", err));
@@ -152,6 +275,7 @@ function deleteNode() {
   .then(res => res.json())
   .then(tree => {
     document.getElementById("valueInput").value = "";
+    currentTree = tree;
     drawTree(tree);
   })
   .catch(err => console.error("delete error:", err));
@@ -164,6 +288,7 @@ function resetTree() {
     .then(res => res.json())
     .then(tree => {
       selected = null;
+      currentTree = tree;
       drawTree(tree);
     })
     .catch(err => console.error("resetTree error:", err));

@@ -1042,6 +1042,89 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
 /* Button + input styling */
 .binary-tree-buttons input,
 .binary-tree-buttons button {
+    position: relative; /* for floating dots layer */
+    overflow: hidden;
+
+    padding: 10px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    border: #0081f1 5px solid;
+
+    background-color: rgba(0, 0, 0, 0.7); /* overlay */
+
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        box-shadow 0.3s,
+        transform 0.2s,
+        filter 0.3s;
+}
+
+
+/* HOVER — NEON GLOW */
+.binary-tree-buttons button:hover {
+    background-color: rgba(0, 129, 241, 0.5);
+    color: #ffffff;
+    filter: brightness(1.2);
+
+    box-shadow:
+        0 0 12px #00baff,
+        0 0 25px #00baff,
+        0 0 40px #00baff;
+
+    transform: scale(1.05);
+}
+
+/* ACTIVE (click) */
+.binary-tree-buttons button:active {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #00baff;
+    transform: scale(0.97);
+    box-shadow: none;
+}
+
+/* Selected node label */
+#selectedDisplay {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+/* Traversal text above canvas */
+.traversal-display {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #0081f1;
+    text-align: center;
+    border: #0081f1 5px solid;
+}
+
+/* FLEX: canvas left, buttons right */
+.bt-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+/* Canvas center + styling */
+#treeCanvas {
+    border: 5px solid #0081f1;
+    background: #000000;
+}
+
+/* Buttons container */
+.binary-tree-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+/* Button + input styling */
+.binary-tree-buttons input,
+.binary-tree-buttons button {
     padding: 10px;
     font-size: 1rem;
     color:#0081f1;
