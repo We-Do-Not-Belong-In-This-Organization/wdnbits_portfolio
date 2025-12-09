@@ -47,6 +47,7 @@ function drawDots() {
     for (let d of dots) {
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+
         ctx.fillStyle = d.color;
         ctx.fill();
     }

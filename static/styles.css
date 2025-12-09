@@ -1061,33 +1061,6 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
         filter 0.3s;
 }
 
-/* Floating dots pseudo-element */
-.binary-tree-buttons button::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle, rgb(0, 0, 0) 0px, transparent 6px),
-        radial-gradient(circle, #031d33 0px, transparent 6px),
-        radial-gradient(circle, #2c4675 0px, transparent 6px),
-        radial-gradient(circle, rgb(38, 58, 95) 0px, transparent 4px),
-        radial-gradient(circle, #294d5a 0px, transparent 5px);
-    background-size: 12px 12px, 14px 14px, 16px 16px, 8px 8px, 10px 10px;
-    animation:
-        floatDots1 8s linear infinite,
-        floatDots2 12s linear infinite,
-        floatDots3 16s linear infinite,
-        floatDots4 10s linear infinite,
-        floatDots5 14s linear infinite;
-    opacity: 0.5;
-    z-index: 0;
-}
-
-/* Ensure button content stays above the floating dots */
-.binary-tree-buttons button > * {
-    position: relative;
-    z-index: 2;
-}
 
 /* HOVER — NEON GLOW */
 .binary-tree-buttons button:hover {
@@ -1111,28 +1084,66 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
     box-shadow: none;
 }
 
-/* Floating dots animations with random-like movement */
-@keyframes floatDots1 {
-    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: 150px 120px, -80px 100px, 200px -50px, -50px 80px, 100px -120px; }
+/* Selected node label */
+#selectedDisplay {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
 }
-@keyframes floatDots2 {
-    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: -100px 150px, 120px -100px, -150px 80px, 100px 120px, -80px -150px; }
-}
-@keyframes floatDots3 {
-    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: 200px -150px, -120px 200px, 150px 100px, -100px -80px, 80px 150px; }
-}
-@keyframes floatDots4 {
-    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: 180px 100px, -90px -150px, 120px 130px, -140px 50px, 100px -90px; }
-}
-@keyframes floatDots5 {
-    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: -130px 120px, 100px -110px, -150px 140px, 120px 80px, -100px -100px; }
+/* Traversal text above canvas */
+.traversal-display {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #0081f1;
+    text-align: center;
+    border: #0081f1 5px solid;
 }
 
+/* FLEX: canvas left, buttons right */
+.bt-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+/* Canvas center + styling */
+#treeCanvas {
+    border: 5px solid #0081f1;
+    background: #000000;
+}
+
+/* Buttons container */
+.binary-tree-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+/* Button + input styling */
+.binary-tree-buttons input,
+.binary-tree-buttons button {
+    padding: 10px;
+    font-size: 1rem;
+    color:#0081f1;
+    cursor: pointer;
+    border: #0081f1 5px solid;
+    background-color: #000000;
+    transition: background-color 0.2s, color 0.4s;
+}
+
+
+  .binary-tree-buttons button:hover {
+    background-color:#0081f1;
+    color:  rgb(0, 0, 0)
+
+  }
+  .binary-tree-buttons button:active{
+    background-color: rgb(0, 0, 0);
+    color:#0081f1;
+}
 
 /* Selected node label */
 #selectedDisplay {
