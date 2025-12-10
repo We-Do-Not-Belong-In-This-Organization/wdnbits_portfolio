@@ -172,7 +172,7 @@ function drawNode(node, x, y, spacing) {
   ctx.strokeStyle = "#1c6bacff";  // separate border color
   ctx.lineWidth = 2.5;
   ctx.shadowColor = "#00d5ffff";   // glow for node border
-  ctx.shadowBlur = 8;
+  ctx.shadowBlur = 50;
   ctx.stroke();
 
   // Draw text
