@@ -1017,7 +1017,7 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
 }
 
 /* FLEX: canvas left, buttons right */
-.bt-flex {
+.bt-flex, .trees-flex {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -1132,6 +1132,8 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
     border: #0081f1 5px solid;
     background-color: #000000;
     transition: background-color 0.2s, color 0.4s;
+    font-family: 'Orbitron', sans-serif;
+    font-size: small;
 }
 
 
@@ -1172,5 +1174,25 @@ footer .loading { text-align: center; font-size: 2.5rem; font-style:bold; color:
 input::placeholder {
   color: #0081f1;
   text-align: center; 
+}
+
+#treeWrapper {
+    position: relative;
+    width: 900px;
+    height: 500px;
+}
+
+#easterEggContainer {
+    position: absolute;
+}
+
+
+#easterEggImg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 910px;
+    height: 510px;
+    display: none;
+    pointer-events: none;
 }
 

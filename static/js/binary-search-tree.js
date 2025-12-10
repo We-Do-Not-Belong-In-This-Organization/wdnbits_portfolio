@@ -233,19 +233,20 @@ function insertNode() {
   const value = document.getElementById("valueInput").value.trim();
   if (value === "") return alert("Enter a value to insert.");
 
-  // Easter egg: show an image if value is 1987
   if (value === "1987") {
-    const canvas = document.getElementById("treeCanvas");
-    const ctx = canvas.getContext("2d");
-
-    const img = new Image();
-    img.src = "/static/images/ruzzel_creepy_pasta.jpg"; // put your image in static/images
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-    return; // stop further insertion
+      const img = document.getElementById("easterEggImg");
+      img.src = "/static/images/ruzzel_creepy_pasta.jpg";
+      img.style.display = "block";  // show it
+      return;
   }
+
+  if (value === "Matt") {
+      const img = document.getElementById("easterEggImg");
+      img.src = "/static/images/matt_bday.png";
+      img.style.display = "block";
+      return;
+  }
+
 
   fetch("/insert", {
     method: "POST",
@@ -260,6 +261,7 @@ function insertNode() {
     drawTree(res);
   })
   .catch(err => console.error("insert error:", err));
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 
@@ -279,6 +281,7 @@ function deleteNode() {
     drawTree(tree);
   })
   .catch(err => console.error("delete error:", err));
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 
@@ -292,6 +295,7 @@ function resetTree() {
       drawTree(tree);
     })
     .catch(err => console.error("resetTree error:", err));
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 function inorderTraversal() {
@@ -306,6 +310,7 @@ function inorderTraversal() {
       document.querySelector(".traversal-display").innerHTML =
         `<p><b>In-order:</b> ${res.result}</p>`;
     });
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 function preorderTraversal() {
@@ -320,6 +325,7 @@ function preorderTraversal() {
       document.querySelector(".traversal-display").innerHTML =
         `<p><b>Pre-order:</b> ${res.result}</p>`;
     });
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 function postorderTraversal() {
@@ -334,6 +340,7 @@ function postorderTraversal() {
       document.querySelector(".traversal-display").innerHTML =
         `<p><b>Post-order:</b> ${res.result}</p>`;
     });
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 
@@ -357,6 +364,7 @@ function search() {
         }
     })
     .catch(err => console.error("search error:", err));
+  document.getElementById("easterEggImg").style.display = "none";
 }
 
 
