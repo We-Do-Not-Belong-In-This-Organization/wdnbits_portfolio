@@ -161,6 +161,11 @@ def profile_member(name):
         return "Profile not found", 404
 
 
+@website.route("/trees")
+def trees_page():
+    from_page = request.args.get("from_page", "")
+    return render_template("trees.html", from_page=from_page)
+
 # For binary tree
 tree = BinaryTree()
 tree.root = Node("Root")  # ensure root exists on startup
@@ -178,7 +183,7 @@ def serialize(node):
     }
 
 
-@website.route("/binarytree")
+@website.route("/binary-tree")
 def binarytree_page():
     from_page = request.args.get("from_page", "")
     return render_template("binary-tree.html", from_page=from_page)
@@ -294,7 +299,7 @@ def serialize_bst(node):
     }
 
 
-@website.route("/binarysearchtree")
+@website.route("/binary-search-tree")
 def bst_page():
     from_page = request.args.get("from_page", "")
     return render_template("binary-search-tree.html", from_page=from_page)
