@@ -91,8 +91,8 @@ function getNeonGradient(x1, y1, x2, y2) {
     const offset1 = getGradientOffset();
     const offset2 = (offset1 + 0.5) % 1;
 
-    grad.addColorStop(offset1, "#9900ffff");
-    grad.addColorStop(offset2, "#6f00ffff");
+    grad.addColorStop(offset1, "#38a5ffff");
+    grad.addColorStop(offset2, "#91ccffff");
 
     return grad;
 }
@@ -169,10 +169,10 @@ function drawNode(node, x, y, spacing) {
   ctx.arc(x, y, radius, 0, Math.PI * 2);
   ctx.fillStyle = (selected === node.id) ? "#00ccffff" : "#ffffffff";
   ctx.fill();
-  ctx.strokeStyle = "#9900ffff";  // separate border color
+  ctx.strokeStyle = "#1c6bacff";  // separate border color
   ctx.lineWidth = 2.5;
-  ctx.shadowColor = "#9900ffff";   // glow for node border
-  ctx.shadowBlur = 8;
+  ctx.shadowColor = "#00d5ffff";   // glow for node border
+  ctx.shadowBlur = 50;
   ctx.stroke();
 
   // Draw text
