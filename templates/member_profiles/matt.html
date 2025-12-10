@@ -7,7 +7,7 @@
 </head>
 <body class="member">
 
-  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+  <a href="{{ url_for('profile') }}" class="back-button">1-L</a>
 
   <div class="moving-bg">
     <div class="row"><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span><span>MATTHEW MATTHEW MATTHEW MATTHEW MATTHEW </span></div>
@@ -39,10 +39,10 @@
 
     <div class="bullet-contracts">
       <ul>
-        <li><a href="{{ url_for('queue_page') }}?from=matt">Queue Line</a></li>
-        <li><a href="{{ url_for('deque_page') }}?from=matt">Deque Line</a></li>
-        <li><a href="#" target="_blank">Works</a></li>
-        <li><a href="#" target="_blank">Works</a></li>
+        <li><a href="{{ url_for('queue_page', from_page='matt') }}">Queue Line</a></li>
+        <li><a href="{{ url_for('deque_page', from_page='matt') }}">Deque Line</a></li>
+        <li><a href="{{ url_for('trees_page', from_page='matt') }}">Trees</a></li>
+        <li><a href="{{ url_for('worksoon', from_page='matt') }}">Works</a></li>
       </ul>
     </div>
 
@@ -71,12 +71,20 @@
     </div>
   </div>
 
+
+
+
+
   <div class="loading-screen">
+          <!-- RANDOM TIPS -->
+    <div class="title">
+      <h1 class="loadfont" id="randText">Loading...</h1>
+
     <div class="loading-content">
       <div class="loading-spinner"></div>
-    </div>
+  </div>
   </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
