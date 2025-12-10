@@ -17,7 +17,14 @@
     </div>
     <div class="binary-tree">
       <div class="bt-flex">
-        <canvas id="treeCanvas" width="900" height="500"></canvas>
+
+        <div id="treeWrapper">
+
+          <canvas id="treeCanvas" width="900" height="500"></canvas>
+
+          <img id="easterEggImg" src="">
+          
+        </div>
 
         <div class="binary-tree-buttons">
           <input id="valueInput" type="text" placeholder="Input Value" />
@@ -29,7 +36,9 @@
           <button onclick="preorderTraversal()">Pre-order Traversal</button>
           <button onclick="postorderTraversal()">Post-order Traversal</button>
         </div>
+
       </div>
+
       <div id="selectedDisplay">Selected Node: None</div>
     </div>
   </div>

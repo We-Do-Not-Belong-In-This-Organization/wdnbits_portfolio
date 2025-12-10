@@ -1174,3 +1174,23 @@ input::placeholder {
   text-align: center; 
 }
 
+#treeWrapper {
+    position: relative;
+    width: 900px;
+    height: 500px;
+}
+
+#easterEggContainer {
+    position: absolute;
+}
+
+
+#easterEggImg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 910px;
+    height: 510px;
+    display: none;
+    pointer-events: none;
+}
+
