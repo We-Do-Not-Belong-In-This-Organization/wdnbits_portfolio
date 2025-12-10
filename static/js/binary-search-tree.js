@@ -9,7 +9,7 @@ const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
 
 canvas.width = 900;
-canvas.height = 500;
+canvas.height = 555;
 
 
 // ------------------- FLOATING DOT BACKGROUND -------------------
@@ -367,6 +367,35 @@ function search() {
   document.getElementById("easterEggImg").style.display = "none";
 }
 
+
+function maxValue() {
+  fetch("/find_max", { method: "POST" })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.error);
+      // Display max value in traversal display
+      document.querySelector(".traversal-display").innerHTML =
+        `<p><b>Maximum Value:</b> ${res.max_value}</p>`;
+    })
+    .catch(err => console.error("maxValue error:", err));
+
+  document.getElementById("easterEggImg").style.display = "none";
+}
+
+
+function findHeight() {
+  fetch("/find_height", { method: "POST" })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.error);
+      // Display height in traversal display
+      document.querySelector(".traversal-display").innerHTML =
+        `<p><b>Height of Tree:</b> ${res.height}</p>`;
+    })
+    .catch(err => console.error("findHeight error:", err));
+
+  document.getElementById("easterEggImg").style.display = "none";
+}
 
 
 // INITIAL LOAD
