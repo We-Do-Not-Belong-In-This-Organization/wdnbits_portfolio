@@ -391,7 +391,19 @@ def search_bst():
         return jsonify({"found": False, "error": "Node not found"}), 404
 
 
+@website.route("/find_max", methods=["POST"])
+def find_max():
+    if bstree.root is None:
+        return jsonify({"error": "Tree is empty"}), 400
 
+    max_node = bstree.find_max()
+    return jsonify({"max_value": max_node})
+
+
+@website.route("/find_height", methods=["POST"])
+def find_height():
+    height = bstree.find_height()
+    return jsonify({"height": height})
 
 
 if __name__ == '__main__':

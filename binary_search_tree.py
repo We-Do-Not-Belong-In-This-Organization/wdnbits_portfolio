@@ -130,3 +130,31 @@ class BinarySearchTree:
         while current.left is not None:
             current = current.left
         return current
+
+
+    # ============================================
+    # Find Max Value
+    # ============================================
+    def find_max(self):
+        """Return the maximum value in the BST."""
+        if self.root is None:
+            return None
+        current = self.root
+        while current.right is not None:
+            current = current.right
+        return current.data
+
+    # ============================================
+    # Find Height
+    # ============================================
+    def find_height(self):
+        """Return the height of the BST."""
+        return self._find_height_recursive(self.root)
+    
+    def _find_height_recursive(self, node):
+        if node is None:
+            return -1  # Height of empty tree is -1
+        left_height = self._find_height_recursive(node.left)
+        right_height = self._find_height_recursive(node.right)
+        return 1 + max(left_height, right_height)
+    
