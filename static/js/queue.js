@@ -1,4 +1,4 @@
-// 1. Helper function to redraw the queue matching your CSS
+
 function updateQueueUI(items) {
     const container = document.getElementById('queue-display-box');
     container.innerHTML = ''; // Wipe current HTML
@@ -12,7 +12,7 @@ function updateQueueUI(items) {
     items.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'queue-item';
-        // Add 1 to index because programming starts at 0, but humans count from 1
+        
         div.textContent = `${index + 1}. ${item}`; 
         container.appendChild(div);
     });
