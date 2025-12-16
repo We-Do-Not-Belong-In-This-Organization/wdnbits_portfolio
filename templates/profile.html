@@ -13,7 +13,7 @@
                 {% for character in characters %}
                 <div class="character" data-left="{{ character.left_img }}" data-right="{{ character.right_img }}">
                     <a href="{{ url_for('main.profile_member', name=character.page) }}">
-                    <img src="{{ url_for('static', filename='images/' + character.img) }}" alt="{{ character.page }}">
+                    <img src="{{ url_for('static', filename='images/profiles/' + character.img) }}" alt="{{ character.page }}">
                     </a>
                 </div>
                 {% endfor %}
