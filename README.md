@@ -1,6 +1,6 @@
 <h1 align="center">🕹️👾 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏 𝐏𝐎𝐑𝐓𝐅𝐎𝐋𝐈𝐎 🕹️👾 </h1>
 <p align="center">
-  <img src="https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/title.png" alt= START width="1550" height="1550"/>
+  <img src="https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/readme/title.png" alt= START width="1550" height="1550"/>
 </p>
 
 
