@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body class="queue-body">
-        <a href="{{ url_for('profile_member', name=from_page) }}" class="back-button">Back</a>
+        <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
         <!-- SPLATTER DECORATIONS -->
         <img src="{{ url_for('static', filename='images/splat_chdesc.png') }}" class="queue-splatter top-left">
         <img src="{{ url_for('static', filename='images/splat_name.png') }}" class="queue-splatter top-right">
@@ -17,7 +17,7 @@
             <!-- LEFT PANEL: DEQUE BOX -->
             <div class="queue-panel-left">
                 <h2 class="queue-title-big">DEQUE:</h2>
-                <div class="queue-box">
+                <div id="deque-display-box" class="queue-box">
                     {% if deque_items %}
                     {% for item in deque_items %}
                     <div class="queue-item">{{ loop.index }}. {{ item }}</div>
@@ -29,34 +29,19 @@
             </div>
             <!-- RIGHT PANEL: INPUTS & BUTTONS -->
             <div class="queue-panel-right">
-                <!-- SINGLE FORM FOR BOTH ENQUEUE BUTTONS -->
-                <form action="" method="post">
-                    <input type="hidden" name="from_page" value="{{ from_page }}">
-                    <input type="text" name="user_enqueue" placeholder="Insert item" class="queue-input-custom" required>
-                    <div class="queue-buttons">
-                        <button class="queue-btn" type="submit" formaction="/enqueue_front">Enqueue Front</button>
-                        <button class="queue-btn" type="submit" formaction="/enqueue_rear">Enqueue Rear</button>
-                    </div>
-                </form>
-                <!-- DEQUEUE BUTTONS -->
+                <input type="text" id="deque-input" placeholder="Insert item" class="queue-input-custom">
                 <div class="queue-buttons">
-                    <form action="/dequeue_front" method="post">
-                        <input type="hidden" name="from_page" value="{{ from_page }}">
-                        <button class="queue-btn">Dequeue Front</button>
-                    </form>
-                    <form action="/dequeue_rear" method="post">
-                        <input type="hidden" name="from_page" value="{{ from_page }}">
-                        <button class="queue-btn">Dequeue Rear</button>
-                    </form>
+                    <button class="queue-btn" onclick="enqueueFront()">Enqueue Front</button>
+                    <button class="queue-btn" onclick="enqueueRear()">Enqueue Rear</button>
                 </div>
-                <!-- CLEAR DEQUE -->
-                <form action="/clear_dob_queue" method="post">
-                    <input type="hidden" name="from_page" value="{{ from_page }}">
-                    <button class="queue-btn clear">CLEAR</button>
-                </form>
+                <div class="queue-buttons">
+                    <button class="queue-btn" onclick="dequeueFront()">Dequeue Front</button>
+                    <button class="queue-btn" onclick="dequeueRear()">Dequeue Rear</button>
+                </div>
+                <button class="queue-btn clear" onclick="clearDeque()">CLEAR</button>
             </div>
         </div>
         <h2 class="queue-footer-title">DEQUE LINE</h2>
-        <script src="{{ url_for('static', filename='deque.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/deque.js') }}"></script>
     </body>
 </html>

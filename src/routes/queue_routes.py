@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from src.logic.queues import Queue
 
 queue_bp = Blueprint('queue', __name__)
@@ -13,28 +13,24 @@ def queue_page():
 
 @queue_bp.route('/enqueue', methods=['POST'])
 def enqueue():
-    item = request.form.get('user_enqueue')
-    from_page = request.form.get('from_page')
+    data = request.get_json()
+    item = data.get('item')
 
     if item:
         queue_line.enqueue(item)
 
-    return redirect(url_for('queue.queue_page', from_page=from_page))
+    return jsonify(queue=queue_line.display())
 
 
 @queue_bp.route('/dequeue', methods=['POST'])
 def dequeue():
-    from_page = request.form.get('from_page')
-
     queue_line.dequeue()
 
-    return redirect(url_for('queue.queue_page', from_page=from_page))
+    return jsonify(queue=queue_line.display())
 
 
 @queue_bp.route('/clear_queue', methods=['POST'])
 def clear_queue():
-    from_page = request.form.get('from_page')
-
     queue_line.clear()
-
-    return redirect(url_for('queue.queue_page', from_page=from_page))
+    
+    return jsonify(queue=queue_line.display())
