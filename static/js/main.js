@@ -77,7 +77,6 @@ const tips = [
   "Si Matt ay may 7 dogs",
   "Tag mo yung tropa mo!",
   ".--- .- -. ....... .-. ..- --.. --..\\n . .-.. .-.. ....... --- .-. --.- ..- .. .-",
-  "3-I",
   "Did you know? WDNBITS stands for 'We Do Not Belong In This School'!",
   "Did you know? 'Ruzzel' in 'Jan Ruzzel Orquia' actually has 2 'L's! It's actually 'Ruzzell'!",
 ];

@@ -1,4 +1,4 @@
-from tree_node import Node
+from src.logic.tree_node import Node
 
 # ============================================
 # Binary Tree Class
