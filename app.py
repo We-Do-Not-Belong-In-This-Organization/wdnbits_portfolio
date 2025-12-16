@@ -9,19 +9,19 @@ from queues import Queue  # Import the Queue class
 from deques import Deque  # Import the Deque class
 
 
-website = Flask(__name__)
+app = Flask(__name__)
 queue_line = Queue()
 deque_line = Deque()
 # For Navigation Bar
 
 
 # Home Page
-@website.route("/")
+@app.route("/")
 def home():
     return render_template("index.html") 
 
 
-@website.route("/profile")
+@app.route("/profile")
 def profile():
     characters = [
         {"img": "orbista.png", "page": "ced", "left_img": "ced-left.png", "right_img": "ced-right.png"},
@@ -37,16 +37,16 @@ def profile():
     ]
     return render_template("profile.html", characters=characters)
 
-@website.route("/works")
+@app.route("/works")
 def worksoon():
     from_page = request.args.get("from_page", None)
     return render_template("coming-soon.html", from_page=from_page)
 
-@website.route("/works")
+@app.route("/works")
 def works():
     return render_template("/works.html")  # Change #works.html per member
 
-@website.route("/secret")
+@app.route("/secret")
 def secret():
     return render_template("secret.html")
 
@@ -55,12 +55,12 @@ def secret():
 # ---- queue system ----
 
 
-@website.route('/queue')
+@app.route('/queue')
 def queue_page():
     from_page = request.args.get('from_page', '')
     return render_template('queue.html', queue_line=queue_line.display(), from_page=from_page)
 
-@website.route('/enqueue', methods=['POST'])
+@app.route('/enqueue', methods=['POST'])
 def enqueue():
     item = request.form.get('user_enqueue')
     from_page = request.form.get('from_page')
@@ -70,7 +70,7 @@ def enqueue():
 
     return redirect(url_for('queue_page', from_page=from_page))
 
-@website.route('/dequeue', methods=['POST'])
+@app.route('/dequeue', methods=['POST'])
 def dequeue():
     from_page = request.form.get('from_page')
 
@@ -78,7 +78,7 @@ def dequeue():
 
     return redirect(url_for('queue_page', from_page=from_page))
 
-@website.route('/clear_queue', methods=['POST'])
+@app.route('/clear_queue', methods=['POST'])
 def clear_queue():
     from_page = request.form.get('from_page')
 
@@ -91,13 +91,13 @@ def clear_queue():
 # DEQUE System (no changes)
 # =====================================================
 
-@website.route('/deque')
+@app.route('/deque')
 def deque_page():
     from_page = request.args.get('from_page', '')
     return render_template('deque.html', deque_items=deque_line.display(), from_page=from_page)
 
 
-@website.route('/enqueue_front', methods=['POST'])
+@app.route('/enqueue_front', methods=['POST'])
 def enqueue_front():
     item = request.form.get('user_enqueue')
     from_page = request.form.get('from_page')
@@ -108,7 +108,7 @@ def enqueue_front():
     return redirect(url_for('deque_page', from_page=from_page))
 
 
-@website.route('/dequeue_rear', methods=['POST'])
+@app.route('/dequeue_rear', methods=['POST'])
 def dequeue_rear():
     from_page = request.form.get('from_page')
 
@@ -118,7 +118,7 @@ def dequeue_rear():
     return redirect(url_for('deque_page', from_page=from_page))
 
 
-@website.route('/enqueue_rear', methods=['POST'])
+@app.route('/enqueue_rear', methods=['POST'])
 def enqueue_rear():
     item = request.form.get('user_enqueue')
     from_page = request.form.get('from_page')
@@ -129,7 +129,7 @@ def enqueue_rear():
     return redirect(url_for('deque_page', from_page=from_page))
 
 
-@website.route('/dequeue_front', methods=['POST'])
+@app.route('/dequeue_front', methods=['POST'])
 def dequeue_front():
     from_page = request.form.get('from_page')
 
@@ -139,7 +139,7 @@ def dequeue_front():
     return redirect(url_for('deque_page', from_page=from_page))
 
 
-@website.route('/clear_dob_queue', methods=['POST'])
+@app.route('/clear_dob_queue', methods=['POST'])
 def clear_dob_queue():
     from_page = request.form.get('from_page')
 
@@ -152,7 +152,7 @@ def clear_dob_queue():
 # End of DEqueue
 
 # 🔹 Route for each member’s HTML
-@website.route("/profile/<name>")
+@app.route("/profile/<name>")
 def profile_member(name):
     try:
         return render_template(f"member_profiles/{name}.html", member=name)
@@ -161,7 +161,7 @@ def profile_member(name):
         return "Profile not found", 404
 
 
-@website.route("/trees")
+@app.route("/trees")
 def trees_page():
     from_page = request.args.get("from_page", "")
     return render_template("trees.html", from_page=from_page)
@@ -183,18 +183,18 @@ def serialize(node):
     }
 
 
-@website.route("/binary-tree")
+@app.route("/binary-tree")
 def binarytree_page():
     from_page = request.args.get("from_page", "")
     return render_template("binary-tree.html", from_page=from_page)
 
 
-@website.route("/get_tree")
+@app.route("/get_tree")
 def get_tree():
     return jsonify(serialize(tree.root))
 
 
-@website.route("/insert_left", methods=["POST"])
+@app.route("/insert_left", methods=["POST"])
 def insert_left():
     payload = request.get_json(force=True)
     parent = payload.get("parent")
@@ -211,7 +211,7 @@ def insert_left():
     return jsonify(serialize(tree.root))
 
 
-@website.route("/insert_right", methods=["POST"])
+@app.route("/insert_right", methods=["POST"])
 def insert_right():
     payload = request.get_json(force=True)
     parent = payload.get("parent")
@@ -227,7 +227,7 @@ def insert_right():
     return jsonify(serialize(tree.root))
 
 
-@website.route("/delete", methods=["POST"])
+@app.route("/delete", methods=["POST"])
 def delete_node():
     payload = request.get_json(force=True)
     node_id = payload.get("nodeId")
@@ -242,13 +242,13 @@ def delete_node():
 
 
 
-@website.route("/reset", methods=["POST"])
+@app.route("/reset", methods=["POST"])
 def reset_tree():
     tree.root = Node("Root")
     return jsonify(serialize(tree.root))
 
 
-@website.route("/traverse", methods=["POST"])
+@app.route("/traverse", methods=["POST"])
 def traverse():
     payload = request.get_json(force=True)
     traverse = payload.get("type")
@@ -267,7 +267,7 @@ def traverse():
     return jsonify({"result": result})
 
 
-@website.route("/search_node", methods=["POST"])
+@app.route("/search_node", methods=["POST"])
 def search_node():
     payload = request.get_json(force=True)
     value = payload.get("value")
@@ -299,18 +299,18 @@ def serialize_bst(node):
     }
 
 
-@website.route("/binary-search-tree")
+@app.route("/binary-search-tree")
 def bst_page():
     from_page = request.args.get("from_page", "")
     return render_template("binary-search-tree.html", from_page=from_page)
 
 
-@website.route("/get_bstree")
+@app.route("/get_bstree")
 def get_bstree():
     return jsonify(serialize_bst(bstree.root))
 
 
-@website.route("/insert", methods=["POST"])
+@app.route("/insert", methods=["POST"])
 def insert():
     payload = request.get_json(force=True)
     value = payload.get("value")
@@ -330,7 +330,7 @@ def insert():
 
 
 
-@website.route("/delete_bst", methods=["POST"])
+@app.route("/delete_bst", methods=["POST"])
 def delete_bst_node():
     payload = request.get_json(force=True)
     value = payload.get("value")
@@ -347,14 +347,14 @@ def delete_bst_node():
 
 
 
-@website.route("/reset_bst", methods=["POST"])
+@app.route("/reset_bst", methods=["POST"])
 def reset_bstree():
     bstree.root = None
     return jsonify(serialize_bst(bstree.root))
 
 
 
-@website.route("/traverse_bst", methods=["POST"])
+@app.route("/traverse_bst", methods=["POST"])
 def traverse_bst():
     payload = request.get_json(force=True)
     t_type = payload.get("type")
@@ -372,7 +372,7 @@ def traverse_bst():
 
 
 
-@website.route("/search_bst", methods=["POST"])
+@app.route("/search_bst", methods=["POST"])
 def search_bst():
     payload = request.get_json(force=True)
     value = payload.get("value")
@@ -391,7 +391,7 @@ def search_bst():
         return jsonify({"found": False, "error": "Node not found"}), 404
 
 
-@website.route("/find_max", methods=["POST"])
+@app.route("/find_max", methods=["POST"])
 def find_max():
     if bstree.root is None:
         return jsonify({"error": "Tree is empty"}), 400
@@ -400,11 +400,11 @@ def find_max():
     return jsonify({"max_value": max_node})
 
 
-@website.route("/find_height", methods=["POST"])
+@app.route("/find_height", methods=["POST"])
 def find_height():
     height = bstree.find_height()
     return jsonify({"height": height})
 
 
 if __name__ == '__main__':
-    website.run(debug=True)
+    app.run(debug=True)
