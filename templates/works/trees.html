@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Binary Search Tree</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+        <script>
+            const FROM_PAGE = "{{ from_page }}";
+        </script>
+        <div class="bt-container">
+            <h2>Select Tree Type</h2>
+            <div class="trees-flex">
+                <div class="binary-tree-buttons">
+                    <button onclick="binaryTree()">Binary Tree</button>
+                    <button onclick="binarySearchTree()">Binary Search Tree</button>
+                </div>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='js/trees.js') }}"></script>
+    </body>
+</html>
