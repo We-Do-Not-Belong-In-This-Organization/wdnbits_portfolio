@@ -9,25 +9,28 @@
     <body>
         <div class="container fade-in">
             <h1 class="title">CHARACTER PROFILES</h1>
+            
             <div class="grid">
                 {% for character in characters %}
                 <div class="character" data-left="{{ character.left_img }}" data-right="{{ character.right_img }}">
                     <a href="{{ url_for('main.profile_member', name=character.page) }}">
-                    <img src="{{ url_for('static', filename='images/' + character.img) }}" alt="{{ character.page }}">
+                        <img src="{{ url_for('static', filename='images/' + character.img) }}" alt="{{ character.page }}">
                     </a>
                 </div>
                 {% endfor %}
             </div>
+
             <footer>
                 <ul>
                     <li>
                         <a href="/" style="color:#9cf1ff; text-decoration:none; margin-top:50px; display:inline-block;">
-                        ← Back to Title
+                            ← Back to Title
                         </a>
                     </li>
                 </ul>
             </footer>
         </div>
+
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>

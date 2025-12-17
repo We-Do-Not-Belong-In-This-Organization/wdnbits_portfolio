@@ -13,7 +13,9 @@
                 <span class="main">WDNBITS™</span>
                 <span class="sub">DSA Edition</span>
             </h1>
+            
             <button id="startButton" class="press-start">PRESS ANY BUTTON</button>
+            
             <footer>
                 <p>© 2025 WDNBITS<br>
                     Original Game: WDNBITS<br>
@@ -22,12 +24,14 @@
                 <p class="tagline">Nakasisigurong gamot ay laging bago.</p>
             </footer>
         </div>
+
         <script>
             window.flashImages = [
               "{{ url_for('static', filename='images/ruzzel_creepy_pasta.jpg') }}"
             ];
             window.screamSound = "{{ url_for('static', filename='sounds/scream2.mp3') }}";
         </script>
+        
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>

@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
+        
         <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+        
         <div class="container">
             <h1 class="title">
                 <span class="tempfont">Masyadong ka pang</span>
@@ -23,6 +25,7 @@
                 </p>
             </footer>
         </div>
+
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>
