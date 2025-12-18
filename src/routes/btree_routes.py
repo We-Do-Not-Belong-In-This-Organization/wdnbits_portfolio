@@ -9,7 +9,17 @@ tree.root = Node("Root")  # ensure root exists on startup
 
 
 def serialize(node):
-    """Convert Python Node to JSON-friendly dict (or None)."""
+    """Convert Python Node to JSON-friendly dict (or None).
+
+    This helper function recursively walks the tree to build a dictionary
+    that can be sent to the frontend javascript.
+
+    Parameters:
+        node (Node): The current node to process.
+
+    Returns:
+        dict or None: The dictionary representation of the node.
+    """
     if node is None:
         return None
     return {
@@ -22,17 +32,39 @@ def serialize(node):
 
 @btree_bp.route("/binary-tree")
 def binarytree_page():
+    """Renders the standard Binary Tree interface.
+
+    Query Parameters:
+        from_page (str, optional): Navigation origin tracker.
+
+    Returns:
+        Rendered HTML template.
+    """
     from_page = request.args.get("from_page", "")
     return render_template("works/binary-tree.html", from_page=from_page)
 
 
 @btree_bp.route("/get_tree")
 def get_tree():
+    """Fetches the current structure of the Binary Tree.
+
+    Returns:
+        JSON: The serialized tree object.
+    """
     return jsonify(serialize(tree.root))
 
 
 @btree_bp.route("/insert_left", methods=["POST"])
 def insert_left():
+    """Inserts a new node to the left of a specified parent.
+
+    Expects JSON Payload:
+        { "parent": int (id), "value": any }
+
+    Returns:
+        JSON: The updated tree structure.
+        JSON Error: 400 if parent/value missing or child already exists.
+    """
     payload = request.get_json(force=True)
     parent = payload.get("parent")
     value = payload.get("value")
@@ -50,6 +82,15 @@ def insert_left():
 
 @btree_bp.route("/insert_right", methods=["POST"])
 def insert_right():
+    """Inserts a new node to the right of a specified parent.
+
+    Expects JSON Payload:
+        { "parent": int (id), "value": any }
+
+    Returns:
+        JSON: The updated tree structure.
+        JSON Error: 400 if parent/value missing or child already exists.
+    """
     payload = request.get_json(force=True)
     parent = payload.get("parent")
     value = payload.get("value")
@@ -66,6 +107,14 @@ def insert_right():
 
 @btree_bp.route("/delete", methods=["POST"])
 def delete_node():
+    """Deletes a node based on its unique ID.
+
+    Expects JSON Payload:
+        { "nodeId": int }
+
+    Returns:
+        JSON: The updated tree structure.
+    """
     payload = request.get_json(force=True)
     node_id = payload.get("nodeId")
     if node_id is None:
@@ -81,12 +130,25 @@ def delete_node():
 
 @btree_bp.route("/reset", methods=["POST"])
 def reset_tree():
+    """Resets the tree to a single default Root node.
+
+    Returns:
+        JSON: The new tree with just the Root node.
+    """
     tree.root = Node("Root")
     return jsonify(serialize(tree.root))
 
 
 @btree_bp.route("/traverse", methods=["POST"])
 def traverse():
+    """Performs a specific traversal (inorder, preorder, postorder).
+
+    Expects JSON Payload:
+        { "type": "inorder" | "preorder" | "postorder" }
+
+    Returns:
+        JSON: { "result": str } containing the traversal path.
+    """
     payload = request.get_json(force=True)
     traverse = payload.get("type")
 
@@ -106,6 +168,15 @@ def traverse():
 
 @btree_bp.route("/search_node", methods=["POST"])
 def search_node():
+    """Searches for a node by its data value.
+
+    Expects JSON Payload:
+        { "value": any }
+
+    Returns:
+        JSON: { "found": True, "id": int }
+        JSON Error: 404 if not found.
+    """
     payload = request.get_json(force=True)
     value = payload.get("value")
     if not value:
@@ -116,3 +187,4 @@ def search_node():
         return jsonify({"found": True, "id": node.id})
     else:
         return jsonify({"found": False, "error": "Node not found"}), 404
+    

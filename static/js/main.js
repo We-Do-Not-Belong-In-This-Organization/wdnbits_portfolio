@@ -31,11 +31,11 @@ characters.forEach(char => {
     if (rightImg) rightImg.remove();
 
     leftImg = document.createElement("img");
-    leftImg.src = `/static/images/${char.dataset.left}`;
+    leftImg.src = `/static/images/profiles/${char.dataset.left}`;
     leftImg.className = "side-image left-side";
 
     rightImg = document.createElement("img");
-    rightImg.src = `/static/images/${char.dataset.right}`;
+    rightImg.src = `/static/images/profiles/${char.dataset.right}`;
     rightImg.className = "side-image right-side";
 
     grid.appendChild(leftImg);
