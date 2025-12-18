@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Deque</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body class="queue-body">
         <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
-        
-        <img src="{{ url_for('static', filename='images/splat_chdesc.png') }}" class="queue-splatter top-left">
-        <img src="{{ url_for('static', filename='images/splat_name.png') }}" class="queue-splatter top-right">
-        <img src="{{ url_for('static', filename='images/splat_qline.png') }}" class="queue-splatter bottom-left">
-        <img src="{{ url_for('static', filename='images/splat_enqueue.png') }}" class="queue-splatter bottom-right">
-        
+        <!-- SPLATTER DECORATIONS -->
+        <img src="{{ url_for('static', filename='images/backgrounds/splat_chdesc.png') }}" class="queue-splatter top-left">
+        <img src="{{ url_for('static', filename='images/backgrounds/splat_name.png') }}" class="queue-splatter top-right">
+        <img src="{{ url_for('static', filename='images/backgrounds/splat_qline.png') }}" class="queue-splatter bottom-left">
+        <img src="{{ url_for('static', filename='images/backgrounds/splat_enqueue.png') }}" class="queue-splatter bottom-right">
         <div class="queue-wrapper">
             <!-- LEFT PANEL: DEQUE BOX -->
             <div class="queue-panel-left">
