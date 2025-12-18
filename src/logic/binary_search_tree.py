@@ -7,13 +7,25 @@ class BinarySearchTree:
     """A binary search tree (BST) data structure."""
 
     def __init__(self, root_value=None):
+        """Initializes the Binary Search Tree.
+
+        Parameters:
+            root_value (any, optional): The initial value for the root node. Defaults to None.
+        """
         self.root = Node(root_value) if root_value is not None else None
 
     # -----------------------------------------
     # INSERTION
     # -----------------------------------------
     def insert(self, value):
-        """Insert a value into the BST."""
+        """Insert a value into the BST.
+
+        Parameters:
+            value (int or float): The value to insert.
+
+        Returns:
+            bool: True if inserted, False if duplicate.
+        """
         if self.root is None:
             self.root = Node(value)
             return True
@@ -39,7 +51,14 @@ class BinarySearchTree:
     # SEARCH
     # -----------------------------------------
     def search(self, value):
-        """Return the node containing the value, or None."""
+        """Return the node containing the value, or None.
+
+        Parameters:
+            value (int or float): The value to search for.
+
+        Returns:
+            Node: The found node, or None.
+        """
         return self._search_recursive(self.root, value)
 
     def _search_recursive(self, node, value):
@@ -56,7 +75,11 @@ class BinarySearchTree:
     # TRAVERSALS
     # -----------------------------------------
     def inorder_traversal(self):
-        """Public wrapper: returns a string for whole tree (left, root, right)."""
+        """Public wrapper: returns a string for whole tree (left, root, right).
+
+        Returns:
+            str: Space-separated values in ascending order.
+        """
         return self._inorder(self.root).strip()
 
     def _inorder(self, node):
@@ -69,7 +92,11 @@ class BinarySearchTree:
         )
 
     def preorder_traversal(self):
-        """Public wrapper: root, left, right."""
+        """Public wrapper: root, left, right.
+
+        Returns:
+            str: Space-separated values in preorder.
+        """
         return self._preorder(self.root).strip()
 
     def _preorder(self, node):
@@ -82,7 +109,11 @@ class BinarySearchTree:
         )
 
     def postorder_traversal(self):
-        """Public wrapper: left, right, root."""
+        """Public wrapper: left, right, root.
+
+        Returns:
+            str: Space-separated values in postorder.
+        """
         return self._postorder(self.root).strip()
 
     def _postorder(self, node):
@@ -99,7 +130,14 @@ class BinarySearchTree:
     # DELETE NODE
     # -----------------------------------------
     def delete(self, value):
-        """Delete a node by value."""
+        """Delete a node by value.
+
+        Parameters:
+            value (int or float): The value to remove.
+
+        Returns:
+            None
+        """
         self.root = self._delete_recursive(self.root, value)
 
     def _delete_recursive(self, node, value):
@@ -125,7 +163,14 @@ class BinarySearchTree:
         return node
 
     def _find_min(self, node):
-        """Find the node with the minimum value in a subtree."""
+        """Find the node with the minimum value in a subtree.
+
+        Parameters:
+            node (Node): The subtree root.
+
+        Returns:
+            Node: The minimum node.
+        """
         current = node
         while current.left is not None:
             current = current.left
@@ -136,7 +181,11 @@ class BinarySearchTree:
     # Find Max Value
     # ============================================
     def find_max(self):
-        """Return the maximum value in the BST."""
+        """Return the maximum value in the BST.
+
+        Returns:
+            int/float: The maximum value, or None if empty.
+        """
         if self.root is None:
             return None
         current = self.root
@@ -148,7 +197,11 @@ class BinarySearchTree:
     # Find Height
     # ============================================
     def find_height(self):
-        """Return the height of the BST."""
+        """Return the height of the BST.
+
+        Returns:
+            int: The height (edges), or -1 if empty.
+        """
         return self._find_height_recursive(self.root)
     
     def _find_height_recursive(self, node):
@@ -157,4 +210,3 @@ class BinarySearchTree:
         left_height = self._find_height_recursive(node.left)
         right_height = self._find_height_recursive(node.right)
         return 1 + max(left_height, right_height)
-    

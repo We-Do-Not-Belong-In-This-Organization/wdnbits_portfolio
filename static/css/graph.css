@@ -1,0 +1,158 @@
+.graph-container {
+    z-index: 1000;
+    position: fixed;
+    width: 65%;
+}
+
+
+.graph {
+    position: relative;   /* NOT fixed */
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* Traversal text above canvas */
+.graph-display {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #0081f1;
+    text-align: center;
+    border: #0081f1 5px solid;
+    background: rgb(0, 0, 0);
+    font-weight: 700;
+    padding: 2px;
+}
+
+/* FLEX: canvas left, buttons right */
+.graph-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2%;
+    margin-top: 10px;
+}
+
+
+#graphWrapper {
+    position: relative;
+    width: 100%; 
+    height: auto; 
+    aspect-ratio: 16 / 10; 
+}
+
+/* Canvas center + styling */
+#graphCanvas {
+    border: 5px solid #0081f1;
+    background: #000000;
+    width: 100%;
+}
+
+/* Buttons container */
+.graph-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 25%; 
+    min-width: 180px;
+    max-width: 300px;
+}
+
+/* Button + input styling */
+.graph-buttons input,
+.graph-buttons button {
+    width: 100%;
+    position: relative; /* for floating dots layer */
+    overflow: hidden;
+
+    padding: 10px;
+    font-size: 1rem;
+    color:#0081f1;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    border: #0081f1 5px solid;
+    font-size: small;
+    background-color: #000000;
+
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        box-shadow 0.3s,
+        transform 0.2s,
+        filter 0.3s;
+}
+
+
+/* HOVER — NEON GLOW */
+.graph-buttons button:hover {
+    background-color: rgba(0, 129, 241, 0.5);
+    color: #ffffff;
+    filter: brightness(1.2);
+
+    box-shadow:
+        0 0 12px #00baff,
+        0 0 25px #00baff,
+        0 0 40px #00baff;
+
+    transform: scale(1.05);
+}
+
+/* ACTIVE (click) */
+.graph-buttons button:active {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #00baff;
+    transform: scale(0.97);
+    box-shadow: none;
+}
+
+
+/* Selected node label */
+#selectedDisplay {
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.text-box {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: #0081f1 5px solid;
+    background-color: #000000;
+    color:#0081f1;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #0081f1;
+  text-align: center; 
+}
+
+
+
+.controls-row {
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 5px; 
+    justify-content: center;
+    width: 100%;
+}
+
+hr {
+    border: 1px solid #0081f1;
+    width: 100%; 
+    opacity: 0.3; 
+}
+
+#nodeA, #nodeB {
+    width: 20%;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #0081f1;
+    text-align: center;
+    border: #0081f1 5px solid;
+    background: rgb(0, 0, 0);
+    font-family: 'Orbitron', sans-serif;
+    padding: 0.5%
+}

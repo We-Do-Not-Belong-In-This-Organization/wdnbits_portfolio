@@ -4,34 +4,46 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Binary Tree</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/trees.css') }}">
     </head>
+    
     <body>
         <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+
         <div class="bt-container">
             <h2>Binary Tree</h2>
+            
             <div class="traversal-display">
                 <p>Traversal</p>
             </div>
+
             <div class="binary-tree">
                 <div class="bt-flex">
+                    
                     <canvas id="treeCanvas" width="900" height="500"></canvas>
+                    
                     <div class="binary-tree-buttons">
                         <input type="text" placeholder="Input Value" id="valueInput" class="text-box">
+                        
                         <button onclick="resetTree()">Reset Tree</button>
                         <button onclick="insertLeft()">Insert Left</button>
                         <button onclick="insertRight()">Insert Right</button>
                         <button onclick="deleteNode()">Delete Selected</button>
+                        
                         <button onclick="search()">Search</button>
                         <button onclick="inorderTraversal()">In-order Traversal</button>
                         <button onclick="preorderTraversal()">Pre-order Traversal</button>
                         <button onclick="postorderTraversal()">Post-order Traversal</button>
                     </div>
+
                 </div>
+
                 <div id="selectedDisplay">Selected Node: None</div>
             </div>
         </div>
+
         <script src="{{ url_for('static', filename='js/binary-tree.js') }}"></script>
     </body>
 </html>
