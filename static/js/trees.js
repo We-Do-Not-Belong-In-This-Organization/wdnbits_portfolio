@@ -1,5 +1,3 @@
-const FROM_PAGE = "{{ from_page }}";
-        
 function binaryTree() {
     window.location.href = "/binary-tree?from_page=" + encodeURIComponent(FROM_PAGE);
 }
