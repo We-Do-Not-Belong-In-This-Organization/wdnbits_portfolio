@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Graph Visualizer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/graph.css') }}">
+    </head>
+    <body>
+        <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+        <div class="graph-container">
+            <h2>Graph Data Structure</h2>
+            <div class="graph-display">
+                <p>Output Display</p>
+            </div>
+            <div class="graph">
+                <div class="graph-flex">
+                    <div id="graphWrapper">
+                        <canvas id="graphCanvas" width="900" height="500"></canvas>
+                    </div>
+                    <div class="graph-buttons">
+                        
+                        <div class="controls-row">
+                            <input id="vertexInput" type="text" placeholder="New Vertex Name" />
+                        </div>
+                        
+                        <div class="controls-row">
+                            <button onclick="addVertex()">Add Vertex</button>
+                            <button onclick="deleteVertex()">Delete Node</button>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="controls-row">
+                            <button onclick="addEdge()">Add Edge</button>
+                        </div>
+                        
+                        <div class="controls-row">
+                            <button onclick="findShortestPath()">Shortest Path</button>
+                        </div>
+                        
+                        <div class="controls-row">
+                            <button onclick="runBFS()">BFS</button>
+                            <button onclick="runDFS()">DFS</button>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="controls-row">
+                            <input type="file" id="jsonFileInput" accept=".json" style="display: none;" onchange="handleFileUpload(this)">
+                            <button onclick="document.getElementById('jsonFileInput').click()">Load JSON File</button>
+                        </div>
+                        
+                        <div class="controls-row">
+                            <button onclick="resetGraph()">Reset Graph</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div id="selectedDisplay">Selected:</div>
+                <div class="controls-row">
+                    <input id="nodeA" type="text" placeholder="Start" readonly />
+                    <input id="nodeB" type="text" placeholder="End" readonly />
+                </div>
+
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+    </body>
+</html>
