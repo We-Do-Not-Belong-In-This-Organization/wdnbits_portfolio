@@ -4,9 +4,14 @@ from src.logic.tree_node import Node
 # Binary Tree Class
 # ============================================
 class BinaryTree:
-    """A binary tree data structure."""
+    """A binary tree data structure allowing flexible node placement."""
     
     def __init__(self, root_value=None):
+        """Initializes the Binary Tree.
+
+        Parameters:
+            root_value (any, optional): The initial value for the root node. Defaults to None.
+        """
         self.root = Node(root_value) if root_value is not None else None
 
 
@@ -14,6 +19,15 @@ class BinaryTree:
     # INSERTIONS
     # -----------------------------------------
     def insert_left(self, current_node, value):
+        """Inserts a new node as the left child of the current node.
+
+        Parameters:
+            current_node (Node): The parent node.
+            value (any): The value to insert.
+
+        Returns:
+            bool: True if insertion was successful, False if the left child already exists.
+        """
         if current_node.left is not None:
             return False  # parent already has a left child
         current_node.left = Node(value)
@@ -21,6 +35,15 @@ class BinaryTree:
 
 
     def insert_right(self, current_node, value):
+        """Inserts a new node as the right child of the current node.
+
+        Parameters:
+            current_node (Node): The parent node.
+            value (any): The value to insert.
+
+        Returns:
+            bool: True if insertion was successful, False if the right child already exists.
+        """
         if current_node.right is not None:
             return False  # parent already has a right child
         current_node.right = Node(value)
@@ -32,7 +55,15 @@ class BinaryTree:
     # TRAVERSALS
     # -----------------------------------------
     def preorder_traversal(self, start, traversal):
-        """Traverse the tree in preorder: root → left → right."""
+        """Traverse the tree in preorder: root → left → right.
+
+        Parameters:
+            start (Node): The node to start traversing from.
+            traversal (str): The accumulated traversal string.
+
+        Returns:
+            str: The updated traversal string.
+        """
         if start:
             traversal += str(start.data) + " "
             traversal = self.preorder_traversal(start.left, traversal)
@@ -41,7 +72,15 @@ class BinaryTree:
 
 
     def inorder_traversal(self, start, traversal):
-        """Traverse the tree in inorder: left → root → right."""
+        """Traverse the tree in inorder: left → root → right.
+
+        Parameters:
+            start (Node): The node to start traversing from.
+            traversal (str): The accumulated traversal string.
+
+        Returns:
+            str: The updated traversal string.
+        """
         if start:
             traversal = self.inorder_traversal(start.left, traversal)
             traversal += str(start.data) + " "
@@ -50,7 +89,15 @@ class BinaryTree:
 
 
     def post_traversal(self, start, traversal):
-        """Traverse the tree in postorder: left → right → root."""
+        """Traverse the tree in postorder: left → right → root.
+
+        Parameters:
+            start (Node): The node to start traversing from.
+            traversal (list): The list to append values to.
+
+        Returns:
+            list: The updated list of traversed values.
+        """
         if start:
             traversal = self.post_traversal(start.left, traversal)
             traversal = self.post_traversal(start.right, traversal)
@@ -58,7 +105,15 @@ class BinaryTree:
         return traversal
 
     def search(self, root, key):
-        """Search by node id (used for insert/delete)."""
+        """Search by node id (used for insert/delete).
+
+        Parameters:
+            root (Node): The current node being checked.
+            key (int): The unique ID of the node to find.
+
+        Returns:
+            Node or None: The node if found, otherwise None.
+        """
         if root is None:
             return None
         if root.id == key:
@@ -71,7 +126,15 @@ class BinaryTree:
         return self.search(root.right, key)
 
     def search_by_value(self, root, value):
-        """Return the first node with the given data, or None if not found."""
+        """Return the first node with the given data, or None if not found.
+
+        Parameters:
+            root (Node): The current node being checked.
+            value (any): The data value to search for.
+
+        Returns:
+            Node or None: The found node, or None.
+        """
         if root is None:
             return None
         if str(root.data) == str(value):
@@ -86,13 +149,28 @@ class BinaryTree:
     # DELETE NODE
     # -----------------------------------------
     def find_min(self, root):
+        """Finds the leftmost (minimum) node in the subtree.
+
+        Parameters:
+            root (Node): The root of the subtree.
+
+        Returns:
+            Node: The leftmost node.
+        """
         while root.left:
             root = root.left
         return root
 
     
     def get_deepest_node(self, root):
-        """Return the deepest (last) node and its parent."""
+        """Return the deepest (last) node and its parent.
+
+        Parameters:
+            root (Node): The root of the tree.
+
+        Returns:
+            tuple: (last_node, parent) or (None, None) if empty.
+        """
         if not root:
             return None, None
 
@@ -109,6 +187,15 @@ class BinaryTree:
         return last_node, parent
 
     def delete(self, root, target_id):
+        """Deletes a node by replacing it with the deepest node in the tree.
+
+        Parameters:
+            root (Node): The root of the tree.
+            target_id (int): The unique ID of the node to delete.
+
+        Returns:
+            Node or None: The root of the modified tree.
+        """
         if not root:
             return None
 
@@ -152,6 +239,16 @@ class BinaryTree:
 
 
     def find_parent(self, root, target_id, parent=None):
+        """Finds the parent of a specific node.
+
+        Parameters:
+            root (Node): The current node being checked.
+            target_id (int): The ID of the child node.
+            parent (Node, optional): The parent of the current node.
+
+        Returns:
+            tuple: (parent_node, side) where side is "left" or "right".
+        """
         if root is None:
             return None, None
         if root.id == target_id:
@@ -168,5 +265,3 @@ class BinaryTree:
             return left_parent, side
 
         return self.find_parent(root.right, target_id, root)
-
-
