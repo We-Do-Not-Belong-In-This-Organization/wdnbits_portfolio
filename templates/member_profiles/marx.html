@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body class="member">
+        
         <a href="{{ url_for('main.profile') }}" class="back-button">Back</a>
+
         <div class="moving-bg">
             <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
             <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
@@ -15,9 +17,11 @@
             <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
             <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
         </div>
+
         <div class="container fade-in">
             <div class="rectangle"></div>
             <div class="vertical-line"></div>
+            
             <div class="main-image">
                 <img src="{{ url_for('static', filename='images/profiles/marx.png') }}" alt="Character Image">
                 <img src="{{ url_for('static', filename='images/profiles/marx.gif') }}" alt="GIF Animation" class="hover-gif">
@@ -26,10 +30,12 @@
             <div class="text-big">MARXIUS</div>
             <div class="text-small"><i>LOMBOYS</i></div>
             <div class="adjective-big">BACK-END/LEADER</div>
+            
             <div class="text-contracts">CONTRACTS:</div>
             <div class="text-contacts">CONTACTS:</div>
             <div class="vertical-line"></div>
             <div class="text-fighting-style">FIGHTING STYLE:</div>
+
             <div class="bullet-contracts">
                 <ul>
                     <li><a href="{{ url_for('queue.queue_page', from_page='marx') }}">Queue Line</a></li>
@@ -38,6 +44,7 @@
                     <li><a href="{{ url_for('main.worksoon', from_page='marx') }}">Works</a></li>
                 </ul>
             </div>
+
             <div class="bullet-contacts">
                 <ul>
                     <li>
@@ -54,6 +61,7 @@
                     </li>
                 </ul>
             </div>
+
             <div class="bullet-fighting-style">
                 <ul>
                     <li><a href="#">About Me</a></li>
@@ -61,6 +69,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="loading-screen">
             <!-- RANDOM TIPS -->
             <div class="title">
@@ -71,6 +80,7 @@
                 <div class="loading-spinner"></div>
             </div>
         </div>
+
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>
