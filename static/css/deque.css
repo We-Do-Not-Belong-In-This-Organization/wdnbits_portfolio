@@ -1,0 +1,174 @@
+/* ============================================
+   DEQUE PAGE STYLES (same as Queue page)
+============================================ */
+
+/* BODY */
+.queue-body {
+  font-family: 'Work Sans', sans-serif;
+  overflow: hidden !important; /* prevent page scroll */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* WRAPPER */
+.queue-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 4vh 4vw;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* SPLATTER DECORATIONS */
+.queue-splatter {
+  position: absolute;
+  width: 600px;
+  opacity: 0.9;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.queue-splatter.top-left  { top: 0; left: 0; transform: scale(1); }
+.queue-splatter.top-right { top: 0; right: 0; transform: scale(-1, 1); }
+.queue-splatter.bottom-left  { bottom: 0; left: 0; transform: scale(1, -1); }
+.queue-splatter.bottom-right { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+/* LEFT PANEL: DEQUE BOX */
+.queue-panel-left {
+  width: 30vw;
+  height: 75vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.queue-title-big {
+  font-size: 4vw;
+  font-weight: 900;
+  background: linear-gradient(to bottom, #ffffff, #1962e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1vh;
+  text-shadow: 0 0 5px #000;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.queue-box {
+  width: 100%;
+  height: 100%;
+  border: 8px solid #000;
+  background-color: #0c184a;
+  padding: 2vh 1vw;
+  overflow-y: scroll;  /* scroll if items overflow */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+/* CUSTOM SCROLLBAR */
+.queue-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.queue-box::-webkit-scrollbar-track {
+  background: #0c184a;
+}
+
+.queue-box::-webkit-scrollbar-thumb {
+  background-color: #1962e9;
+  border-radius: 4px;
+  border: 2px solid #0c184a;
+}
+
+/* QUEUE ITEMS */
+.queue-item,
+.empty-text {
+  font-size: 1.5vw;
+  margin: 1vh 0;
+  white-space: nowrap;       /* single line per item */
+  overflow: hidden;          /* hide extra text */
+  text-overflow: ellipsis;   /* show "..." for long items */
+  color: #fff;
+  font-family: 'Work Sans', sans-serif;
+}
+
+/* RIGHT PANEL: CONTROLS */
+.queue-panel-right {
+  width: 55vw;
+  height: 75vh;
+  background-color: #0c184a;
+  border: 8px solid #000;
+  padding: 2vh 2vw;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* INPUT BOX */
+.queue-input-custom {
+  width: 100%;
+  font-size: 2vw;
+  padding: 1vh 1vw;
+  margin: 2vh 0;
+  border: 4px solid #000;
+  background-color: #0c184a;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 20px #000 inset;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.queue-input-custom::placeholder {
+  color: #89aaff;
+}
+
+/* BUTTONS */
+.queue-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  margin-top: 5vh;
+  flex-wrap: wrap;  /* wrap if needed */
+}
+
+.queue-btn {
+  font-size: 2vw;
+  font-weight: 800;
+  padding: 1vh 2vw;
+  background-color: #0c184a;
+  border: 6px solid black;
+  color: #8fb7ff;
+  cursor: pointer;
+  text-shadow: 0px 0px 5px #000;
+  transition: 0.2s ease;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.queue-btn:hover {
+  transform: scale(1.07);
+  color: white;
+  text-shadow: 0px 0px 10px #5aa0ff;
+}
+
+.queue-btn.clear {
+  display: block;
+  margin: 3vh auto;
+}
+
+/* FOOTER TITLE */
+.queue-footer-title {
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  font-size: 4vw;
+  font-weight: 900;
+  background: linear-gradient(to bottom, #ffffff, #1962e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px #000;
+  font-family: 'Work Sans', sans-serif;
+  z-index: 5;
+}

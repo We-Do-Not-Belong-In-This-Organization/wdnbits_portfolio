@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Cedrique's Profile</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body class="member">
         <a href="{{ url_for('main.profile') }}" class="back-button">Back</a>
@@ -19,10 +19,10 @@
             <div class="rectangle"></div>
             <div class="vertical-line"></div>
             <div class="main-image">
-                <img src="{{ url_for('static', filename='images/orbista.png') }}" alt="Character Image">
-                <img src="{{ url_for('static', filename='images/orbista.gif') }}" alt="GIF Animation" class="hover-gif">
+                <img src="{{ url_for('static', filename='images/profiles/orbista.png') }}" alt="Character Image">
+                <img src="{{ url_for('static', filename='images/profiles/orbista.gif') }}" alt="GIF Animation" class="hover-gif">
             </div>
-            <img src="{{ url_for('static', filename='images/paint.png') }}" alt="Paint Splatter" class="splatter">
+            <img src="{{ url_for('static', filename='images/backgrounds/paint.png') }}" alt="Paint Splatter" class="splatter">
             <div class="text-big">CEDRIQUE</div>
             <div class="text-small"><i>ORBISTA</i></div>
             <div class="adjective-big">FRONT-END</div>
@@ -42,13 +42,13 @@
                 <ul>
                     <li>
                         <a href="https://github.com/CedDesu" target="_blank">
-                        <img src="{{ url_for('static', filename='images/github.png') }}" alt="GitHub" class="icon">
+                        <img src="{{ url_for('static', filename='images/logos/github.png') }}" alt="GitHub" class="icon">
                         GitHub
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                        <img src="{{ url_for('static', filename='images/gmail.png') }}" alt="Email" class="icon">
+                        <img src="{{ url_for('static', filename='images/logos/gmail.png') }}" alt="Email" class="icon">
                         Email
                         </a>
                     </li>
