@@ -1,0 +1,35 @@
+{
+    "nodes": [
+        "North Ave", "Quezon Ave", "GMA-Kamuning", "Cubao-MRT", 
+        "Santolan-Annapolis", "Ortigas", "Shaw Blvd", "Boni", 
+        "Guadalupe", "Buendia", "Ayala", "Magallanes", "Taft",
+        "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", 
+        "Gilmore", "Betty Go-Belmonte", "Cubao-LRT2", 
+        "Anonas", "Katipunan", "Santolan"
+    ],
+    "edges": [
+        ["North Ave", "Quezon Ave"],
+        ["Quezon Ave", "GMA-Kamuning"],
+        ["GMA-Kamuning", "Cubao-MRT"],
+        ["Cubao-MRT", "Santolan-Annapolis"],
+        ["Santolan-Annapolis", "Ortigas"],
+        ["Ortigas", "Shaw Blvd"],
+        ["Shaw Blvd", "Boni"],
+        ["Boni", "Guadalupe"],
+        ["Guadalupe", "Buendia"],
+        ["Buendia", "Ayala"],
+        ["Ayala", "Magallanes"],
+        ["Magallanes", "Taft"],
+        ["Recto", "Legarda"],
+        ["Legarda", "Pureza"],
+        ["Pureza", "V. Mapa"],
+        ["V. Mapa", "J. Ruiz"],
+        ["J. Ruiz", "Gilmore"],
+        ["Gilmore", "Betty Go-Belmonte"],
+        ["Betty Go-Belmonte", "Cubao-LRT2"],
+        ["Cubao-LRT2", "Anonas"],
+        ["Anonas", "Katipunan"],
+        ["Katipunan", "Santolan"],
+        ["Cubao-MRT", "Cubao-LRT2"]
+    ]
+}

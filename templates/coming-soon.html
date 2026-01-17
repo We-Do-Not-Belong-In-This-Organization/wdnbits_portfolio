@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Binary Tree</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head> 
-<body>
-    <a href="{{ url_for('profile_member', name=from_page) }}" class="back-button">Back</a>
-<div class="container">
-    <h1 class="title">
-        <span class="tempfont">Masyadong ka pang</span>
-        <span class="tempfont">Maaga....</span>
-    </h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Binary Tree</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        
+        <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+        
+        <div class="container">
+            <h1 class="title">
+                <span class="tempfont">Masyadong ka pang</span>
+                <span class="tempfont">Maaga....</span>
+            </h1>
+            <footer>
+                <p class="tagalines">
+                    Wait lang ha?
+                    sa susunod dadami to.
+                </p>
+                <p class="tagalines">"Ask mo sya and siya'y makakareceive"<br>
+                    - WDNBTS™<br>
+                </p>
+            </footer>
+        </div>
 
-     <footer>
-        <p class="tagalines">
-        Wait lang ha?
-        sa susunod dadami to.
-      </p>
-
-      <p class="tagalines">"Ask mo sya and siya'y makakareceive"<br>
-        - WDNBTS™<br>
-      </p>     
-    </footer>
-
-   
-  </div>
- 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
 </html>
