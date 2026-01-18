@@ -6,7 +6,7 @@ from src.logic.sorting_folder.merge import merge_sort
 from src.logic.bubble_sort import bubble_sort
 from src.logic.selection_sort import selection_sort
 
-sorting_bp = Blueprint('sorting', _name_)
+sorting_bp = Blueprint('sorting', __name__)
 
 
 # ==========================================
