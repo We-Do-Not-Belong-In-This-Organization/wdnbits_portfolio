@@ -6,7 +6,7 @@ from src.logic.sorting_folder.merge import merge_sort
 from src.logic.bubble_sort import bubble_sort
 from src.logic.selection_sort import selection_sort
 
-sorting_bp = Blueprint('sorting', __name__)
+sorting_bp = Blueprint('sorting', _name_)
 
 
 # ==========================================
@@ -119,3 +119,26 @@ def selection_page():
             error = "Invalid input! Make sure you only enter numbers and commas."
     
     return render_template('works/selection.html', result=sorted_numbers, original=original_input, error=error)
+
+# 6. Quick Sort Page
+@sorting_bp.route('/sorting/quicksort', methods=['GET', 'POST'])
+def quicksort_page():
+    sorted_numbers = None
+    original_input = ""
+    error = None
+
+    if request.method == 'POST':
+        original_input = request.form.get('numbers')
+        try:
+            # Clean input: ignore empty items from trailing commas
+            number_list = [int(x.strip()) for x in original_input.split(',') if x.strip()]
+            
+            if not number_list:
+                error = "Please enter at least one number."
+            else:
+                sorted_numbers = quick_sort(number_list)
+
+        except ValueError:
+            error = "Invalid input! Make sure you only enter numbers and commas."
+    
+    return render_template('works/quicksort.html', result=sorted_numbers, original=original_input, error=error)
