@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request
-from src.logic.sorting_folder.insertion import insertion_sort, merge_sort
+
+# UPDATED IMPORTS: Now importing from two separate files
+from src.logic.sorting_folder.insertion import insertion_sort
+from src.logic.sorting_folder.merge import merge_sort
 
 sorting_bp = Blueprint('sorting', __name__)
 
 # 1. The Menu Page
 @sorting_bp.route('/sorting')
 def sorting_menu():
-    # FIXED: Added 'works/' so Flask finds it in the right folder
     return render_template('works/sorting_menu.html')
 
 # 2. Insertion Sort Page
@@ -19,12 +21,17 @@ def insertion_page():
     if request.method == 'POST':
         original_input = request.form.get('numbers')
         try:
-            number_list = [int(x.strip()) for x in original_input.split(',')]
-            sorted_numbers = insertion_sort(number_list)
+            # Clean input: ignore empty items from trailing commas
+            number_list = [int(x.strip()) for x in original_input.split(',') if x.strip()]
+            
+            if not number_list:
+                error = "Please enter at least one number."
+            else:
+                sorted_numbers = insertion_sort(number_list)
+
         except ValueError:
-            error = "Invalid input! Please enter numbers separated by commas."
+            error = "Invalid input! Make sure you only enter numbers and commas."
     
-    # FIXED: Added 'works/'
     return render_template('works/insertion.html', result=sorted_numbers, original=original_input, error=error)
 
 # 3. Merge Sort Page
@@ -37,10 +44,15 @@ def merge_page():
     if request.method == 'POST':
         original_input = request.form.get('numbers')
         try:
-            number_list = [int(x.strip()) for x in original_input.split(',')]
-            sorted_numbers = merge_sort(number_list)
+            # Clean input: ignore empty items from trailing commas
+            number_list = [int(x.strip()) for x in original_input.split(',') if x.strip()]
+            
+            if not number_list:
+                error = "Please enter at least one number."
+            else:
+                sorted_numbers = merge_sort(number_list)
+
         except ValueError:
-            error = "Invalid input! Please enter numbers separated by commas."
+            error = "Invalid input! Make sure you only enter numbers and commas."
     
-    # FIXED: Added 'works/'
     return render_template('works/merge.html', result=sorted_numbers, original=original_input, error=error)
