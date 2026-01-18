@@ -19,28 +19,32 @@
                 <h2 class="queue-title-big">DEQUE:</h2>
                 <div id="deque-display-box" class="queue-box">
                     {% if deque_items %}
-                    {% for item in deque_items %}
-                    <div class="queue-item">{{ loop.index }}. {{ item }}</div>
-                    {% endfor %}
+                        {% for item in deque_items %}
+                        <div class="queue-item">{{ loop.index }}. {{ item }}</div>
+                        {% endfor %}
                     {% else %}
-                    <p class="empty-text">The deque is empty.</p>
+                        <p class="empty-text">The deque is empty.</p>
                     {% endif %}
                 </div>
             </div>
-            <!-- RIGHT PANEL: INPUTS & BUTTONS -->
+            
             <div class="queue-panel-right">
                 <input type="text" id="deque-input" placeholder="Insert item" class="queue-input-custom">
+                
                 <div class="queue-buttons">
                     <button class="queue-btn" onclick="enqueueFront()">Enqueue Front</button>
                     <button class="queue-btn" onclick="enqueueRear()">Enqueue Rear</button>
                 </div>
+                
                 <div class="queue-buttons">
                     <button class="queue-btn" onclick="dequeueFront()">Dequeue Front</button>
                     <button class="queue-btn" onclick="dequeueRear()">Dequeue Rear</button>
                 </div>
+                
                 <button class="queue-btn clear" onclick="clearDeque()">CLEAR</button>
             </div>
         </div>
+        
         <h2 class="queue-footer-title">DEQUE LINE</h2>
         <script src="{{ url_for('static', filename='js/deque.js') }}"></script>
     </body>
