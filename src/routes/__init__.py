@@ -4,7 +4,7 @@ from .deque_routes import deque_bp
 from .btree_routes import btree_bp
 from .bstree_routes import bstree_bp
 from .graph_routes import graph_bp
-
+from .bblsort_routes import bblsort_bp, selection_bp #Merge into bubble and selection sort routes, bout to rename it laturr
 
 def register_routes(app):
     """Registers all application blueprints with the main Flask app.
@@ -24,3 +24,5 @@ def register_routes(app):
     app.register_blueprint(btree_bp)
     app.register_blueprint(bstree_bp)
     app.register_blueprint(graph_bp)
+    app.register_blueprint(bblsort_bp) #Added bp for Bubble sort
+    app.register_blueprint(selection_bp) #Added bp for Selection sort
