@@ -58,9 +58,11 @@ def merge_page():
     
     return render_template('works/merge.html', result=sorted_numbers, original=original_input, error=error)
 
-# 3. Quick Sort Page
+
+
+# 6. Quick Sort Page
 @sorting_bp.route('/sorting/quicksort', methods=['GET', 'POST'])
-def merge_page():
+def quicksort_page():
     sorted_numbers = None
     original_input = ""
     error = None
@@ -79,4 +81,4 @@ def merge_page():
         except ValueError:
             error = "Invalid input! Make sure you only enter numbers and commas."
     
-    return render_template('works/merge.html', result=sorted_numbers, original=original_input, error=error)
+    return render_template('works/quicksort.html', result=sorted_numbers, original=original_input, error=error)
