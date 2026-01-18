@@ -8,35 +8,30 @@
     <h1>Sorting Algorithms</h1>
     <p>Select an algorithm to visualize:</p>
 
-    <!-- Insertion Sort -->
     <a href="{{ url_for('sorting.insertion_page') }}">
         <button style="padding: 10px 20px; margin: 5px; cursor: pointer;">Insertion Sort</button>
     </a>
     <br>
 
-    <!-- Merge Sort -->
     <a href="{{ url_for('sorting.merge_page') }}">
         <button style="padding: 10px 20px; margin: 5px; cursor: pointer;">Merge Sort</button>
     </a>
     <br>
 
-    <!-- Bubble Sort -->
-    <a href="{{ url_for('bblsort.bubble_ui') }}">
+    <a href="{{ url_for('sorting.bubble_page') }}">
         <button style="padding: 10px 20px; margin: 5px; cursor: pointer;">Bubble Sort</button>
     </a>
     <br>
 
-    <!-- Selection Sort -->
-    <a href="{{ url_for('selectionsort.selection_ui') }}">
+    <a href="{{ url_for('sorting.selection_page') }}">
         <button style="padding: 10px 20px; margin: 5px; cursor: pointer;">Selection Sort</button>
     </a>
     <br>
 
-    <!-- Quick Sort (still locked) -->
     <button disabled style="padding: 10px 20px; margin: 5px; opacity: 0.5;">Quick Sort (Locked)</button>
     <br><br>
 
-    <a href="/">Back to Home</a>
+    <a href="/profile">Back to Profile</a>
 
 </body>
 </html>
