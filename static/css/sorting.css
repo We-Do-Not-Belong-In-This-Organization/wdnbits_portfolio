@@ -126,28 +126,8 @@ button#sortButton:hover {
     border-radius: 4px; 
 }
 
-/* ================================================
-   BACK BUTTON
-================================================= */
-.back-button {
-    position: fixed;
-    top: 3vh;
-    left: 3vw;
-    padding: 0.8vw 2vw;
-    font-size: 1.5vw;
-    font-weight: 700;
-    color: #ffffff;
-    border: 2px solid #161566;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    z-index: 6;
-    text-shadow: 0 0 5px #161566, 0 0 10px #161566;
-    transition: all 0.3s ease;
-    background: rgba(0,0,0,0.4);
+.modal-content,
+.modal-content * {
+    color: #000 !important;
 }
-.back-button:hover {
-    color: black;
-    background: #161566;
-    box-shadow: 0 0 15px #161566, 0 0 30px #161566;
-}
+

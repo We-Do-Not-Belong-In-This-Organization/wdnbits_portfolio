@@ -7,13 +7,20 @@ const arrayContainer = document.getElementById("array-container");
 const numbersInput = document.getElementById("numbersInput");
 const algoSelect = document.getElementById("algoSelect");
 const sortButton = document.getElementById("sortButton");
-const speedSlider = document.getElementById("speedSlider");
-const speedValue = document.getElementById("speedValue");
+const speedInput = document.getElementById("speedInput");
 
-// Speed slider
-speedSlider.addEventListener("input", () => {
-    speed = parseInt(speedSlider.value);
-    speedValue.innerText = `${speed}ms`;
+// Read speed from input
+speedInput.addEventListener("input", () => {
+    let value = parseInt(speedInput.value);
+
+    if (isNaN(value)) return;
+
+    // Clamp value to allowed range
+    if (value < 10) value = 10;
+    if (value > 1000) value = 1000;
+
+    speed = value;
+    speedInput.value = value; // ensure input shows clamped value
 });
 
 // Create bars dynamically scaled
@@ -103,49 +110,90 @@ async function selectionSort(arr) {
 async function mergeSort(arr) {
     const nums = arr.slice();
 
-    async function merge(left, right) {
-        let result = [];
-        while (left.length && right.length) {
-            if (left[0] <= right[0]) result.push(left.shift());
-            else result.push(right.shift());
-            createBars([...result, ...left, ...right]);
+    async function merge(start, mid, end) {
+        const left = nums.slice(start, mid);
+        const right = nums.slice(mid, end);
+
+        let i = 0, j = 0, k = start;
+
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                nums[k] = left[i++];
+            } else {
+                nums[k] = right[j++];
+            }
+
+            createBars(nums, [k]); // 🔴 overwrite position
             await sleep(speed);
+            k++;
         }
-        return [...result, ...left, ...right];
+
+        while (i < left.length) {
+            nums[k] = left[i++];
+            createBars(nums, [k]); // 🔴 overwrite
+            await sleep(speed);
+            k++;
+        }
+
+        while (j < right.length) {
+            nums[k] = right[j++];
+            createBars(nums, [k]); // 🔴 overwrite
+            await sleep(speed);
+            k++;
+        }
     }
 
-    async function mergeSortRecursive(nums) {
-        if (nums.length <= 1) return nums;
-        const mid = Math.floor(nums.length / 2);
-        const left = await mergeSortRecursive(nums.slice(0, mid));
-        const right = await mergeSortRecursive(nums.slice(mid));
-        return await merge(left, right);
+    async function mergeSortRecursive(start, end) {
+        if (end - start <= 1) return;
+        const mid = Math.floor((start + end) / 2);
+        await mergeSortRecursive(start, mid);
+        await mergeSortRecursive(mid, end);
+        await merge(start, mid, end);
     }
 
-    return await mergeSortRecursive(nums);
+    await mergeSortRecursive(0, nums.length);
+    createBars(nums); // clear highlights
+    return nums;
 }
 
 // Quick Sort
 async function quickSort(arr) {
     const nums = arr.slice();
 
-    async function quickSortRecursive(arr) {
-        if (arr.length <= 1) return arr;
-        const pivot = arr[0];
-        const left = [];
-        const right = [];
-        for (let i = 1; i < arr.length; i++) {
-            if (arr[i] < pivot) left.push(arr[i]);
-            else right.push(arr[i]);
-            createBars([...left, pivot, ...right]);
+    async function partition(low, high) {
+        const pivot = nums[high];
+        let i = low;
+
+        for (let j = low; j < high; j++) {
+            createBars(nums, [j, high]); // 🔴 compare with pivot
             await sleep(speed);
+
+            if (nums[j] < pivot) {
+                [nums[i], nums[j]] = [nums[j], nums[i]];
+                createBars(nums, [i, j]); // 🔴 swap
+                await sleep(speed);
+                i++;
+            }
         }
-        return [...(await quickSortRecursive(left)), pivot, ...(await quickSortRecursive(right))];
+
+        [nums[i], nums[high]] = [nums[high], nums[i]];
+        createBars(nums, [i, high]); // 🔴 pivot placement
+        await sleep(speed);
+
+        return i;
     }
 
-    const sorted = await quickSortRecursive(nums);
-    createBars(sorted);
-    return sorted;
+    async function quickSortRecursive(low, high) {
+        if (low < high) {
+            const p = await partition(low, high);
+            await quickSortRecursive(low, p - 1);
+            await quickSortRecursive(p + 1, high);
+        }
+    }
+
+    await quickSortRecursive(0, nums.length - 1);
+    createBars(nums); // clear highlights
+    return nums;
 }
 
 // ============================
@@ -185,7 +233,11 @@ sortButton.addEventListener("click", async () => {
 let currentPage = 1;
 const totalPages = 5;
 
+/* ---------- MODAL CONTROL ---------- */
 function openModal() {
+    currentPage = 1;
+    hideAllPages();
+    showPage(currentPage);
     document.getElementById('infoModal').style.display = 'block';
 }
 
@@ -193,16 +245,39 @@ function closeModal() {
     document.getElementById('infoModal').style.display = 'none';
 }
 
-function changePage(step) {
-    document.getElementById(`page${currentPage}`).classList.remove('active');
-    currentPage += step;
-    if (currentPage > totalPages) currentPage = 1;
-    if (currentPage < 1) currentPage = totalPages;
-    document.getElementById(`page${currentPage}`).classList.add('active');
-    document.getElementById('pageNumber').innerText = `Page ${currentPage} of ${totalPages}`;
+/* ---------- PAGE HANDLING ---------- */
+function hideAllPages() {
+    for (let i = 1; i <= totalPages; i++) {
+        const page = document.getElementById(`page${i}`);
+        if (page) page.classList.remove('active');
+    }
 }
 
-window.onclick = function(event) {
+function showPage(pageNumber) {
+    hideAllPages();
+    const page = document.getElementById(`page${pageNumber}`);
+    if (page) page.classList.add('active');
+
+    document.getElementById('pageNumber').innerText =
+        `Page ${pageNumber} of ${totalPages}`;
+}
+
+function changePage(step) {
+    const nextPage = currentPage + step;
+
+    // Stop at bounds (NO wrap)
+    if (nextPage < 1 || nextPage > totalPages) {
+        return;
+    }
+
+    currentPage = nextPage;
+    showPage(currentPage);
+}
+
+/* ---------- CLICK OUTSIDE TO CLOSE ---------- */
+window.addEventListener('click', function (event) {
     const modal = document.getElementById('infoModal');
-    if (event.target == modal) closeModal();
-};
+    if (event.target === modal) {
+        closeModal();
+    }
+});

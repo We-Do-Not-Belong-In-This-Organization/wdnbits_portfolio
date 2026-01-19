@@ -30,9 +30,17 @@
         <option value="quick">Quick Sort</option>
     </select>
 
-    <!-- Speed Slider -->
-    <p>Animation Speed: <span id="speedValue">300ms</span></p>
-    <input type="range" id="speedSlider" min="50" max="1000" value="300">
+    <!-- Speed Text Input -->
+    <p>Animation Speed (ms):</p>
+    <input
+        type="number"
+        id="speedInput"
+        min="10"
+        max="1000"
+        step="10"
+        style="width:120px; text-align:center;"
+        placeholder="(10-1000ms)"
+    >
 
     <!-- Single Button -->
     <button type="button" id="sortButton" style="margin-top:20px;">Sort & Animate</button>
