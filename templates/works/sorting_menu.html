@@ -2,90 +2,106 @@
 <html>
 <head>
     <title>Sorting Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/sorting.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<body>
+<body class="member">
 
-    <h1>Sorting Algorithms Dashboard</h1>
-    <p>Enter numbers and click an algorithm to sort them instantly.</p>
+<div class="container">
 
-    <form method="POST" action="{{ url_for('sorting.sorting_menu', from_page=from_page) }}">
-        <div style="margin-bottom: 20px;">
-            <input type="text" name="numbers" value="{{ original if original else '' }}" placeholder="e.g. 5, 1, 9, 3" style="width: 300px; padding: 5px;" required>
-        </div>
-
-        <p><strong>Select Algorithm:</strong> 
-            <button type="button" onclick="openModal()" style="border-radius: 50%; width: 25px; height: 25px; cursor: pointer; background: #e0e0e0; border: 1px solid #999;">i</button>
-        </p>
-
-        <div style="display: flex; flex-direction: column; width: 150px; gap: 10px;">
-            <button type="submit" name="algo" value="bubble" style="padding: 10px;">Bubble Sort</button>
-            <button type="submit" name="algo" value="insertion" style="padding: 10px;">Insertion Sort</button>
-            <button type="submit" name="algo" value="selection" style="padding: 10px;">Selection Sort</button>
-            <button type="submit" name="algo" value="merge" style="padding: 10px;">Merge Sort</button>
-            <button type="submit" name="algo" value="quick" style="padding: 10px;">Quick Sort</button>
-            
-            <a href="{{ url_for('sorting.sorting_menu', from_page=from_page) }}">
-                <button type="button" style="padding: 10px; width: 100%; margin-top: 10px;">Reset / Clear</button>
-            </a>
-        </div>
-    </form>
-
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            
-            <div id="page1" class="info-page active">
-                <h2>1. Bubble Sort</h2>
-                <p>It repeatedly swaps adjacent elements. Because it uses nested loops to compare every element with every other element, it performs n times n operations.</p>
-                Complexity: O(n^2)
-            </div>
-
-            <div id="page2" class="info-page">
-                <h2>2. Insertion Sort</h2>
-                <p>It scans the sorted part of the array for every new element. In the worst case (reverse order), you must compare each element with all previous elements, leading to O(n squared).</p>
-                Complexity: O(n^2)
-            </div>
-
-            <div id="page3" class="info-page">
-                <h2>3. Selection Sort</h2>
-                <p>It always scans the entire unsorted list to find the minimum value. Even if the array is already sorted, it still performs all comparisons in nested loops.</p>
-                Complexity: O(n^2)
-            </div>
-
-            <div id="page4" class="info-page">
-                <h2>4. Merge Sort</h2>
-                <p>It uses Divide and Conquer. It splits the array in half over and over and then merges them back together, which makes it much more efficient.</p>
-                Complexity: O(n log n)
-            </div>
-
-            <div id="page5" class="info-page">
-                <h2>5. Quick Sort</h2>
-                <p>Like Merge Sort, it partitions the data. On average, it splits the list into halves and performs comparisons across those levels very quickly.</p>
-                Complexity: O(n log n)
-            </div>
-
-            <div class="modal-navigation">
-                <button type="button" class="nav-btn" onclick="changePage(-1)">Previous</button>
-                <span id="pageNumber">Page 1 of 5</span>
-                <button type="button" class="nav-btn" onclick="changePage(1)">Next</button>
-            </div>
-        </div>
+    <!-- Title -->
+    <div class="title">
+        <span class="top">Sorting Visualizer</span>
+        <span class="main">SORT</span>
+        <span class="sub">Animate & Learn</span>
     </div>
 
-    <script src="{{ url_for('static', filename='js/sorting.js') }}"></script>
+    <!-- Input Field -->
+    <input type="text" id="numbersInput" name="numbers" value="{{ original if original else '' }}" placeholder="e.g. 5,1,9,3" style="width:300px;padding:5px;" required>
 
-    <hr>
-    {% if error %} <div style="color: red;"><h3>Error</h3><p>{{ error }}</p></div> {% endif %}
-    {% if result %}
-        <div style="background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc;">
-            <h2>Result ({{ algo|capitalize }} Sort):</h2>
-            <p><strong>Sorted Output:</strong> {{ result }}</p>
+    <!-- Algorithm Selector -->
+    <p>Select Algorithm:
+        <button type="button" onclick="openModal()" style="border-radius: 50%; width: 25px; height: 25px; cursor: pointer; background: #e0e0e0; border: 1px solid #999;">i</button>
+    </p>
+    <select id="algoSelect">
+        <option value="bubble">Bubble Sort</option>
+        <option value="insertion">Insertion Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="merge">Merge Sort</option>
+        <option value="quick">Quick Sort</option>
+    </select>
+
+    <!-- Speed Slider -->
+    <p>Animation Speed: <span id="speedValue">300ms</span></p>
+    <input type="range" id="speedSlider" min="50" max="1000" value="300">
+
+    <!-- Single Button -->
+    <button type="button" id="sortButton" style="margin-top:20px;">Sort & Animate</button>
+
+    <!-- Visualization -->
+    <h2>Visualization</h2>
+    <div id="array-container"></div>
+
+    <!-- Server-side Result -->
+    <div id="serverResult">
+        {% if result %}
+        <div style="background:#f0f0f0; padding:10px; margin-top: 20px;">
+            <h3>Result ({{ algo|capitalize }} Sort)</h3>
+            <p>{{ result }}</p>
         </div>
-    {% endif %}
-    
-    <br><br>
-    <a href="{{ url_for('main.profile_member', name=from_page) if from_page else '/profile' }}">Back</a>
+        {% endif %}
+    </div>
 
+    <!-- Back Button -->
+    <a href="{{ url_for('main.profile_member', name=from_page) if from_page else '/profile' }}" class="back-button">Back</a>
+
+</div>
+
+<!-- ===========================
+      Info Modal
+=========================== -->
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        
+        <div id="page1" class="info-page active">
+            <h2>1. Bubble Sort</h2>
+            <p>It repeatedly swaps adjacent elements. Nested loops compare every element with the others.</p>
+            Complexity: O(n^2)
+        </div>
+
+        <div id="page2" class="info-page">
+            <h2>2. Insertion Sort</h2>
+            <p>Scans the sorted part of the array for every new element.</p>
+            Complexity: O(n^2)
+        </div>
+
+        <div id="page3" class="info-page">
+            <h2>3. Selection Sort</h2>
+            <p>Finds the minimum in the unsorted list and swaps it.</p>
+            Complexity: O(n^2)
+        </div>
+
+        <div id="page4" class="info-page">
+            <h2>4. Merge Sort</h2>
+            <p>Uses Divide and Conquer. Splits array and merges sorted halves.</p>
+            Complexity: O(n log n)
+        </div>
+
+        <div id="page5" class="info-page">
+            <h2>5. Quick Sort</h2>
+            <p>Partitions data and sorts recursively. Efficient on average.</p>
+            Complexity: O(n log n)
+        </div>
+
+        <div class="modal-navigation">
+            <button type="button" class="nav-btn" onclick="changePage(-1)">Previous</button>
+            <span id="pageNumber">Page 1 of 5</span>
+            <button type="button" class="nav-btn" onclick="changePage(1)">Next</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/sorting.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sorting-info.js') }}"></script>
 </body>
 </html>

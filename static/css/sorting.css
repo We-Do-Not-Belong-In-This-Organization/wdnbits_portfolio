@@ -1,49 +1,153 @@
-/* static/css/sorting.css */
-.modal {
+/* ================================================
+   INPUTS, SELECT, BUTTONS
+================================================= */
+input, select, button { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 1rem; 
+    padding: 8px; 
+    border-radius: 6px; 
+    border: none; 
+}
+button#sortButton { 
+    margin-top: 20px; 
+    background: #4a90ff; 
+    color: white; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+button#sortButton:hover { 
+    background: #1e63d0; 
+}
+
+/* ================================================
+   ARRAY VISUALIZATION
+================================================= */
+#array-container {
+    display: flex;
+    justify-content: flex-start; /* start from left */
+    align-items: flex-end;
+    margin-top: 30px;
+    height: 300px;       /* fixed container height */
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;     /* wrap bars if too many */
+    gap: 2px;
+    overflow: hidden;    /* hide scrollbars vertically */
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 5px;
+}
+
+/* Individual bar styles */
+.bar {
+    background-color: #4a90ff;
+    transition: height 0.3s, background-color 0.3s;
+    border-radius: 3px 3px 0 0;
+}
+
+/* Highlighting bars during sorting */
+.bar.highlight {
+    background-color: #ff4d4d;
+}
+
+/* ================================================
+   SERVER RESULT
+================================================= */
+#serverResult div {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f0f0f0;
+    color: black; /* make text readable */
+    border-radius: 6px;
+}
+
+/* ================================================
+   SPEED CONTROL
+================================================= */
+#speedContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+#speedSlider {
+    width: 200px;
+}
+#speedValue {
+    min-width: 50px;
+    text-align: center;
+}
+
+/* ================================================
+   INFO MODAL
+================================================= */
+.modal { 
     display: none; 
     position: fixed; 
     z-index: 2000; 
-    left: 0; top: 0;
-    width: 100%; height: 100%;
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
     background-color: rgba(0,0,0,0.7);
 }
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: 12px;
-    width: 60%;
-    max-width: 500px;
-    position: relative;
+.modal-content { 
+    background-color: #fff; 
+    margin: 10% auto; 
+    padding: 30px; 
+    border-radius: 12px; 
+    width: 60%; 
+    max-width: 500px; 
+    position: relative; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
-.close-btn {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 28px;
-    cursor: pointer;
+.close-btn { 
+    position: absolute; 
+    right: 20px; top: 10px; 
+    font-size: 28px; 
+    cursor: pointer; 
     color: #666;
 }
+.info-page{ display: none; min-height: 150px; }
+.info-page.active{ display: block; }
 
-.info-page { display: none; min-height: 150px; }
-.info-page.active { display: block; }
-
-.modal-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-    border-top: 1px solid #eee;
+.modal-navigation { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 30px; 
+    border-top: 1px solid #eee; 
     padding-top: 15px;
 }
+.nav-btn { 
+    padding: 8px 16px; 
+    cursor: pointer; 
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+}
 
-.nav-btn {
-    padding: 8px 16px;
-    cursor: pointer;
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* ================================================
+   BACK BUTTON
+================================================= */
+.back-button {
+    position: fixed;
+    top: 3vh;
+    left: 3vw;
+    padding: 0.8vw 2vw;
+    font-size: 1.5vw;
+    font-weight: 700;
+    color: #ffffff;
+    border: 2px solid #161566;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    z-index: 6;
+    text-shadow: 0 0 5px #161566, 0 0 10px #161566;
+    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.4);
+}
+.back-button:hover {
+    color: black;
+    background: #161566;
+    box-shadow: 0 0 15px #161566, 0 0 30px #161566;
 }
