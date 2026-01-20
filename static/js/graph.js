@@ -9,6 +9,10 @@ let adjList = {};
 let highlightedPath = []; 
 let shortestPathActive = false;
 
+// Set internal resolution to a high-definition 16:10 ratio
+canvas.width = 1600;
+canvas.height = 1000;
+
 // Interaction State
 let draggingNode = null;
 let dragOffsetX = 0;
@@ -50,7 +54,7 @@ function animate() {
     }
 
     // 2. Draw Edges
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 4;
     for (let node of visualNodes) {
         let neighbors = adjList[node.id] || [];
         for (let neighborId of neighbors) {
@@ -70,7 +74,7 @@ function animate() {
 
     // 3. Draw Highlighted Path
     if (highlightedPath.length > 1) {
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 20;
         ctx.strokeStyle = "#ffffff"; 
         ctx.shadowColor = "#ffffff";
         ctx.shadowBlur = 15;
@@ -88,7 +92,7 @@ function animate() {
     }
 
     // 4. Draw Nodes (Rectangles)
-    ctx.font = "bold 14px Arial"; 
+    ctx.font = "bold 24px Arial"; 
     
     // Read current inputs to determine highlights
     const nodeAVal = document.getElementById("nodeA").value;
@@ -96,8 +100,8 @@ function animate() {
 
     for (let node of visualNodes) {
         const metrics = ctx.measureText(node.id);
-        const rectWidth = metrics.width + 30;
-        const rectHeight = 34; 
+        const rectWidth = metrics.width + 40;
+        const rectHeight = 50; 
         
         const drawX = node.x - (rectWidth / 2);
         const drawY = node.y - (rectHeight / 2);
@@ -124,24 +128,25 @@ function animate() {
         }
 
         ctx.fill();
-        
-        const isPathNode =
-            shortestPathActive && highlightedPath.includes(node.id);
+     
+        const isPathNode = shortestPathActive && highlightedPath.includes(node.id);
 
-        ctx.strokeStyle = isPathNode ? "#ffffff" : "#1c6bacff";
-        ctx.lineWidth = isPathNode ? 4 : 1;
-
+     
         if (isPathNode) {
+            ctx.strokeStyle = "#ffffff"; 
+            ctx.lineWidth = 8;           
             ctx.shadowColor = "#ffffff";
-            ctx.shadowBlur = 15;
+            ctx.shadowBlur = 20; 
         } else {
+            ctx.strokeStyle = "#0081f1"; 
+            ctx.lineWidth = 4;          
             ctx.shadowBlur = 0;
         }
+
 
         ctx.stroke();
         ctx.shadowBlur = 0;
         ctx.lineWidth = 1;
-
 
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
@@ -185,16 +190,23 @@ function syncVisualNodes(data) {
 
 function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    return { 
+        x: (e.clientX - rect.left) * scaleX, 
+        y: (e.clientY - rect.top) * scaleY 
+    };
 }
 
 canvas.addEventListener("mousedown", e => {
     const m = getMousePos(e);
+    ctx.font = "bold 14px Arial";
     
     // Hit Test
     for (let i = visualNodes.length - 1; i >= 0; i--) {
         const node = visualNodes[i];
-        ctx.font = "bold 14px Arial";
+        ctx.font = "bold 24px Arial";
         const metrics = ctx.measureText(node.id);
 
         if (
