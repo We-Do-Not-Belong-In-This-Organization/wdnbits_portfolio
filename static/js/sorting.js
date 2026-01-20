@@ -1,53 +1,61 @@
 // ============================
-// Sorting Visualizer JS
+// DOM Elements
 // ============================
+const arrayContainer = document.getElementById('array-container');
+const sortButton = document.getElementById('sortButton');
+const numbersInput = document.getElementById('numbersInput');
+const algoSelect = document.getElementById('algoSelect');
+const speedInput = document.getElementById('speedInput');
 
-let speed = 300; // default speed
-const arrayContainer = document.getElementById("array-container");
-const numbersInput = document.getElementById("numbersInput");
-const algoSelect = document.getElementById("algoSelect");
-const sortButton = document.getElementById("sortButton");
-const speedInput = document.getElementById("speedInput");
+let delay = 300; // default animation speed
+let maxValGlobal = 1; // global max value for consistent scaling
 
-// Read speed from input
-speedInput.addEventListener("input", () => {
-    let value = parseInt(speedInput.value);
+// ============================
+// Helper Functions
+// ============================
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-    if (isNaN(value)) return;
+// Create bars dynamically, scaling heights to fit container
+function createBars(numbers) {
+    arrayContainer.innerHTML = '';
+    maxValGlobal = Math.max(...numbers, 1);
 
-    // Clamp value to allowed range
-    if (value < 10) value = 10;
-    if (value > 1000) value = 1000;
-
-    speed = value;
-    speedInput.value = value; // ensure input shows clamped value
-});
-
-// Create bars dynamically scaled
-function createBars(arr, highlightIndices = []) {
-    arrayContainer.innerHTML = "";
-    if (!arr || arr.length === 0) return;
-
-    const maxVal = Math.max(...arr);
     const containerHeight = arrayContainer.clientHeight;
-    const gap = 2;
-    const barCount = arr.length;
-    const barWidth = Math.floor((arrayContainer.clientWidth - (gap * (barCount - 1))) / barCount);
+    const containerWidth = arrayContainer.clientWidth;
 
-    arr.forEach((num, index) => {
-        const bar = document.createElement("div");
-        bar.classList.add("bar");
+    // Dynamic bar width so all bars fit
+    const gap = 2; // px gap between bars
+    const barWidth = Math.floor((containerWidth - (numbers.length - 1) * gap) / numbers.length);
+
+    numbers.forEach(num => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
         bar.style.width = `${barWidth}px`;
-        const scaledHeight = (num / maxVal) * containerHeight;
-        bar.style.height = `${scaledHeight}px`;
-        bar.style.backgroundColor = highlightIndices.includes(index) ? "#4de1ff" : "#0080ff";
+        bar.style.marginRight = `${gap}px`;
+        bar.style.height = `${(num / maxValGlobal) * containerHeight}px`;
+
+        const span = document.createElement('span');
+        span.textContent = num;
+        bar.appendChild(span);
+
         arrayContainer.appendChild(bar);
     });
 }2,1,3,4,5,7,6,9,8,10
 
-// Sleep utility for animation
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+// Highlight bars
+function highlightBars(indices, color) {
+    const bars = arrayContainer.querySelectorAll('.bar');
+    indices.forEach(i => {
+        if (bars[i]) bars[i].style.backgroundColor = color;
+    });
+}
+
+// Reset bar colors to default
+function resetBars() {
+    const bars = arrayContainer.querySelectorAll('.bar');
+    bars.forEach(bar => bar.style.backgroundColor = '#00e5ff');
 }
 
 // ============================
@@ -55,229 +63,234 @@ function sleep(ms) {
 // ============================
 
 // Bubble Sort
-async function bubbleSort(arr) {
-    const nums = arr.slice();
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length - i - 1; j++) {
-            if (nums[j] > nums[j + 1]) {
-                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]];
+async function bubbleSort(numbers) {
+    const bars = arrayContainer.querySelectorAll('.bar');
+    const n = numbers.length;
+
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            highlightBars([j, j + 1], '#ff4d4d');
+            await sleep(delay);
+
+            if (numbers[j] > numbers[j + 1]) {
+                [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+
+                bars[j].style.height = `${numbers[j] / maxValGlobal * arrayContainer.clientHeight}px`;
+                bars[j].querySelector('span').textContent = numbers[j];
+
+                bars[j + 1].style.height = `${numbers[j + 1] / maxValGlobal * arrayContainer.clientHeight}px`;
+                bars[j + 1].querySelector('span').textContent = numbers[j + 1];
             }
-            createBars(nums, [j, j + 1]);
-            await sleep(speed);
+            resetBars();
         }
     }
-    createBars(nums);
-    return nums;
 }
 
 // Insertion Sort
-async function insertionSort(arr) {
-    const nums = arr.slice();
-    for (let i = 1; i < nums.length; i++) {
-        let key = nums[i];
+async function insertionSort(numbers) {
+    const bars = arrayContainer.querySelectorAll('.bar');
+
+    for (let i = 1; i < numbers.length; i++) {
+        let key = numbers[i];
         let j = i - 1;
-        while (j >= 0 && nums[j] > key) {
-            nums[j + 1] = nums[j];
+
+        while (j >= 0 && numbers[j] > key) {
+            highlightBars([j, j + 1], '#ff4d4d');
+            await sleep(delay);
+
+            numbers[j + 1] = numbers[j];
+            bars[j + 1].style.height = `${numbers[j + 1] / maxValGlobal * arrayContainer.clientHeight}px`;
+            bars[j + 1].querySelector('span').textContent = numbers[j + 1];
+
+            resetBars();
             j--;
-            createBars(nums, [j + 1, i]);
-            await sleep(speed);
         }
-        nums[j + 1] = key;
-        createBars(nums, [j + 1]);
-        await sleep(speed);
+
+        numbers[j + 1] = key;
+        bars[j + 1].style.height = `${key / maxValGlobal * arrayContainer.clientHeight}px`;
+        bars[j + 1].querySelector('span').textContent = key;
     }
-    return nums;
 }
 
 // Selection Sort
-async function selectionSort(arr) {
-    const nums = arr.slice();
-    for (let i = 0; i < nums.length; i++) {
+async function selectionSort(numbers) {
+    const bars = arrayContainer.querySelectorAll('.bar');
+
+    for (let i = 0; i < numbers.length; i++) {
         let minIdx = i;
-        for (let j = i + 1; j < nums.length; j++) {
-            if (nums[j] < nums[minIdx]) minIdx = j;
-            createBars(nums, [i, j, minIdx]);
-            await sleep(speed);
+        for (let j = i + 1; j < numbers.length; j++) {
+            highlightBars([minIdx, j], '#ff4d4d');
+            await sleep(delay);
+
+            if (numbers[j] < numbers[minIdx]) minIdx = j;
+            resetBars();
         }
-        [nums[i], nums[minIdx]] = [nums[minIdx], nums[i]];
-        createBars(nums, [i, minIdx]);
-        await sleep(speed);
+
+        if (minIdx !== i) {
+            [numbers[i], numbers[minIdx]] = [numbers[minIdx], numbers[i]];
+
+            bars[i].style.height = `${numbers[i] / maxValGlobal * arrayContainer.clientHeight}px`;
+            bars[i].querySelector('span').textContent = numbers[i];
+
+            bars[minIdx].style.height = `${numbers[minIdx] / maxValGlobal * arrayContainer.clientHeight}px`;
+            bars[minIdx].querySelector('span').textContent = numbers[minIdx];
+        }
     }
-    return nums;
 }
 
 // Merge Sort
-async function mergeSort(arr) {
-    const nums = arr.slice();
+async function mergeSort(numbers, start = 0, end = numbers.length - 1, bars = arrayContainer.querySelectorAll('.bar')) {
+    if (start >= end) return;
 
-    async function merge(start, mid, end) {
-        const left = nums.slice(start, mid);
-        const right = nums.slice(mid, end);
+    const mid = Math.floor((start + end) / 2);
+    await mergeSort(numbers, start, mid, bars);
+    await mergeSort(numbers, mid + 1, end, bars);
 
-        let i = 0, j = 0, k = start;
+    let left = numbers.slice(start, mid + 1);
+    let right = numbers.slice(mid + 1, end + 1);
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                nums[k] = left[i++];
-            } else {
-                nums[k] = right[j++];
-            }
+    let i = start, li = 0, ri = 0;
 
-            createBars(nums, [k]); // 🔴 overwrite position
-            await sleep(speed);
-            k++;
+    while (li < left.length && ri < right.length) {
+        highlightBars([i], '#ff4d4d');
+        await sleep(delay);
+
+        if (left[li] <= right[ri]) {
+            numbers[i] = left[li++];
+        } else {
+            numbers[i] = right[ri++];
         }
 
-        while (i < left.length) {
-            nums[k] = left[i++];
-            createBars(nums, [k]); // 🔴 overwrite
-            await sleep(speed);
-            k++;
-        }
-
-        while (j < right.length) {
-            nums[k] = right[j++];
-            createBars(nums, [k]); // 🔴 overwrite
-            await sleep(speed);
-            k++;
-        }
+        bars[i].style.height = `${numbers[i] / maxValGlobal * arrayContainer.clientHeight}px`;
+        bars[i].querySelector('span').textContent = numbers[i];
+        resetBars();
+        i++;
     }
 
-    async function mergeSortRecursive(start, end) {
-        if (end - start <= 1) return;
-        const mid = Math.floor((start + end) / 2);
-        await mergeSortRecursive(start, mid);
-        await mergeSortRecursive(mid, end);
-        await merge(start, mid, end);
+    while (li < left.length) {
+        numbers[i] = left[li++];
+        bars[i].style.height = `${numbers[i] / maxValGlobal * arrayContainer.clientHeight}px`;
+        bars[i].querySelector('span').textContent = numbers[i];
+        i++;
     }
 
-    await mergeSortRecursive(0, nums.length);
-    createBars(nums); // clear highlights
-    return nums;
+    while (ri < right.length) {
+        numbers[i] = right[ri++];
+        bars[i].style.height = `${numbers[i] / maxValGlobal * arrayContainer.clientHeight}px`;
+        bars[i].querySelector('span').textContent = numbers[i];
+        i++;
+    }
 }
 
 // Quick Sort
-async function quickSort(arr) {
-    const nums = arr.slice();
+async function quickSort(numbers, low = 0, high = numbers.length - 1, bars = arrayContainer.querySelectorAll('.bar')) {
+    if (low < high) {
+        const pi = await partition(numbers, low, high, bars);
+        await quickSort(numbers, low, pi - 1, bars);
+        await quickSort(numbers, pi + 1, high, bars);
+    }
+}
 
-    async function partition(low, high) {
-        const pivot = nums[high];
-        let i = low;
+async function partition(numbers, low, high, bars) {
+    const pivot = numbers[high];
+    let i = low - 1;
 
-        for (let j = low; j < high; j++) {
-            createBars(nums, [j, high]); // 🔴 compare with pivot
-            await sleep(speed);
+    for (let j = low; j < high; j++) {
+        highlightBars([j, high], '#ff4d4d');
+        await sleep(delay);
 
-            if (nums[j] < pivot) {
-                [nums[i], nums[j]] = [nums[j], nums[i]];
-                createBars(nums, [i, j]); // 🔴 swap
-                await sleep(speed);
-                i++;
-            }
+        if (numbers[j] < pivot) {
+            i++;
+            [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+
+            bars[i].style.height = `${numbers[i] / maxValGlobal * arrayContainer.clientHeight}px`;
+            bars[i].querySelector('span').textContent = numbers[i];
+
+            bars[j].style.height = `${numbers[j] / maxValGlobal * arrayContainer.clientHeight}px`;
+            bars[j].querySelector('span').textContent = numbers[j];
         }
-
-        [nums[i], nums[high]] = [nums[high], nums[i]];
-        createBars(nums, [i, high]); // 🔴 pivot placement
-        await sleep(speed);
-
-        return i;
+        resetBars();
     }
 
-    async function quickSortRecursive(low, high) {
-        if (low < high) {
-            const p = await partition(low, high);
-            await quickSortRecursive(low, p - 1);
-            await quickSortRecursive(p + 1, high);
-        }
-    }
+    [numbers[i + 1], numbers[high]] = [numbers[high], numbers[i + 1]];
 
-    await quickSortRecursive(0, nums.length - 1);
-    createBars(nums); // clear highlights
-    return nums;
+    bars[i + 1].style.height = `${numbers[i + 1] / maxValGlobal * arrayContainer.clientHeight}px`;
+    bars[i + 1].querySelector('span').textContent = numbers[i + 1];
+
+    bars[high].style.height = `${numbers[high] / maxValGlobal * arrayContainer.clientHeight}px`;
+    bars[high].querySelector('span').textContent = numbers[high];
+
+    return i + 1;
 }
 
 // ============================
-// Button click to start sorting
+// Event Listener
 // ============================
-sortButton.addEventListener("click", async () => {
-    const input = numbersInput.value.trim();
-    if (!input) return alert("Please enter numbers!");
+sortButton.addEventListener('click', async () => {
+    const values = numbersInput.value.split(',')
+        .map(x => parseInt(x.trim()))
+        .filter(x => !isNaN(x));
 
-    const numbers = input.split(/[, ]+/).map(Number);
+    if (!values.length) return;
+
+    // Draw bars first
+    createBars(values);
+
+    // Adjust delay
+    const inputDelay = parseInt(speedInput.value);
+    delay = (inputDelay >= 10 && inputDelay <= 1000) ? inputDelay : 300;
+
     const algo = algoSelect.value;
-
-    createBars(numbers); // initial state
-
-    let sorted;
-    switch (algo) {
-        case "bubble": sorted = await bubbleSort(numbers); break;
-        case "insertion": sorted = await insertionSort(numbers); break;
-        case "selection": sorted = await selectionSort(numbers); break;
-        case "merge": sorted = await mergeSort(numbers); break;
-        case "quick": sorted = await quickSort(numbers); break;
+    switch(algo) {
+        case 'bubble': await bubbleSort(values); break;
+        case 'insertion': await insertionSort(values); break;
+        case 'selection': await selectionSort(values); break;
+        case 'merge': await mergeSort(values); break;
+        case 'quick': await quickSort(values); break;
     }
 
-    // Update server-side result div
-    const serverResultDiv = document.getElementById("serverResult");
-    serverResultDiv.innerHTML = `
-        <div style="background:#f0f0f0; padding:10px; margin-top:20px; color:black;">
-            <h3>Result (${algo.charAt(0).toUpperCase() + algo.slice(1)} Sort)</h3>
-            <p>${sorted.join(", ")}</p>
-        </div>
-    `;
+    resetBars();
+
+    // Show sorted result
+    const resultContainer = document.getElementById('serverResult');
+    resultContainer.innerHTML = `<div>
+        <h3>Result (${algo.charAt(0).toUpperCase() + algo.slice(1)} Sort)</h3>
+        <p>${values.join(', ')}</p>
+    </div>`;
 });
 
 // ============================
-// Info Modal Functions
+// Modal Controls
 // ============================
+const infoModal = document.getElementById('infoModal');
+const pageNumberText = document.getElementById('pageNumber');
 let currentPage = 1;
 const totalPages = 5;
 
-/* ---------- MODAL CONTROL ---------- */
 function openModal() {
-    currentPage = 1;
-    hideAllPages();
+    infoModal.style.display = 'block';
     showPage(currentPage);
-    document.getElementById('infoModal').style.display = 'block';
 }
 
 function closeModal() {
-    document.getElementById('infoModal').style.display = 'none';
+    infoModal.style.display = 'none';
 }
 
-/* ---------- PAGE HANDLING ---------- */
-function hideAllPages() {
-    for (let i = 1; i <= totalPages; i++) {
-        const page = document.getElementById(`page${i}`);
-        if (page) page.classList.remove('active');
-    }
-}
-
-function showPage(pageNumber) {
-    hideAllPages();
-    const page = document.getElementById(`page${pageNumber}`);
-    if (page) page.classList.add('active');
-
-    document.getElementById('pageNumber').innerText =
-        `Page ${pageNumber} of ${totalPages}`;
-}
-
-function changePage(step) {
-    const nextPage = currentPage + step;
-
-    // Stop at bounds (NO wrap)
-    if (nextPage < 1 || nextPage > totalPages) {
-        return;
-    }
-
-    currentPage = nextPage;
+function changePage(delta) {
+    currentPage += delta;
+    if (currentPage < 1) currentPage = 1;
+    if (currentPage > totalPages) currentPage = totalPages;
     showPage(currentPage);
 }
 
-/* ---------- CLICK OUTSIDE TO CLOSE ---------- */
-window.addEventListener('click', function (event) {
-    const modal = document.getElementById('infoModal');
-    if (event.target === modal) {
-        closeModal();
-    }
+function showPage(page) {
+    const pages = document.querySelectorAll('.info-page');
+    pages.forEach((p, i) => {
+        p.classList.toggle('active', i === page - 1);
+    });
+    pageNumberText.textContent = `Page ${page} of ${totalPages}`;
+}
+
+window.addEventListener('click', (e) => {
+    if (e.target === infoModal) closeModal();
 });

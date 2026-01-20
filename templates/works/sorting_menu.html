@@ -1,115 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Sorting Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<body class="member">
+
+<body class="sorting">
 
 <div class="container">
 
-    <!-- Title -->
-    <div class="title">
-        <span class="top">Sorting Visualizer</span>
-        <span class="main">SORT</span>
-        <span class="sub">Animate & Learn</span>
+    <!-- =========================
+         TOP BAR / TITLE
+    ========================== -->
+    <div class="top-bar">
+        <a href="{{ url_for('main.profile_member', name=from_page) if from_page else '/profile' }}"
+           class="back-button">BACK</a>
+
+        <div class="title">
+            <span class="top">Sorting Visualizer</span>
+            <span class="main">SORT</span>
+            <span class="sub">Animate & Learn</span>
+        </div>
     </div>
 
-    <!-- Input Field -->
-    <input type="text" id="numbersInput" name="numbers" value="{{ original if original else '' }}" placeholder="e.g. 5,1,9,3" style="width:300px;padding:5px;" required>
+    <!-- =========================
+         CONTROLS SECTION
+    ========================== -->
+    <div class="controls">
 
-    <!-- Algorithm Selector -->
-    <p>Select Algorithm:
-        <button type="button" onclick="openModal()" style="border-radius: 50%; width: 25px; height: 25px; cursor: pointer; background: #e0e0e0; border: 1px solid #999;">i</button>
-    </p>
-    <select id="algoSelect">
-        <option value="bubble">Bubble Sort</option>
-        <option value="insertion">Insertion Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="merge">Merge Sort</option>
-        <option value="quick">Quick Sort</option>
-    </select>
+        <!-- LEFT: INPUT & SPEED -->
+        <div class="controls-left">
+            <label for="numbersInput">INPUT</label>
+            <input
+                type="text"
+                id="numbersInput"
+                name="numbers"
+                value="{{ original if original else '' }}"
+                placeholder="e.g. 5,1,9,3"
+                autocomplete="off"
+            >
 
-    <!-- Speed Text Input -->
-    <p>Animation Speed (ms):</p>
-    <input
-        type="number"
-        id="speedInput"
-        min="10"
-        max="1000"
-        step="10"
-        style="width:120px; text-align:center;"
-        placeholder="(10-1000ms)"
-    >
+            <label for="speedInput">Animation Speed (10–1000 ms)</label>
+            <input
+                type="number"
+                id="speedInput"
+                min="10"
+                max="1000"
+                step="1"
+                placeholder="300"
+            >
+        </div>
 
-    <!-- Single Button -->
-    <button type="button" id="sortButton" style="margin-top:20px;">Sort & Animate</button>
+        <!-- RIGHT: ALGORITHMS -->
+        <div class="controls-right">
+            <div class="algo-header">
+                <span>SORTING BUTTONS:</span>
+                <button
+                    type="button"
+                    class="info-btn"
+                    onclick="openModal()"
+                    aria-label="Sorting Algorithm Info"
+                >i</button>
+            </div>
 
-    <!-- Visualization -->
-    <h2>Visualization</h2>
-    <div id="array-container"></div>
+            <select id="algoSelect">
+                <option value="bubble">Bubble Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="quick">Quick Sort</option>
+            </select>
 
-    <!-- Server-side Result -->
+            <button type="button" id="sortButton">
+                Sort & Animate
+            </button>
+        </div>
+
+    </div>
+
+    <!-- =========================
+         VISUALIZATION
+    ========================== -->
+    <div class="visualization-section">
+        <div id="array-container"></div>
+    </div>
+
+    <!-- =========================
+         RESULT
+    ========================== -->
     <div id="serverResult">
         {% if result %}
-        <div style="background:#f0f0f0; padding:10px; margin-top: 20px;">
+        <div>
             <h3>Result ({{ algo|capitalize }} Sort)</h3>
             <p>{{ result }}</p>
         </div>
         {% endif %}
     </div>
 
-    <!-- Back Button -->
-    <a href="{{ url_for('main.profile_member', name=from_page) if from_page else '/profile' }}" class="back-button">Back</a>
-
 </div>
 
 <!-- ===========================
-      Info Modal
+      INFO MODAL
 =========================== -->
 <div id="infoModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        
+
         <div id="page1" class="info-page active">
             <h2>1. Bubble Sort</h2>
-            <p>It repeatedly swaps adjacent elements. Nested loops compare every element with the others.</p>
-            Complexity: O(n^2)
+            <p>It repeatedly swaps adjacent elements.</p>
+            <p>Complexity: O(n²)</p>
         </div>
 
         <div id="page2" class="info-page">
             <h2>2. Insertion Sort</h2>
-            <p>Scans the sorted part of the array for every new element.</p>
-            Complexity: O(n^2)
+            <p>Builds the sorted array one item at a time.</p>
+            <p>Complexity: O(n²)</p>
         </div>
 
         <div id="page3" class="info-page">
             <h2>3. Selection Sort</h2>
-            <p>Finds the minimum in the unsorted list and swaps it.</p>
-            Complexity: O(n^2)
+            <p>Finds the minimum and swaps it into place.</p>
+            <p>Complexity: O(n²)</p>
         </div>
 
         <div id="page4" class="info-page">
             <h2>4. Merge Sort</h2>
-            <p>Uses Divide and Conquer. Splits array and merges sorted halves.</p>
-            Complexity: O(n log n)
+            <p>Divide and conquer strategy.</p>
+            <p>Complexity: O(n log n)</p>
         </div>
 
         <div id="page5" class="info-page">
             <h2>5. Quick Sort</h2>
-            <p>Partitions data and sorts recursively. Efficient on average.</p>
-            Complexity: O(n log n)
+            <p>Partitions around a pivot.</p>
+            <p>Complexity: O(n log n)</p>
         </div>
 
         <div class="modal-navigation">
-            <button type="button" class="nav-btn" onclick="changePage(-1)">Previous</button>
+            <button type="button" class="nav-btn" onclick="changePage(-1)">
+                Previous
+            </button>
             <span id="pageNumber">Page 1 of 5</span>
-            <button type="button" class="nav-btn" onclick="changePage(1)">Next</button>
+            <button type="button" class="nav-btn" onclick="changePage(1)">
+                Next
+            </button>
         </div>
     </div>
 </div>
 
 <script src="{{ url_for('static', filename='js/sorting.js') }}"></script>
-<script src="{{ url_for('static', filename='js/sorting-info.js') }}"></script>
+
 </body>
 </html>
