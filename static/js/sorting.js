@@ -40,10 +40,10 @@ function createBars(arr, highlightIndices = []) {
         bar.style.width = `${barWidth}px`;
         const scaledHeight = (num / maxVal) * containerHeight;
         bar.style.height = `${scaledHeight}px`;
-        bar.style.backgroundColor = highlightIndices.includes(index) ? "#ff4d4d" : "#4a90ff";
+        bar.style.backgroundColor = highlightIndices.includes(index) ? "#4de1ff" : "#0080ff";
         arrayContainer.appendChild(bar);
     });
-}
+}2,1,3,4,5,7,6,9,8,10
 
 // Sleep utility for animation
 function sleep(ms) {

@@ -33,9 +33,10 @@ button#sortButton:hover {
     flex-wrap: wrap;     /* wrap bars if too many */
     gap: 2px;
     overflow: hidden;    /* hide scrollbars vertically */
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.73);
     border-radius: 8px;
     padding: 5px;
+    border:rgb(0, 115, 255) solid 11px;
 }
 
 /* Individual bar styles */
@@ -57,7 +58,7 @@ button#sortButton:hover {
     margin-top: 20px;
     padding: 10px;
     background: #f0f0f0;
-    color: black; /* make text readable */
+    color: rgb(0, 0, 0); /* make text readable */
     border-radius: 6px;
 }
 
@@ -66,10 +67,10 @@ button#sortButton:hover {
 ================================================= */
 #speedContainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    margin-top: 10px;
-    color: #fff;
+    margin-top: 10%;
+    color: #ffffff;
 }
 #speedSlider {
     width: 200px;
