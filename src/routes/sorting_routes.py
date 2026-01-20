@@ -1,9 +1,4 @@
 from flask import Blueprint, render_template, request
-
-# =========================================================
-# ✅ FIX: IMPORTS MATCHING YOUR FOLDER STRUCTURE
-# Based on your screenshot: src/logic/sorting_folder/...
-# =========================================================
 from src.logic.sorting_folder.insertion import insertion_sort
 from src.logic.sorting_folder.merge import merge_sort
 from src.logic.sorting_folder.bubble_sort import bubble_sort
