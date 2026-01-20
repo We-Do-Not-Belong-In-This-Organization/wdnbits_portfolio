@@ -1,7 +1,6 @@
-/* ================================================
-   INPUTS, SELECT, BUTTONS
-================================================= */
-input, select, button { 
+body.sorting input,
+body.sorting select,
+body.sorting button { 
     font-family: 'Orbitron', sans-serif; 
     font-size: 1rem; 
     padding: 8px; 
@@ -13,7 +12,7 @@ input, select, button {
 /* ================================================
    MAIN CONTAINER CENTERING
 ================================================= */
-.container {
+body.sorting .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 30px;
@@ -26,27 +25,27 @@ input, select, button {
 /* ================================================
    TITLE CENTERING + SIZE REDUCTION
 ================================================= */
-.title {
+body.sorting .title {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.title .top {
-    font-size: 1.8rem;  /* smaller */
+body.sorting .title .top {
+    font-size: 1.8rem;
 }
 
-.title .main {
-    font-size: 4rem;    /* smaller */
+body.sorting .title .main {
+    font-size: 4rem;
 }
 
-.title .sub {
-    font-size: 1rem;    /* smaller */
+body.sorting .title .sub {
+    font-size: 1rem;
 }
 
 /* ================================================
    CONTROLS SECTION
 ================================================= */
-.controls {
+body.sorting .controls {
     width: 100%;
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -55,7 +54,7 @@ input, select, button {
 }
 
 /* LEFT PANEL */
-.controls-left {
+body.sorting .controls-left {
     border: 2px solid #00e5ff;
     border-radius: 12px;
     padding: 18px;
@@ -66,19 +65,19 @@ input, select, button {
     gap: 10px;
 }
 
-.controls-left label {
+body.sorting .controls-left label {
     color: #00e5ff;
     font-size: 0.85rem;
 }
 
-.controls-left input {
+body.sorting .controls-left input {
     background: transparent;
     border: 2px solid #00e5ff;
     color: #00e5ff;
 }
 
 /* RIGHT PANEL */
-.controls-right {
+body.sorting .controls-right {
     border: 2px solid #00e5ff;
     border-radius: 12px;
     padding: 18px;
@@ -89,7 +88,7 @@ input, select, button {
     gap: 12px;
 }
 
-.algo-header {
+body.sorting .algo-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,7 +96,7 @@ input, select, button {
 }
 
 /* SELECT */
-.controls-right select {
+body.sorting .controls-right select {
     width: 100%;
     background: transparent;
     border: 2px solid #00e5ff;
@@ -105,7 +104,7 @@ input, select, button {
 }
 
 /* SORT BUTTON */
-#sortButton {
+body.sorting #sortButton {
     width: 100%;
     background: #00e5ff;
     color: #000;
@@ -115,21 +114,21 @@ input, select, button {
     transition: 0.3s ease;
 }
 
-#sortButton:hover {
+body.sorting #sortButton:hover {
     background: #7ff6ff;
 }
 
 /* ================================================
    VISUALIZATION SECTION
 ================================================= */
-.visualization-section {
+body.sorting .visualization-section {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-#array-container {
+body.sorting #array-container {
     width: 100%;
     height: 350px;
     display: flex;
@@ -143,11 +142,10 @@ input, select, button {
     overflow: hidden; /* no scroll bar */
 }
 
-
 /* ================================================
    BAR STYLES
 ================================================= */
-.bar {
+body.sorting .bar {
     background: #00e5ff;
     border-radius: 6px 6px 0 0;
     display: flex;
@@ -157,7 +155,7 @@ input, select, button {
     box-sizing: border-box;
 }
 
-.bar span {
+body.sorting .bar span {
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 3px;
@@ -165,19 +163,19 @@ input, select, button {
     user-select: none;
 }
 
-.bar.highlight {
+body.sorting .bar.highlight {
     background-color: #ff4d4d;
 }
 
 /* ================================================
    RESULT SECTION
 ================================================= */
-#serverResult {
+body.sorting #serverResult {
     display: flex;
     justify-content: center;
 }
 
-#serverResult div {
+body.sorting #serverResult div {
     margin-top: 15px;
     padding: 12px 16px;
     background: rgba(0,0,0,0.6);
@@ -191,7 +189,7 @@ input, select, button {
 /* ================================================
    MODAL
 ================================================= */
-.modal {
+body.sorting .modal {
     display: none;
     position: fixed;
     z-index: 2000;
@@ -202,7 +200,7 @@ input, select, button {
     background: rgba(0,0,0,0.75);
 }
 
-.modal-content {
+body.sorting .modal-content {
     background: #fff;
     margin: 10% auto;
     padding: 25px;
@@ -212,15 +210,15 @@ input, select, button {
     position: relative;
 }
 
-.modal-content,
-.modal-content * {
+body.sorting .modal-content,
+body.sorting .modal-content * {
     color: #000 !important;
 }
 
-.info-page {
+body.sorting .info-page {
     display: none;
 }
 
-.info-page.active {
+body.sorting .info-page.active {
     display: block;
 }
