@@ -5,125 +5,211 @@ input, select, button {
     font-family: 'Orbitron', sans-serif; 
     font-size: 1rem; 
     padding: 8px; 
-    border-radius: 6px; 
+    border-radius: 8px; 
     border: none; 
-}
-button#sortButton { 
-    margin-top: 20px; 
-    background: #4a90ff; 
-    color: white; 
-    cursor: pointer; 
-    transition: 0.3s; 
-}
-button#sortButton:hover { 
-    background: #1e63d0; 
+    outline: none;
 }
 
 /* ================================================
-   ARRAY VISUALIZATION
+   MAIN CONTAINER CENTERING
 ================================================= */
-#array-container {
-    display: flex;
-    justify-content: flex-start; /* start from left */
-    align-items: flex-end;
-    margin-top: 30px;
-    height: 300px;       /* fixed container height */
-    width: 90%;
+.container {
     max-width: 1200px;
-    flex-wrap: wrap;     /* wrap bars if too many */
-    gap: 2px;
-    overflow: hidden;    /* hide scrollbars vertically */
-    background: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    padding: 5px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Individual bar styles */
+/* ================================================
+   TITLE CENTERING + SIZE REDUCTION
+================================================= */
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title .top {
+    font-size: 1.8rem;  /* smaller */
+}
+
+.title .main {
+    font-size: 4rem;    /* smaller */
+}
+
+.title .sub {
+    font-size: 1rem;    /* smaller */
+}
+
+/* ================================================
+   CONTROLS SECTION
+================================================= */
+.controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+/* LEFT PANEL */
+.controls-left {
+    border: 2px solid #00e5ff;
+    border-radius: 12px;
+    padding: 18px;
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 0 12px #00e5ff55;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls-left label {
+    color: #00e5ff;
+    font-size: 0.85rem;
+}
+
+.controls-left input {
+    background: transparent;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+}
+
+/* RIGHT PANEL */
+.controls-right {
+    border: 2px solid #00e5ff;
+    border-radius: 12px;
+    padding: 18px;
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 0 12px #00e5ff55;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.algo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #00e5ff;
+}
+
+/* SELECT */
+.controls-right select {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+}
+
+/* SORT BUTTON */
+#sortButton {
+    width: 100%;
+    background: #00e5ff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#sortButton:hover {
+    background: #7ff6ff;
+}
+
+/* ================================================
+   VISUALIZATION SECTION
+================================================= */
+.visualization-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#array-container {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: flex-start; /* left to right */
+    align-items: flex-end;       /* grow from bottom */
+    padding: 0;
+    border: 3px solid #00e5ff;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 18px #00e5ff66, inset 0 0 15px #00e5ff33;
+    overflow: hidden; /* no scroll bar */
+}
+
+
+/* ================================================
+   BAR STYLES
+================================================= */
 .bar {
-    background-color: #4a90ff;
-    transition: height 0.3s, background-color 0.3s;
-    border-radius: 3px 3px 0 0;
+    background: #00e5ff;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: height 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-/* Highlighting bars during sorting */
+.bar span {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #000;
+    user-select: none;
+}
+
 .bar.highlight {
     background-color: #ff4d4d;
 }
 
 /* ================================================
-   SERVER RESULT
+   RESULT SECTION
 ================================================= */
-#serverResult div {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f0f0f0;
-    color: black; /* make text readable */
-    border-radius: 6px;
-}
-
-/* ================================================
-   SPEED CONTROL
-================================================= */
-#speedContainer {
+#serverResult {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    color: #fff;
+    justify-content: center;
 }
-#speedSlider {
-    width: 200px;
-}
-#speedValue {
-    min-width: 50px;
-    text-align: center;
+
+#serverResult div {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+    border-radius: 8px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 /* ================================================
-   INFO MODAL
+   MODAL
 ================================================= */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 2000; 
-    left: 0; top: 0; 
-    width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.7);
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
 }
-.modal-content { 
-    background-color: #fff; 
-    margin: 10% auto; 
-    padding: 30px; 
-    border-radius: 12px; 
-    width: 60%; 
-    max-width: 500px; 
-    position: relative; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.close-btn { 
-    position: absolute; 
-    right: 20px; top: 10px; 
-    font-size: 28px; 
-    cursor: pointer; 
-    color: #666;
-}
-.info-page{ display: none; min-height: 150px; }
-.info-page.active{ display: block; }
 
-.modal-navigation { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-top: 30px; 
-    border-top: 1px solid #eee; 
-    padding-top: 15px;
-}
-.nav-btn { 
-    padding: 8px 16px; 
-    cursor: pointer; 
-    background: #f0f0f0; 
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 60%;
+    max-width: 500px;
+    position: relative;
 }
 
 .modal-content,
@@ -131,3 +217,10 @@ button#sortButton:hover {
     color: #000 !important;
 }
 
+.info-page {
+    display: none;
+}
+
+.info-page.active {
+    display: block;
+}
