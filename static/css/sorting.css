@@ -1,0 +1,272 @@
+body.sorting input,
+body.sorting select,
+body.sorting button { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 1rem; 
+    padding: 8px; 
+    border-radius: 8px; 
+    border: none; 
+    outline: none;
+}
+
+/* ================================================
+   MAIN CONTAINER CENTERING
+================================================= */
+body.sorting .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================================================
+   TITLE CENTERING + SIZE REDUCTION
+================================================= */
+body.sorting .title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body.sorting .title .top {
+    font-size: 1.8rem;
+}
+
+body.sorting .title .main {
+    font-size: 4rem;
+}
+
+body.sorting .title .sub {
+    font-size: 1rem;
+}
+
+/* ================================================
+   CONTROLS SECTION
+================================================= */
+body.sorting .controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+/* LEFT PANEL */
+body.sorting .controls-left {
+    border: 2px solid #00e5ff;
+    border-radius: 12px;
+    padding: 18px;
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 0 12px #00e5ff55;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body.sorting .controls-left label {
+    color: #00e5ff;
+    font-size: 0.85rem;
+}
+
+body.sorting .controls-left input {
+    background: transparent;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+}
+
+/* RIGHT PANEL */
+body.sorting .controls-right {
+    border: 2px solid #00e5ff;
+    border-radius: 12px;
+    padding: 18px;
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 0 12px #00e5ff55;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+body.sorting .algo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #00e5ff;
+}
+
+/* SELECT */
+body.sorting .controls-right select {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+}
+
+/* SORT BUTTON */
+body.sorting #sortButton {
+    width: 100%;
+    background: #00e5ff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+body.sorting #sortButton:hover {
+    background: #7ff6ff;
+}
+
+/* ================================================
+   VISUALIZATION SECTION
+================================================= */
+body.sorting .visualization-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+body.sorting #array-container {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: flex-start; /* left to right */
+    align-items: flex-end;       /* grow from bottom */
+    padding: 0;
+    border: 3px solid #00e5ff;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 18px #00e5ff66, inset 0 0 15px #00e5ff33;
+    overflow: hidden; /* no scroll bar */
+}
+
+/* ================================================
+   BAR STYLES
+================================================= */
+body.sorting .bar {
+    background: #00e5ff;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: height 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+body.sorting .bar span {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #000;
+    user-select: none;
+}
+
+body.sorting .bar.highlight {
+    background-color: #ff4d4d;
+}
+
+/* ================================================
+   MODAL & INFO STYLES
+================================================= */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+    background-color: #0b0b0b;
+    color: #ffffff;
+    border: 2px solid #00e5ff;
+    border-radius: 12px;
+    padding: 25px;
+    line-height: 1.6;
+    margin: 10% auto;
+    width: 60%;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.info-page h2 {
+    color: #00e5ff;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.info-page p {
+    color: #ffffff !important; 
+    font-size: 16px !important;  
+    margin: 10px 0;
+    display: block;
+}
+
+.close-btn {
+    color: #00e5ff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ================================================
+   RESULT SECTION
+================================================= */
+body.sorting #serverResult {
+    display: flex;
+    justify-content: center;
+}
+
+body.sorting #serverResult div {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+    border-radius: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* ================================================
+   MODAL
+================================================= */
+body.sorting .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+}
+
+body.sorting .modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 60%;
+    max-width: 500px;
+    position: relative;
+}
+
+body.sorting .modal-content,
+body.sorting .modal-content * {
+    color: #000 !important;
+}
+
+body.sorting .info-page {
+    display: none;
+}
+
+body.sorting .info-page.active {
+    display: block;
+}

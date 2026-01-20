@@ -1,58 +1,62 @@
 from flask import Blueprint, render_template, request
-
-# UPDATED IMPORTS: Now importing from two separate files
 from src.logic.sorting_folder.insertion import insertion_sort
 from src.logic.sorting_folder.merge import merge_sort
+from src.logic.sorting_folder.bubble_sort import bubble_sort
+from src.logic.sorting_folder.selection_sort import selection_sort
+from src.logic.sorting_folder.quicksort import quick_sort
 
 sorting_bp = Blueprint('sorting', __name__)
 
-# 1. The Menu Page
-@sorting_bp.route('/sorting')
+@sorting_bp.route('/sorting', methods=['GET', 'POST'])
 def sorting_menu():
-    return render_template('works/sorting_menu.html')
-
-# 2. Insertion Sort Page
-@sorting_bp.route('/sorting/insertion', methods=['GET', 'POST'])
-def insertion_page():
     sorted_numbers = None
     original_input = ""
     error = None
+    selected_algo = None
+    
+    # Capture 'from_page' so we know where to go back to (e.g., 'matt')
+    from_page = request.args.get('from_page') 
 
     if request.method == 'POST':
         original_input = request.form.get('numbers')
+        selected_algo = request.form.get('algo')
+        
+        # If from_page is lost during POST, try to get it from the URL again
+        if not from_page:
+            from_page = request.args.get('from_page')
+
         try:
-            # Clean input: ignore empty items from trailing commas
-            number_list = [int(x.strip()) for x in original_input.split(',') if x.strip()]
-            
-            if not number_list:
-                error = "Please enter at least one number."
+            if not original_input:
+                 error = "Please enter some numbers first."
             else:
-                sorted_numbers = insertion_sort(number_list)
+                # Handle comma or space separated numbers
+                clean_str = original_input.replace(' ', ',')
+                number_list = [int(x.strip()) for x in clean_str.split(',') if x.strip()]
+                
+                if not number_list:
+                    error = "Please enter valid numbers."
+                else:
+                    # Logic to run the correct algorithm
+                    if selected_algo == 'insertion':
+                        sorted_numbers = insertion_sort(number_list)
+                    elif selected_algo == 'merge':
+                        sorted_numbers = merge_sort(number_list)
+                    elif selected_algo == 'bubble':
+                        sorted_numbers = bubble_sort(number_list)
+                    elif selected_algo == 'selection':
+                        sorted_numbers = selection_sort(number_list)
+                    elif selected_algo == 'quick':
+                        sorted_numbers = quick_sort(number_list)
 
         except ValueError:
-            error = "Invalid input! Make sure you only enter numbers and commas."
-    
-    return render_template('works/insertion.html', result=sorted_numbers, original=original_input, error=error)
+            error = "Invalid input! Only enter numbers separated by commas or spaces."
+        except Exception as e:
+            error = f"An error occurred: {str(e)}"
 
-# 3. Merge Sort Page
-@sorting_bp.route('/sorting/merge', methods=['GET', 'POST'])
-def merge_page():
-    sorted_numbers = None
-    original_input = ""
-    error = None
-
-    if request.method == 'POST':
-        original_input = request.form.get('numbers')
-        try:
-            # Clean input: ignore empty items from trailing commas
-            number_list = [int(x.strip()) for x in original_input.split(',') if x.strip()]
-            
-            if not number_list:
-                error = "Please enter at least one number."
-            else:
-                sorted_numbers = merge_sort(number_list)
-
-        except ValueError:
-            error = "Invalid input! Make sure you only enter numbers and commas."
-    
-    return render_template('works/merge.html', result=sorted_numbers, original=original_input, error=error)
+    # Pass everything back to the HTML
+    return render_template('works/sorting_menu.html', 
+                           result=sorted_numbers, 
+                           original=original_input, 
+                           error=error,
+                           algo=selected_algo,
+                           from_page=from_page)
