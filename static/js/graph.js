@@ -2,10 +2,16 @@
 
 const canvas = document.getElementById('graphCanvas');
 const ctx = canvas.getContext('2d');
+const HITBOX_PADDING = 6;
 
 let visualNodes = []; 
 let adjList = {};     
 let highlightedPath = []; 
+let shortestPathActive = false;
+
+// Set internal resolution to a high-definition 16:10 ratio
+canvas.width = 1600;
+canvas.height = 1000;
 
 // Interaction State
 let draggingNode = null;
@@ -48,7 +54,7 @@ function animate() {
     }
 
     // 2. Draw Edges
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 4;
     for (let node of visualNodes) {
         let neighbors = adjList[node.id] || [];
         for (let neighborId of neighbors) {
@@ -68,9 +74,9 @@ function animate() {
 
     // 3. Draw Highlighted Path
     if (highlightedPath.length > 1) {
-        ctx.lineWidth = 6;
-        ctx.strokeStyle = "#00ff00"; 
-        ctx.shadowColor = "#00ff00";
+        ctx.lineWidth = 20;
+        ctx.strokeStyle = "#ffffff"; 
+        ctx.shadowColor = "#ffffff";
         ctx.shadowBlur = 15;
         ctx.beginPath();
         for (let i = 0; i < highlightedPath.length - 1; i++) {
@@ -86,7 +92,7 @@ function animate() {
     }
 
     // 4. Draw Nodes (Rectangles)
-    ctx.font = "bold 14px Arial"; 
+    ctx.font = "bold 24px Arial"; 
     
     // Read current inputs to determine highlights
     const nodeAVal = document.getElementById("nodeA").value;
@@ -94,8 +100,8 @@ function animate() {
 
     for (let node of visualNodes) {
         const metrics = ctx.measureText(node.id);
-        const rectWidth = metrics.width + 30;
-        const rectHeight = 34; 
+        const rectWidth = metrics.width + 40;
+        const rectHeight = 50; 
         
         const drawX = node.x - (rectWidth / 2);
         const drawY = node.y - (rectHeight / 2);
@@ -103,26 +109,44 @@ function animate() {
         node.width = rectWidth;
         node.height = rectHeight;
 
+        node.hitX = drawX;
+        node.hitY = drawY;
+        node.hitW = rectWidth;
+        node.hitH = rectHeight;
+
         ctx.beginPath();
         if (ctx.roundRect) ctx.roundRect(drawX, drawY, rectWidth, rectHeight, 8);
         else ctx.rect(drawX, drawY, rectWidth, rectHeight);
 
         // --- DYNAMIC COLORING BASED ON SELECTION ---
         if (node.id === nodeAVal) {
-            ctx.fillStyle = "#00ff00"; // Source = Green
+            ctx.fillStyle = "#00bfff"; // Source = Green
         } else if (node.id === nodeBVal) {
-            ctx.fillStyle = "#ff00ff"; // Dest = Magenta
+            ctx.fillStyle = "#0062ff"; // Dest = Magenta
         } else {
             ctx.fillStyle = "rgba(255, 255, 255, 0.9)"; // Default
         }
 
         ctx.fill();
-        
-        ctx.strokeStyle = "#1c6bacff";
-        ctx.shadowColor = "#00d5ffff";
-        ctx.shadowBlur = 10;
+     
+        const isPathNode = shortestPathActive && highlightedPath.includes(node.id);
+
+     
+        if (isPathNode) {
+            ctx.strokeStyle = "#ffffff"; 
+            ctx.lineWidth = 8;           
+            ctx.shadowColor = "#ffffff";
+            ctx.shadowBlur = 20; 
+        } else {
+            ctx.strokeStyle = "#0081f1"; 
+            ctx.lineWidth = 4;          
+            ctx.shadowBlur = 0;
+        }
+
+
         ctx.stroke();
         ctx.shadowBlur = 0;
+        ctx.lineWidth = 1;
 
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
@@ -166,20 +190,32 @@ function syncVisualNodes(data) {
 
 function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    return { 
+        x: (e.clientX - rect.left) * scaleX, 
+        y: (e.clientY - rect.top) * scaleY 
+    };
 }
 
 canvas.addEventListener("mousedown", e => {
     const m = getMousePos(e);
+    ctx.font = "bold 14px Arial";
     
     // Hit Test
     for (let i = visualNodes.length - 1; i >= 0; i--) {
         const node = visualNodes[i];
-        const w = node.width || 40;
-        const h = node.height || 30;
-        
-        if (m.x >= node.x - w/2 && m.x <= node.x + w/2 && 
-            m.y >= node.y - h/2 && m.y <= node.y + h/2) {
+        ctx.font = "bold 24px Arial";
+        const metrics = ctx.measureText(node.id);
+
+        if (
+    m.x >= node.hitX &&
+    m.x <= node.hitX + node.hitW &&
+    m.y >= node.hitY &&
+    m.y <= node.hitY + node.hitH
+        ) {
+
             
             // --- SMART SELECTION LOGIC ---
             const inputA = document.getElementById("nodeA");
@@ -235,6 +271,7 @@ function addVertex() {
 }
 
 function addEdge() {
+    shortestPathActive = false;
     const v1 = document.getElementById("nodeA").value.trim();
     const v2 = document.getElementById("nodeB").value.trim();
     
@@ -252,6 +289,7 @@ function addEdge() {
 }
 
 function deleteVertex() {
+    shortestPathActive = false;
     const v = document.getElementById("nodeA").value.trim();
     if (!v) return alert("Select a node (Source) to delete");
     
@@ -275,16 +313,19 @@ function findShortestPath() {
     .then(res => res.json())
     .then(res => {
         if (res.found) {
-            highlightedPath = res.path; 
+            highlightedPath = res.path;
+            shortestPathActive = true;
             document.querySelector(".graph-display").innerHTML = `<p><b>Path:</b> ${res.path.join(" → ")}</p>`;
         } else {
             highlightedPath = [];
+            shortestPathActive = false;
             alert(res.error);
         }
     });
 }
 
 function runBFS() {
+    shortestPathActive = false;
     const start = document.getElementById("nodeA").value.trim();
     if(!start) return alert("Select a Source node.");
     highlightedPath = [];
@@ -298,6 +339,7 @@ function runBFS() {
 }
 
 function runDFS() {
+    shortestPathActive = false;
     const start = document.getElementById("nodeA").value.trim();
     if(!start) return alert("Select a Source node.");
     highlightedPath = [];
@@ -333,6 +375,7 @@ function handleFileUpload(inputElement) {
 }
 
 function resetGraph() {
+    shortestPathActive = false;
     fetch('/reset_graph', { method: 'POST' })
     .then(res => res.json())
     .then(data => {

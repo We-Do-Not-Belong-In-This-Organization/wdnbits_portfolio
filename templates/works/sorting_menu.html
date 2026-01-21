@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;      
+            width: 100vw;      
+            padding: 10px;     
+            box-sizing: border-box;
+            background-color: transparent; 
+        }
+
+        .top-bar {
+            flex: 0 0 auto;
+            margin-bottom: 5px;
+        }
+
+    
+        .controls {
+            flex: 0 0 auto; 
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+            z-index: 10; 
+        }
+
+        .visualization-section {
+            flex: 1;         
+            display: flex;
+            flex-direction: column;
+            min-height: 0; 
+            margin-bottom: 10px;
+        }
+
+        #array-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end; 
+            justify-content: center;
+            border: 2px solid rgba(0, 229, 255, 0.3);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        #serverResult {
+            flex: 0 0 auto;
+            min-height: 60px;
+            max-height: 100px;
+            border: 1px solid #00e5ff;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bar {
+            background-color: #00e5ff;
+            margin: 0 2px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: black;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="sorting">
+
+<div class="container">
+
+    <div class="top-bar">
+        <a href="{{ url_for('main.profile_member', name=from_page) if from_page else '/profile' }}"
+           class="back-button">BACK</a>
+
+        <div class="title">
+            <span class="top">Sorting Visualizer</span>
+            <span class="main">SORT</span>
+            <span class="sub">Animate & Learn</span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="controls-left">
+            <label for="numbersInput">INPUT</label>
+            <input type="text" id="numbersInput" name="numbers"
+                value="{{ original if original else '' }}"
+                placeholder="e.g. 5,1,9,3" autocomplete="off">
+
+            <label for="speedInput">Animation Speed (10–1000 ms)</label>
+            <input type="number" id="speedInput" min="10" max="1000" step="1" placeholder="300">
+        </div>
+
+        <div class="controls-right">
+            <div class="algo-header">
+                <span>SORTING BUTTONS:</span>
+                <button type="button" class="info-btn" onclick="openModal()">i</button>
+            </div>
+
+            <select id="algoSelect">
+                <option value="bubble">Bubble Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="quick">Quick Sort</option>
+            </select>
+
+            <button type="button" id="sortButton">Sort & Animate</button>
+        </div>
+    </div>
+
+    <div class="visualization-section">
+        <div id="array-container"></div>
+    </div>
+
+    <div id="serverResult">
+        {% if result %}
+        <div>
+            <h3 style="margin: 0; font-size: 1rem;">Result ({{ algo|capitalize }} Sort)</h3>
+            <p style="margin: 0;">{{ result }}</p>
+        </div>
+        {% else %}
+        <p style="color: #00e5ff; opacity: 0.6; margin: 0;">Awaiting Sort Result...</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <div id="page1" class="info-page active">
+            <h2>1. Bubble Sort</h2>
+            <p>It repeatedly swaps adjacent elements if they are in the wrong order until the list is sorted.</p>
+            <p>Complexity: O(n²)</p>
+        </div>
+
+        <div id="page2" class="info-page">
+            <h2>2. Insertion Sort</h2>
+            <p>Builds the final sorted array one item at a time by inserting each element into its correct position.</p>
+            <p>Complexity: O(n²)</p>
+        </div>
+
+        <div id="page3" class="info-page">
+            <h2>3. Selection Sort</h2>
+            <p>Divides the list into a sorted and unsorted part, repeatedly picking the smallest element from the unsorted part.</p>
+            <p>Complexity: O(n²)</p>
+        </div>
+
+        <div id="page4" class="info-page">
+            <h2>4. Merge Sort</h2>
+            <p>A divide-and-conquer algorithm that splits the array in half, sorts them, and merges them back together.</p>
+            <p>Complexity: O(n log n)</p>
+        </div>
+
+        <div id="page5" class="info-page">
+            <h2>5. Quick Sort</h2>
+            <p>Picks an element as a 'pivot' and partitions the array around it so smaller elements are on one side.</p>
+            <p>Complexity: O(n log n)</p>
+        </div>
+
+        <div class="modal-navigation">
+            <button type="button" class="nav-btn" onclick="changePage(-1)">Previous</button>
+            <span id="pageNumber">Page 1 of 5</span>
+            <button type="button" class="nav-btn" onclick="changePage(1)">Next</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/sorting.js') }}"></script>
+
+</body>
+</html>
