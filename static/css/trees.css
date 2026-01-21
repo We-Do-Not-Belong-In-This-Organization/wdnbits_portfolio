@@ -14,9 +14,10 @@
 .traversal-display {
     margin-bottom: 10px;
     font-size: 1.2rem;
-    color: #0081f1;
+    color: #00e5ff;
     text-align: center;
-    border: #0081f1 5px solid;
+    border: #00e5ff 3px solid;
+    border-radius: 20px;
 }
 
 /* FLEX: canvas left, buttons right */
@@ -30,7 +31,7 @@
 
 /* Canvas center + styling */
 #treeCanvas {
-    border: 5px solid #0081f1;
+    border: 5px solid #00e5ff;
     background: #000000;
 }
 
@@ -52,7 +53,7 @@
     font-size: 1rem;
     color: white;
     cursor: pointer;
-    border: #0081f1 5px solid;
+    border: #00e5ff 5px solid;
 
     background-color: rgba(0, 0, 0, 0.7); /* overlay */
 
@@ -67,7 +68,7 @@
 
 /* HOVER — NEON GLOW */
 .binary-tree-buttons button:hover {
-    background-color: rgba(0, 129, 241, 0.5);
+    background-color: #00e5ff;
     color: #ffffff;
     filter: brightness(1.2);
 
@@ -97,9 +98,9 @@
 .traversal-display {
     margin-bottom: 10px;
     font-size: 1.2rem;
-    color: #0081f1;
+    color: #00e5ff;
     text-align: center;
-    border: #0081f1 5px solid;
+    border: #00e5ff 5px solid;
 }
 
 /* FLEX: canvas left, buttons right */
@@ -113,7 +114,8 @@
 
 /* Canvas center + styling */
 #treeCanvas {
-    border: 5px solid #0081f1;
+    border: 3px solid #00e5ff;
+    border-radius: 20px;
     background: #000000;
 }
 
@@ -130,24 +132,26 @@
 .binary-tree-buttons button {
     padding: 10px;
     font-size: 1rem;
-    color:#0081f1;
+    color:#00e5ff;
     cursor: pointer;
-    border: #0081f1 5px solid;
+    border: #00e5ff 3px solid;
+    border-radius: 20px;
     background-color: #000000;
     transition: background-color 0.2s, color 0.4s;
     font-family: 'Orbitron', sans-serif;
     font-size: small;
+    
 }
 
 
   .binary-tree-buttons button:hover {
-    background-color:#0081f1;
+    background-color:#00e5ff;
     color:  rgb(0, 0, 0)
 
   }
   .binary-tree-buttons button:active{
     background-color: rgb(0, 0, 0);
-    color:#0081f1;
+    color:#00e5ff;
 }
 
 /* Selected node label */
@@ -159,7 +163,7 @@
 
 .traversal-display {
     background: rgb(0, 0, 0);
-    color: #1962e9;
+    color: #00e5ff;
     font-weight: 700;
     padding: 2px;
 }
@@ -168,14 +172,16 @@
     width: 100%;
     padding: 8px;
     font-size: 1rem;
-    border: #0081f1 5px solid;
+    border: #00e5ff 5px solid;
     background-color: #000000;
-    color:#0081f1;
+    color:#00e5ff;
     box-sizing: border-box;
+    border-radius: 20px;
+
 }
 
 input::placeholder {
-  color: #0081f1;
+  color: #00e5ff;
   text-align: center; 
 }
 

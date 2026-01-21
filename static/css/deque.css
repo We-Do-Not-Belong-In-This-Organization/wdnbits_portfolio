@@ -4,7 +4,7 @@
 
 /* BODY */
 .queue-body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Orbitron';
   overflow: hidden !important; /* prevent page scroll */
   margin: 0;
   padding: 0;
@@ -46,14 +46,12 @@
 }
 
 .queue-title-big {
+  font: 'Orbitron';
   font-size: 4vw;
   font-weight: 900;
-  background: linear-gradient(to bottom, #ffffff, #1962e9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   margin-bottom: 1vh;
-  text-shadow: 0 0 5px #000;
-  font-family: 'Work Sans', sans-serif;
+  text-shadow: 0 0 5px #00e5ff;
+  font-family: 'Orbitron';
 }
 
 .queue-box {
@@ -65,7 +63,7 @@
   overflow-y: scroll;  /* scroll if items overflow */
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Orbitron';
 }
 
 /* CUSTOM SCROLLBAR */
@@ -92,8 +90,7 @@
   overflow: hidden;          /* hide extra text */
   text-overflow: ellipsis;   /* show "..." for long items */
   color: #fff;
-  font-family: 'Work Sans', sans-serif;
-}
+  font-family: 'Orbitron';
 
 /* RIGHT PANEL: CONTROLS */
 .queue-panel-right {
@@ -118,7 +115,7 @@
   text-align: center;
   box-shadow: 0 0 20px #000 inset;
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Orbitron';
 }
 
 .queue-input-custom::placeholder {
@@ -144,7 +141,7 @@
   cursor: pointer;
   text-shadow: 0px 0px 5px #000;
   transition: 0.2s ease;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Orbitron';
 }
 
 .queue-btn:hover {
@@ -169,6 +166,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 5px #000;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Orbitron';
   z-index: 5;
 }
