@@ -9,6 +9,20 @@ sorting_bp = Blueprint('sorting', __name__)
 
 @sorting_bp.route('/sorting', methods=['GET', 'POST'])
 def sorting_menu():
+    """Handles the sorting algorithm demonstration page.
+
+    Displays a form for users to input numbers and select a sorting
+    algorithm, then processes the input and returns the sorted result.
+    Supports multiple sorting algorithms and basic input validation.
+
+    Returns:
+        Rendered HTML template for sorting_menu.html containing:
+        - The sorted result (if available)
+        - The original user input
+        - Any error messages
+        - The selected sorting algorithm
+        - The originating page for navigation
+    """
     sorted_numbers = None
     original_input = ""
     error = None
