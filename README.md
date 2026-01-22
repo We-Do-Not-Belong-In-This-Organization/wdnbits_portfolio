@@ -1,6 +1,6 @@
 <h1 align="center">🕹️👾 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏 𝐏𝐎𝐑𝐓𝐅𝐎𝐋𝐈𝐎 🕹️👾 </h1>
 <p align="center">
-  <img src="https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/title.png" alt= START width="1550" height="1550"/>
+  <img src="https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/readme/title.png" alt= START width="1550" height="1550"/>
 </p>
 
 
@@ -41,11 +41,11 @@
 ### 𝙁𝙚𝙚𝙡 𝙛𝙧𝙚𝙚 𝙩𝙤 𝙨𝙘𝙧𝙤𝙡𝙡 𝙙𝙤𝙬𝙣 𝙖𝙣𝙙 𝙫𝙞𝙚𝙬 𝙤𝙪𝙧 𝙬𝙤𝙧𝙠 𝙥𝙧𝙤𝙟𝙚𝙘𝙩
 
 
-![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme1.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/readme/for%20readme1.png)
 
-![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme2.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/readme/for%20readme2.png)
 
-![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/for%20readme3.png)
+![sneak p e e k](https://github.com/We-Do-Not-Belong-In-This-Organization/wdnbits_portfolio/blob/main/static/images/readme/for%20readme3.png)
 
 <h2> 💻 &nbsp;𝙎𝙤𝙢𝙚 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚𝙨 𝙒𝙚 𝙃𝙖𝙫𝙚 𝙐𝙨𝙚𝙙 𝙖𝙣𝙙 𝙇𝙚𝙖𝙧𝙣𝙚𝙙: </h2>
 <p align="left">

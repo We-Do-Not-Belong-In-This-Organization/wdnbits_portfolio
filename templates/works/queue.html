@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/queue.css') }}">
+</head>
+<body>
+    
+<a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+
+    <div class="queue-container">
+        <div class="queue-panel">
+            <h2 class="queue-title">QUEUE:</h2>
+            
+            <div class="queue-box" id="queue-display-box">
+                {% if queue_line %}
+                    {% for item in queue_line %}
+                    <div class="queue-item">{{ loop.index }}. {{ item }}</div>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty-text">No items in queue</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="queue-button-panel">
+            <input type="text" id="queue-input" placeholder="> INPUT VALUE..." class="queue-input-custom">
+            
+            <div class="queue-buttons">
+                <button class="queue-btn" onclick="enqueueItem()">Enqueue</button>
+                <button class="queue-btn" onclick="dequeueItem()">Dequeue</button>
+            </div>
+
+            <button class="queue-btn clear" onclick="clearQueue()">CLEAR</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/queue.js') }}"></script>
+</body>
+</html>

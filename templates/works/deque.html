@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/queue.css') }}">
+</head>
+<body>
+    
+    <a href="{{ url_for('main.profile_member', name=from_page) }}" class="back-button">Back</a>
+
+    <div class="queue-container">
+        
+        <div class="queue-panel">
+            <h2 class="queue-title">DEQUE:</h2>
+            <div class="queue-box" id="queue-display-box">
+                {% if deque_items %}
+                    {% for item in deque_items %}
+                    <div class="queue-item">
+                        <span class="index-glow">{{ loop.index }}.</span> {{ item }}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty-text">No items in queue.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="queue-button-panel">
+            
+            <input type="text" id="deque-input" placeholder="> INPUT VALUE..." class="queue-input-custom">
+            
+            <div class="queue-buttons">
+                <button class="queue-btn" onclick="enqueueFront()">Enqueue FRONT</button>
+                <button class="queue-btn" onclick="enqueueRear()">Enqueue REAR</button>
+            </div>
+
+            <div class="queue-buttons">
+                <button class="queue-btn" onclick="dequeueFront()">Dequeue FRONT</button>
+                <button class="queue-btn" onclick="dequeueRear()">Dequeue REAR</button>
+            </div>
+
+            <button class="queue-btn clear" onclick="clearDeque()">CLEAR</button>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='js/deque.js') }}"></script>
+</body>
+</html>

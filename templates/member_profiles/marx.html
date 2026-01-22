@@ -1,87 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Marxius' Profile</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body class="member">
+    <head>
+        <meta charset="UTF-8">
+        <title>Marxius' Profile</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+    <body class="member">
+        
+        <a href="{{ url_for('main.profile') }}" class="back-button">Back</a>
 
-  <a href="{{ url_for('profile') }}" class="back-button">Back</a>
+        <div class="moving-bg">
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+            <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
+        </div>
 
-  <div class="moving-bg">
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-    <div class="row"><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span><span>MARXIUS MARXIUS MARXIUS MARXIUS MARXIUS </span></div>
-  </div>
+        <div class="container fade-in">
+            <div class="rectangle"></div>
+            <div class="vertical-line"></div>
+            
+            <div class="main-image">
+                <img src="{{ url_for('static', filename='images/profiles/marx.png') }}" alt="Character Image">
+                <img src="{{ url_for('static', filename='images/profiles/marx.gif') }}" alt="GIF Animation" class="hover-gif">
+            </div>
+            <img src="{{ url_for('static', filename='images/backgrounds/paint.png') }}" alt="Paint Splatter" class="splatter">
+            <div class="text-big">MARXIUS</div>
+            <div class="text-small"><i>LOMBOYS</i></div>
+            <div class="adjective-big">BACK-END/LEADER</div>
+            
+            <div class="text-contracts">CONTRACTS:</div>
+            <div class="text-contacts">CONTACTS:</div>
+            <div class="vertical-line"></div>
+            <div class="text-fighting-style">FIGHTING STYLE:</div>
 
-  <div class="container fade-in">
-    <div class="rectangle"></div>
-    <div class="vertical-line"></div>
+            <div class="bullet-contracts">
+                <ul>
+                    <li><a href="{{ url_for('queue.queue_page', from_page='marx') }}">Queue Line</a></li>
+                    <li><a href="{{ url_for('deque.deque_page', from_page='marx') }}">Deque Line</a></li>
+                    <li><a href="{{ url_for('main.trees_page', from_page='marx') }}">Trees</a></li>
+                    <li><a href="{{ url_for('sorting.sorting_menu', from_page='marx') }}">Sorting</a></li>
+                    <li><a href="{{ url_for('main.worksoon', from_page='marx') }}">Works</a></li>
+                </ul>
+            </div>
 
-    <div class="main-image">
-      <img src="{{ url_for('static', filename='images/marx.png') }}" alt="Character Image">
-      <img src="{{ url_for('static', filename='images/marx.gif') }}" alt="GIF Animation" class="hover-gif">
-    </div>
+            <div class="bullet-contacts">
+                <ul>
+                    <li>
+                        <a href="https://github.com/Marsyus" target="_blank">
+                        <img src="{{ url_for('static', filename='images/logos/github.png') }}" alt="GitHub" class="icon">
+                        GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:miadolomboy0917@gmail.com">
+                        <img src="{{ url_for('static', filename='images/logos/gmail.png') }}" alt="Email" class="icon">
+                        Email
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <img src="{{ url_for('static', filename='images/paint.png') }}" alt="Paint Splatter" class="splatter">
+            <div class="bullet-fighting-style">
+                <ul>
+                    <li><a href="#">About Me</a></li>
+                    <li><a href="#">See More</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="text-big">MARXIUS</div>
-    <div class="text-small"><i>LOMBOYS</i></div>
-    <div class="adjective-big">BACK-END/LEADER</div>
-    <div class="text-contracts">CONTRACTS:</div>
-    <div class="text-contacts">CONTACTS:</div>
-    <div class="vertical-line"></div>
-    <div class="text-fighting-style">FIGHTING STYLE:</div>
+        <div class="loading-screen">
+            <!-- RANDOM TIPS -->
+            <div class="title">
+                <h1 class="loadfont" id="randText">Loading...</h1>
+                <script src="script.js"></script>
+            </div>
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
 
-    <div class="bullet-contracts">
-      <ul>
-        <li><a href="{{ url_for('queue_page', from_page='marx') }}">Queue Line</a></li>
-        <li><a href="{{ url_for('deque_page', from_page='marx') }}">Deque Line</a></li>
-        <li><a href="{{ url_for('trees_page', from_page='marx') }}">Trees</a></li>
-        <li><a href="{{ url_for('worksoon', from_page='marx') }}">Works</a></li>
-      </ul>
-    </div>
-
-    <div class="bullet-contacts">
-      <ul>
-        <li>
-          <a href="https://github.com/Marsyus" target="_blank">
-            <img src="{{ url_for('static', filename='images/github.png') }}" alt="GitHub" class="icon">
-              GitHub
-          </a>
-        </li>
-        <li>
-          <a href="mailto:miadolomboy0917@gmail.com">
-            <img src="{{ url_for('static', filename='images/gmail.png') }}" alt="Email" class="icon">
-              Email
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="bullet-fighting-style">
-      <ul>
-        <li><a href="#">About Me</a></li>
-        <li><a href="#">See More</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="loading-screen">
-          <!-- RANDOM TIPS -->
-    <div class="title">
-      <h1 class="loadfont" id="randText">Loading...</h1>
-    <script src="script.js"></script></div>
-
-    <div class="loading-content">
-      <div class="loading-spinner"></div>
-  </div>
-  </div>
-
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
 </html>

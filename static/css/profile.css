@@ -1,0 +1,97 @@
+/* ================================================
+   PROFILE GRID
+================================================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.character {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #0ff;
+  border-radius: 10px;
+  overflow: visible;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.character img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.character:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #0ff;
+}
+
+/* ================================================
+   SIDE IMAGES FOR PROFILE HOVER
+================================================= */
+.side-image {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  width: 45%;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+}
+
+.left-side { left: -20%; }
+.right-side { right: -20%; }
+
+.left-side.show { left: 2%; opacity: 1; }
+.right-side.show { right: 2%; opacity: 1; }
+
+/* ================================================
+   CONTAINER FADE
+================================================= */
+.container.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ================================================
+   BACK BUTTON
+================================================= */
+.back-button {
+  position: fixed;
+  top: 3vh;
+  left: 3vw;
+  padding: 0.8vw 2vw;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #161566;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  z-index: 6;
+  text-shadow: 0 0 5px #161566, 0 0 10px #161566;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.4);
+}
+
+.back-button:hover {
+  color: black;
+  background: #161566;
+  box-shadow: 0 0 15px #161566, 0 0 30px #161566;
+}

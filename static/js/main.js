@@ -31,11 +31,11 @@ characters.forEach(char => {
     if (rightImg) rightImg.remove();
 
     leftImg = document.createElement("img");
-    leftImg.src = `/static/images/${char.dataset.left}`;
+    leftImg.src = `/static/images/profiles/${char.dataset.left}`;
     leftImg.className = "side-image left-side";
 
     rightImg = document.createElement("img");
-    rightImg.src = `/static/images/${char.dataset.right}`;
+    rightImg.src = `/static/images/profiles/${char.dataset.right}`;
     rightImg.className = "side-image right-side";
 
     grid.appendChild(leftImg);
@@ -77,7 +77,6 @@ const tips = [
   "Si Matt ay may 7 dogs",
   "Tag mo yung tropa mo!",
   ".--- .- -. ....... .-. ..- --.. --..\\n . .-.. .-.. ....... --- .-. --.- ..- .. .-",
-  "3-I",
   "Did you know? WDNBITS stands for 'We Do Not Belong In This School'!",
   "Did you know? 'Ruzzel' in 'Jan Ruzzel Orquia' actually has 2 'L's! It's actually 'Ruzzell'!",
 ];
