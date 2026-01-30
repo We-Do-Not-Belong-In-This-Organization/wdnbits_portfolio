@@ -122,7 +122,7 @@ function animate() {
         if (node.id === nodeAVal) {
             ctx.fillStyle = "#00bfff"; // Source = Green
         } else if (node.id === nodeBVal) {
-            ctx.fillStyle = "#0062ff"; // Dest = Magenta
+            ctx.fillStyle = "#0037ff"; // Dest = Magenta
         } else {
             ctx.fillStyle = "rgba(255, 255, 255, 0.9)"; // Default
         }
@@ -138,7 +138,7 @@ function animate() {
             ctx.shadowColor = "#ffffff";
             ctx.shadowBlur = 20; 
         } else {
-            ctx.strokeStyle = "#0081f1"; 
+            ctx.strokeStyle = "#00e5ff"; 
             ctx.lineWidth = 4;          
             ctx.shadowBlur = 0;
         }
